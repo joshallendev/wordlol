@@ -6,7 +6,7 @@
 
     const disabledColor: string = '#6c6c6c';
 
-    const btnStyles: string = "px-4 py-2 mx-1 my-1 font-semibold text-med bg-minion text-black rounded-full shadow-sm";
+    const btnStyles: string = "px-4 py-4 mx-0.5 font-semibold text-med bg-minion text-black rounded-half shadow-sm";
 
     function handleClick(e): void {
         if (e.target.type === 'button') {
@@ -16,22 +16,22 @@
 </script>
 
 <div id="keyboard" on:click={handleClick} class="flex flex-col w-screen items-center">
-    <div id="key-row-1">
+    <div id="key-row-1" class="my-0.5">
         {#each qwertyRow1 as letter }
             <button type="button" class="{btnStyles}">{letter}</button>
         {/each}
     </div>
-    <div id="key-row-2">
+    <div id="key-row-2" class="my-0.5">
         {#each qwertyRow2 as letter }
             <button type="button" class="{btnStyles}">{letter}</button>
         {/each}
     </div>
-    <div id="key-row-3">
+    <div id="key-row-3" class="my-0.5">
         {#each qwertyRow3 as letter }
             <button type="button" class="{btnStyles}">{letter}</button>
         {/each}
     </div>
-    <div id="key-row-4">
+    <div id="key-row-4" class="my-0.5">
         <button type="button" class="{btnStyles}">BACKSPACE</button>
         <button type="button" class="{btnStyles}">ENTER</button>
     </div>
