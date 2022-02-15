@@ -4,8 +4,9 @@
     const qwertyRow2: Array<string> = ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'];
     const qwertyRow3: Array<string> = ['Z', 'X', 'C', 'V', 'B', 'N', 'M'];  
 
-    const btnStyles: string = "px-4 py-2 mx-1 my-1 font-semibold text-med bg-cyan-500 text-white rounded-full shadow-sm";
+    const disabledColor: string = '#6c6c6c';
 
+    const btnStyles: string = "px-4 py-2 mx-1 my-1 font-semibold text-med bg-minion text-black rounded-full shadow-sm";
 
     function handleClick(e): void {
         if (e.target.type === 'button') {
