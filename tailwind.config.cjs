@@ -4,7 +4,10 @@ module.exports = {
     extend: {
       colors: {
         minion: '#FDE74C',
-        cyanp: '#5BC0EB'
+        darkminion: '#B6A102',
+        cyanp: '#5BC0EB',
+        pumpkin: '#FA7921',
+        flame: '#E55934',
       },
 
     },
