@@ -4,7 +4,7 @@
     import Gameboard from '../components/Gameboard.svelte';
 </script>
 
-<main class="h-screen w-screen bg-cyanp">
+<main class="h-screen w-screen bg-sunray">
     <Header />
     <Gameboard />
     <Keyboard />
