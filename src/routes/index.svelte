@@ -2,7 +2,13 @@
     import Header from '../components/Header.svelte';
     import Keyboard from '../components/Keyboard.svelte';
     import Gameboard from '../components/Gameboard.svelte';
-    import { todaysWord, correctLetters } from '../stores/gameStore';
+    import { todaysWord, 
+        correctLocations, 
+        wrongLocations, 
+        inWordLocations,
+        correctLetters,
+        wrongLetters,
+        inWordLetters } from '../stores/gameStore';
 
     export let rows:Array<Array<string>> = [
         ["", "", "", "", ""],
@@ -10,16 +16,6 @@
         ["", "", "", "", ""],
         ["", "", "", "", ""],
         ["", "", "", "", ""],
-    ];
-
-    export let wrongLetters: Array<Array<number>> = [
-
-    ];
-    export let rightLetters: Array<Array<number>> = [
-
-    ];
-    export let almostRightLetters: Array<Array<number>> = [
-
     ];
 
     let currentArray = 0; 
@@ -45,7 +41,6 @@
     }
 
     function checkGuess() {
-        console.log($correctLetters);
         // only actually check the guess if the current row 
         // is filled out
         if (currentLetter === rows[currentArray].length) {
@@ -56,7 +51,14 @@
                 console.log($todaysWord[i]);
                 // if is in right position
                 if (letter === $todaysWord[i]) {
-                    $correctLetters = [...$correctLetters, [currentArray, i]]
+                    $correctLocations  = [...$correctLocations , [currentArray, i]]
+                    $correctLetters  = [...$correctLetters , letter]
+                } else if ($todaysWord.includes(letter)) {
+                    $inWordLocations = [...$inWordLocations, [currentArray, i]]
+                    $inWordLetters = [...$inWordLetters, letter]
+                } else {
+                    $wrongLocations = [...$wrongLocations, [currentArray, i]]
+                    $wrongLetters = [...$wrongLetters, letter]
                 }
                 // else if included in the word at all 
                 // otherwise not a valid letter
@@ -72,7 +74,7 @@
 
 <main class="h-screen w-screen bg-sunray">
     <Header />
-    <Gameboard {rows} {wrongLetters} {rightLetters} {almostRightLetters} />
+    <Gameboard {rows} />
     <Keyboard on:letter={updateArrays} on:checkguess={checkGuess}/>
 </main>
 
