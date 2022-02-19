@@ -1,5 +1,5 @@
 <script lang=ts>
-import { onMount } from 'svelte';
+import { createEventDispatcher, onMount } from 'svelte';
 
     import { correctGuesses, todaysWord, wrongGuesses, guessedWords, currentRow } from '../stores/gameStore';
 
@@ -8,6 +8,7 @@ import { onMount } from 'svelte';
         ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'],
         ['Z', 'X', 'C', 'V', 'B', 'N', 'M']
     ];
+    const dispatch = createEventDispatcher();
 
     const disabledColor: string = '#6c6c6c';
     const rowStyles: string = "";
@@ -15,19 +16,33 @@ import { onMount } from 'svelte';
     const correctGuessedLetterStyles: string = "h-14 w-10 sm:w-14 flex justify-center px-2 py-4 sm:px-4 font-medium mx-0.5 text-sm bg-frostbite text-black select-none";
     const wrongGuessedLetterStyles: string = "h-14 w-10 sm:w-14 flex justify-center px-2 py-4 sm:px-4 font-medium mx-0.5 text-sm bg-dovegray text-black select-none active:bg-dovegray";
 
-    function handleClick(e): void {
+    function handleLetterClick(e): void {
         const text: string = e.target.innerText; 
+        // only forward the letter to the letters array
+        // if it's truly a single letter
+        if (e.target.type === 'button' && text.length === 1) {
+            dispatch('letter', {
+                text: text, 
+                action: 'add'
+            });
+        }
         $guessedWords.push(text);
-        console.log(guessedWords);
         if (e.target.type === 'button' && text.length === 1 && $todaysWord.includes(text)) {
             $correctGuesses = [...$correctGuesses, text];
         } else {
             $wrongGuesses = [...$wrongGuesses, text];
         }
     }
+
+    function handleBackspaceClick() {
+        dispatch('letter', {
+            text: null, 
+            action: 'backspace'
+        });
+    }
 </script>
 
-<div id="keyboard" on:click={handleClick}>
+<div id="keyboard" on:click={handleLetterClick}>
     {#each letterArrays as row }
         <div class="my-3 flex justify-center">
             {#each row as letter }
@@ -43,9 +58,7 @@ import { onMount } from 'svelte';
     {/each}
 
     <div class="my-3 flex justify-center">
-        <button type="button" class="{letterStyles}">CHECK MY GUESS</button>
-        <button type="button" class="{letterStyles}">DEL</button>        
+        <button type="button" class="{letterStyles} w-auto sm:w-auto">CHECK MY GUESS</button>
+        <button type="button" class="{letterStyles} w-auto sm:w-auto" on:click={handleBackspaceClick}>BACKSPACE</button>        
     </div>
-
-
 </div>
