@@ -8,15 +8,25 @@
         inWordLocations,
         correctLetters,
         wrongLetters,
-        inWordLetters } from '../stores/gameStore';
+        inWordLetters,
+        wordLength,
+        maxGuesses,
+    } from '../stores/gameStore';
+    import { onMount } from 'svelte';
 
-    export let rows:Array<Array<string>> = [
-        ["", "", "", "", ""],
-        ["", "", "", "", ""],
-        ["", "", "", "", ""],
-        ["", "", "", "", ""],
-        ["", "", "", "", ""],
-    ];
+    const makeRows = () => {
+        let tempRows = [];
+        for (let i = 0; i < $maxGuesses; i++) {
+            const row = [];
+            for (let j = 0; j < $wordLength; j++) {
+                row.push("");
+            }   
+            tempRows.push(row);
+        }
+        return tempRows;
+    }
+
+    export let rows = makeRows();
 
     let currentArray = 0; 
     let currentLetter = 0;
@@ -47,8 +57,6 @@
             // check letters in current array for accuracy
             for (let i = 0; i < rows[currentArray].length; i++) {
                 const letter = rows[currentArray][i];
-                console.log(letter);
-                console.log($todaysWord[i]);
                 // if is in right position
                 if (letter === $todaysWord[i]) {
                     $correctLocations  = [...$correctLocations , [currentArray, i]]
@@ -70,17 +78,15 @@
 
         }
     }
+
+    onMount(() => console.log($todaysWord));
 </script>
 
 <main class="h-screen w-screen bg-sunray">
     <Header />
     <Gameboard {rows} />
     <Keyboard on:letter={updateArrays} on:checkguess={checkGuess}/>
+    <!-- {#if gameOver }
+        
+    {/if} -->
 </main>
-
-<style>
-    main {
-        min-width: 320px;
-        display: inline-block;
-    }
-</style>

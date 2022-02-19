@@ -1,9 +1,7 @@
 <script lang=ts>
-    import { createEventDispatcher, onMount } from 'svelte';
+    import { createEventDispatcher } from 'svelte';
 
-    import { correctGuesses, 
-        wrongGuesses,
-        correctLetters,
+    import { correctLetters,
         wrongLetters,
         inWordLetters } from '../stores/gameStore';
 
@@ -13,12 +11,11 @@
         ['Z', 'X', 'C', 'V', 'B', 'N', 'M']
     ];
     const dispatch = createEventDispatcher();
-    const disabledColor: string = '#6c6c6c';
-    const rowStyles: string = "";
-    const letterStyles: string = "h-14 w-10 sm:w-14 flex justify-center px-2 py-4 sm:px-4 font-medium mx-0.5 text-sm bg-minion text-black select-none active:bg-darkminion hover:bg-darkminion";
-    const correctLetterStyles: string = "h-14 w-10 sm:w-14 flex justify-center px-2 py-4 sm:px-4 font-medium mx-0.5 text-sm bg-frostbite text-black select-none";
-    const wrongLetterStyles: string = "h-14 w-10 sm:w-14 flex justify-center px-2 py-4 sm:px-4 font-medium mx-0.5 text-sm bg-dovegray text-black select-none active:bg-dovegray";
-    const inWordLetterStyles: string = "h-14 w-10 sm:w-14 flex justify-center px-2 py-4 sm:px-4 font-medium mx-0.5 text-sm bg-carolinablue text-black select-none active:bg-carolinablue";
+
+    const letterStyles: string = "h-14 w-10 sm:w-14 flex justify-center px-2 py-4 sm:px-4 font-medium mx-0.5 text-sm text-black select-none hover:bg-darkminion rounded bg-minion active:bg-darkminion";
+    const correctLetterStyles: string = "h-14 w-10 sm:w-14 flex justify-center px-2 py-4 sm:px-4 font-medium mx-0.5 text-sm text-black select-none hover:bg-darkminion rounded bg-frostbite";
+    const wrongLetterClasses: string = "h-14 w-10 sm:w-14 flex justify-center px-2 py-4 sm:px-4 font-medium mx-0.5 text-sm text-black select-none hover:bg-darkminion rounded bg-dovegray";
+    const inWordLetterClasses: string = "h-14 w-10 sm:w-14 flex justify-center px-2 py-4 sm:px-4 font-medium mx-0.5 text-sm text-black select-none hover:bg-darkminion rounded bg-carolinablue";
 
     function handleLetterClick(e): void {
         const text: string = e.target.innerText; 
@@ -51,9 +48,9 @@
                 {#if $correctLetters.includes(letter)}
                     <button type="button" class="{correctLetterStyles}">{letter}</button>
                 {:else if $wrongLetters.includes(letter)}
-                        <button type="button" class="{wrongLetterStyles}">{letter}</button>
+                        <button type="button" class="{wrongLetterClasses}">{letter}</button>
                 {:else if $inWordLetters.includes(letter)}
-                    <button type="button" class="{inWordLetterStyles}">{letter}</button>
+                    <button type="button" class="{inWordLetterClasses}">{letter}</button>
                 {:else}
                     <button type="button" class="{letterStyles}">{letter}</button>
                 {/if}
