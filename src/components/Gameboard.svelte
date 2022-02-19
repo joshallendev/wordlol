@@ -1,43 +1,15 @@
 <script lang=ts>
 
 const letterStyles: string = "w-14 h-14 border border-black mx-1 bg-white text-lg mx-0.5 rounded"; 
-
+export let rows;
+import { guessedWords } from '../stores/gameStore';
 </script>
 
-<div class="mb-10">
+
+{#each rows as row }
     <div class="letter-row flex justify-center my-1">
-        <div class="{letterStyles}"></div>
-        <div class="{letterStyles}"></div> 
-        <div class="{letterStyles}"></div> 
-        <div class="{letterStyles}"></div> 
-        <div class="{letterStyles}"></div>  
+        {#each row as item }
+            <div class="{letterStyles}">{item}</div>
+        {/each}
     </div>
-    <div class="letter-row flex justify-center my-1">
-        <div class="{letterStyles}"></div>
-        <div class="{letterStyles}"></div> 
-        <div class="{letterStyles}"></div> 
-        <div class="{letterStyles}"></div> 
-        <div class="{letterStyles}"></div>  
-    </div>
-    <div class="letter-row flex justify-center my-1">
-        <div class="{letterStyles}"></div>
-        <div class="{letterStyles}"></div> 
-        <div class="{letterStyles}"></div> 
-        <div class="{letterStyles}"></div> 
-        <div class="{letterStyles}"></div>  
-    </div>
-    <div class="letter-row flex justify-center my-1">
-        <div class="{letterStyles}"></div>
-        <div class="{letterStyles}"></div> 
-        <div class="{letterStyles}"></div> 
-        <div class="{letterStyles}"></div> 
-        <div class="{letterStyles}"></div>  
-    </div>
-    <div class="letter-row flex justify-center my-1">
-        <div class="{letterStyles}"></div>
-        <div class="{letterStyles}"></div> 
-        <div class="{letterStyles}"></div> 
-        <div class="{letterStyles}"></div> 
-        <div class="{letterStyles}"></div>  
-    </div>
-</div>
+{/each}
