@@ -10,27 +10,11 @@
 		correctLetters,
 		wrongLetters,
 		inWordLetters,
-		// wordLength,
-		// maxGuesses,
         currentArray,
         currentLetter,
         gameRows
 	} from '../stores/gameStore';
 	import { onMount } from 'svelte';
-
-	// function makeRows() {
-	// 	let tempRows = [];
-	// 	for (let i = 0; i < $maxGuesses; i++) {
-	// 		const row = [];
-	// 		for (let j = 0; j < $wordLength; j++) {
-	// 			row.push('');
-	// 		}
-	// 		tempRows.push(row);
-	// 	}
-	// 	return tempRows;
-	// };
-
-	// export let rows = makeRows();
 
 	function updateArrays(event) {
         const text = event.detail.text;
