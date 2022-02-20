@@ -1,7 +1,6 @@
-<script lang=ts>
-    
+<script lang="ts">
 </script>
 
 <header class="bg-black mb-10 text-white py-3">
-    <p class="px-5 font-semibold">WORDLOL</p>
+	<p class="px-5 font-semibold">WORDLOL</p>
 </header>
