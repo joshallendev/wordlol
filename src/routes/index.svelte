@@ -12,7 +12,9 @@
 		inWordLetters,
         currentArray,
         currentLetter,
-        gameRows
+        gameRows,
+		hasWon,
+		gameOver
 	} from '../stores/gameStore';
 	import { onDestroy, onMount } from 'svelte';
 	import { browser } from '$app/env';
@@ -50,6 +52,8 @@
 				correctLocations: $correctLocations,
 				inWordLocations: $inWordLocations,
 				wrongLocations: $wrongLocations,
+				hasWon: $hasWon,
+				gameover: $gameOver,
 				rows: $gameRows
 			}
 			window.localStorage.setItem('savedWordlolGameboard', JSON.stringify(savedGameObj));
@@ -62,6 +66,8 @@
 		if ($currentLetter === $gameRows[$currentArray].length) {
 			// track number of guesses for stats
 			guessCount++;
+
+			let guessedWord = $gameRows[$currentArray].join('');
 			// check letters in current array for accuracy
 			for (let i = 0; i < $gameRows[$currentArray].length; i++) {
 				const letter = $gameRows[$currentArray][i];
@@ -79,14 +85,23 @@
 				// else if included in the word at all
 				// otherwise not a valid letter
 			}
-
-			$currentArray++;
-			$currentLetter = 0;
-			saveGame();
+			if (guessedWord === $todaysWord) {
+				$hasWon = true;
+			}
+			// check if they guessed the word or reached the end of guesses
+			if ($hasWon || $currentArray === $gameRows.length - 1) {
+				$gameOver = true;
+				saveGame();
+			} else {
+				$hasWon = false;
+				$gameOver = false;
+				$currentArray++;
+				$currentLetter = 0;
+				saveGame();
+			}
 		}
 	}
 
-	// onMount(() => console.log($todaysWord));
 </script>
 
 <main class="h-screen w-screen bg-sunray">
