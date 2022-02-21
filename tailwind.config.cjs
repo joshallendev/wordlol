@@ -13,7 +13,7 @@ module.exports = {
 				sunray: '#DEA54B',
 				frostbite: '#D741A7',
 				carolinablue: '#5398BE',
-				light1: '#252423',
+				light1: '#504f4e',
 				actionred: '#D13639',
 				correct: '#39ccb1',
 				lightgray: '#e0e0e0',
