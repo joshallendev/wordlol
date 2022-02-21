@@ -12,7 +12,13 @@ module.exports = {
 				dovegray: '#6c6c6c',
 				sunray: '#DEA54B',
 				frostbite: '#D741A7',
-				carolinablue: '#5398BE'
+				carolinablue: '#5398BE',
+				light1: '#252423',
+				actionred: '#D13639',
+				correct: '#39ccb1',
+				lightgray: '#e0e0e0',
+				robinblue: '#00A0BA',
+				darkgray: '#9c9c9c'
 			}
 		}
 	},
