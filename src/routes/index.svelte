@@ -14,7 +14,10 @@
         currentLetter,
         gameRows
 	} from '../stores/gameStore';
-	import { onMount } from 'svelte';
+	import { onDestroy, onMount } from 'svelte';
+	import { browser } from '$app/env';
+
+	let guessCount = 0;
 
 	function updateArrays(event) {
         const text = event.detail.text;
@@ -35,10 +38,30 @@
 		}
 	}
 
+	function saveGame() {
+		if (browser) {
+			const savedGameObj = {
+				saveDate: new Date().toDateString(), 
+				currentArray: $currentArray, 
+				currentLetter: $currentLetter,
+				correctLetters: $correctLetters,
+				inWordLetters: $inWordLetters,
+				wrongLetters: $wrongLetters,
+				correctLocations: $correctLocations,
+				inWordLocations: $inWordLocations,
+				wrongLocations: $wrongLocations,
+				rows: $gameRows
+			}
+			window.localStorage.setItem('savedWordlolGameboard', JSON.stringify(savedGameObj));
+		}
+	}
+
 	function checkGuess() {
 		// only actually check the guess if the current row
 		// is filled out
 		if ($currentLetter === $gameRows[$currentArray].length) {
+			// track number of guesses for stats
+			guessCount++;
 			// check letters in current array for accuracy
 			for (let i = 0; i < $gameRows[$currentArray].length; i++) {
 				const letter = $gameRows[$currentArray][i];
@@ -59,10 +82,11 @@
 
 			$currentArray++;
 			$currentLetter = 0;
+			saveGame();
 		}
 	}
 
-	onMount(() => console.log($todaysWord));
+	// onMount(() => console.log($todaysWord));
 </script>
 
 <main class="h-screen w-screen bg-sunray">

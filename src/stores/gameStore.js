@@ -1,4 +1,5 @@
 import { derived, readable, writable } from 'svelte/store';
+import { browser } from '$app/env';
 
 const words = [
 	'KOGMAW',
@@ -182,20 +183,7 @@ const words = [
 ];
 const today = new Date().getDay();
 const randomWord = words[Math.floor(Math.random() * words.length)];
-
 const todaysWord = readable(randomWord);
-
-const correctLetters = writable([]);
-const wrongLetters = writable([]);
-const inWordLetters = writable([]);
-
-const correctLocations = writable([]);
-const wrongLocations = writable([]);
-const inWordLocations = writable([]);
-const letterLocations = writable([]);
-
-const currentArray = writable(0);
-const currentLetter = writable(0);
 
 const wordLength = derived(todaysWord, ($todaysWord) => $todaysWord.length);
 
@@ -213,9 +201,33 @@ const boardBuilder = () => {
 	return tempRows;
 };
 
-const rows = boardBuilder();
 
-const gameRows = writable(rows);
+const rows = boardBuilder();
+const savedGame = browser ? JSON.parse(window.localStorage.getItem('savedWordlolGameboard')) : null;
+
+// game data
+const currentArray = savedGame ? writable(savedGame.currentArray) : writable(0);
+const currentLetter = savedGame ? writable(savedGame.currentLetter) : writable(0);
+const gameRows = savedGame ? writable(savedGame.rows) : writable(rows);
+
+// letter tracking
+const correctLetters = savedGame? writable(savedGame.correctLetters) : writable([]);
+const wrongLetters = savedGame? writable(savedGame.wrongLetters) : writable([]);
+const inWordLetters = savedGame? writable(savedGame.inWordLetters) : writable([]);
+
+// letter position tracking
+const correctLocations = savedGame ? writable(savedGame.correctLocations) : writable([]);
+const wrongLocations = savedGame ? writable(savedGame.wrongLocations) : writable([]);
+const inWordLocations = savedGame ? writable(savedGame.inWordLocations) : writable([]);
+
+const statsObj = {
+	totalWins: 0, 
+	totalLosses: 0, 
+}
+
+const savedStats = browser ? window.localStorage.getItem('wordlolstats') : null;
+
+const stats = savedStats ? writable(savedStats) : statsObj;
 
 export {
 	todaysWord,
