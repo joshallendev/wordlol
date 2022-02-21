@@ -60,7 +60,8 @@
 			wrongLocations: $wrongLocations,
 			hasWon: $hasWon,
 			gameOver: $gameOver,
-			rows: $gameRows
+			rows: $gameRows,
+			numGuesses: guessCount
 		};
 		window.localStorage.setItem('savedWordlolGameboard', JSON.stringify(savedGameObj));
 
@@ -176,6 +177,9 @@
 							<li>Total games won: {stats.totalWins}</li>
 							<li>Current Streak: {stats.currentStreak}</li>
 							<li>Longest streak: {stats.maxDayStreak}</li>
+							{#if $hasWon }
+								<li>Won in {guessCount} guesses.</li>
+							{/if}	
 						</ul>
 					</div>
 					<button type="button" class="bg-frostbite p-2 rounded align-middle" on:click="{handleShare}"> 

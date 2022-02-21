@@ -235,6 +235,7 @@ const boardBuilder = () => {
 		lastDatePlayed: 0,
 		currentStreak: 0,
 		maxDayStreak: 0,
+		numGuesses: 0,
 	};
 
 	const savedStats = browser ? JSON.parse(window.localStorage.getItem('wordlolstats')) : null;
