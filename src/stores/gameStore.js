@@ -183,16 +183,16 @@ const words = [
 ];
 
 const today = new Date().toDateString();
-const randomWord = words[55];
+const randomWord = words[56];
 const todaysWord = readable(randomWord);
 
 const wordLength = derived(todaysWord, ($todaysWord) => $todaysWord.length);
 
-const maxGuesses = derived(todaysWord, ($todaysWord) => $todaysWord.length);
+const maxGuesses = 5;
 
 const boardBuilder = () => {
 	let tempRows = [];
-	for (let i = 0; i < randomWord.length; i++) {
+	for (let i = 0; i < maxGuesses; i++) {
 		const row = [];
 		for (let j = 0; j < randomWord.length; j++) {
 			row.push('');

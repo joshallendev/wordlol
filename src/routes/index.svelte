@@ -21,6 +21,7 @@
 	import { browser } from '$app/env';
 
 	let guessCount = 0;
+	let newStats;
 
 	function updateArrays(event: any) {
 		const text = event.detail.text;
@@ -61,7 +62,7 @@
 	}
 
 	function updateStats(): void {
-		let newStats = stats;
+		newStats = stats;
 		newStats.totalGames++;
 		// was the game won? if so lets track it
 		if ($hasWon) {
@@ -81,7 +82,6 @@
 		}
 		newStats.lastDatePlayed = today;
 		newStats.winPct = (newStats.totalWins / newStats.totalGames) * 100;
-		stats = newStats;
 		window.localStorage.setItem('wordlolstats', JSON.stringify(newStats));
 
 	}
@@ -140,13 +140,17 @@
 			})
 			.then(() => console.log('Successful share'))
 			.catch((error) => console.log('Error sharing', error));
+		} else {
+			console.log('no navigator share support');
 		}
 	}
 </script>
 
 <main class="h-screen w-screen bg-sunray">
+	<Header />
+	<Gameboard />
 	{#if $gameOver === true}
-		<div class="fixed flex items-center flex-col inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
+		<div class="fixed items-center flex-col inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
 			<div class="mt-3 text-center bg-white w-1/2 md:w-1/3 py-8 rounded">
 				<h3 class="text-lg font-medium text-gray-900">{ $hasWon ? 'Well done!' : 'Better luck next time.'}</h3>
 				<div class="mt-2 text-center">
@@ -165,7 +169,5 @@
 			</div>
 		</div>
 	{/if}
-	<Header />
-	<Gameboard />
 	<Keyboard on:letter={updateArrays} on:checkguess={checkGuess} />
 </main>
