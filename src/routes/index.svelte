@@ -122,6 +122,8 @@
 			}
 			if (guessedWord === $todaysWord) {
 				$hasWon = true;
+			} else {
+				// notify?
 			}
 			// check if they guessed the word or reached the end of guesses
 			if ($hasWon || $currentArray === $gameRows.length - 1) {

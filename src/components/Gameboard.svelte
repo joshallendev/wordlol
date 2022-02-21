@@ -28,6 +28,6 @@
 
 <style>
 	.board-letter {
-  		transition: background-color 2s ease;
+		transition: background-color 2s ease;
 	}
 </style>
