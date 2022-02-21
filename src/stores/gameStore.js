@@ -218,6 +218,7 @@ const boardBuilder = () => {
 	const gameRows = writable(savedGame ? savedGame.rows : rows);
 	const hasWon = writable(savedGame ? savedGame.hasWon : false);
 	const gameOver = writable(savedGame ? savedGame.gameOver : false);
+	const numGuesses = writable(savedGame ? savedGame.numGuesses : 0);
 
 	// letter tracking
 	const correctLetters = writable(savedGame ? savedGame.correctLetters : []);
