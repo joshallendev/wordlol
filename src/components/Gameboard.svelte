@@ -1,5 +1,4 @@
 <script lang="ts">
-
 	import { correctLocations, wrongLocations, inWordLocations, gameRows } from '../stores/gameStore';
 
 	const letterStyles: string =
