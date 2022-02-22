@@ -3,6 +3,7 @@
 	import Keyboard from '../components/Keyboard.svelte';
 	import Gameboard from '../components/Gameboard.svelte';
 	import GameOverModal from '../components/GameOverModal.svelte';
+	import StatsModal from '../components/StatsModal.svelte';
 	import {
 		today,
 		todaysWord,
@@ -17,7 +18,8 @@
 		gameRows,
 		hasWon,
 		gameOver,
-		stats
+		stats,
+		showStats
 	} from '../stores/gameStore';
 
 	let guessCount = 0;
@@ -165,6 +167,9 @@
 	<Gameboard />
 	{#if $gameOver === true && showModal}
 		<GameOverModal bind:showModal={showModal} {newStats} {handleShare}/>
+	{/if}
+	{#if $showStats === true}
+		<StatsModal />
 	{/if}
 	<Keyboard on:letter={updateArrays} on:checkguess={checkGuess} />
 </main>
