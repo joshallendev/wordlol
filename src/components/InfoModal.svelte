@@ -18,6 +18,7 @@
             <p class="py-1">Words are not limited to champion names.</p>
             <p class="py-1">Words over 5 letters will have random characters revealed to help.</p>
             <p class="py-1">After guessing the letters will change colors to show how close you are to the secret word.</p>
+            <p class="py-1">If using a keyboard, you can type on that or the on-screen keys.</p>
         </section>
         <section id="examples" class="text-left">
             <p class="text-xl font-semibold py-4">Examples</p>

@@ -26,6 +26,7 @@
 	} from '../stores/gameStore';
 	import { SvelteToast, toast } from '@zerodevx/svelte-toast'
 	import { onMount } from 'svelte';
+import { validate_each_argument } from 'svelte/internal';
 
 	export let newStats = stats;
 	export let showModal = false;
@@ -171,6 +172,30 @@
 		}
 	}
 
+	function handleKeyboardInput(e) {
+		const value = e?.key.toUpperCase();
+		if (!value) return;
+		
+		// tests if the key typed is alpha char 
+		const isAlpha = typeof value === "string" && value.length === 1 && /[A-Za-z]/.test(value);
+		let eventObj = {
+			detail: {
+				text: value,
+				action: null
+			}
+		};
+		if (isAlpha) {
+			eventObj.detail.action = 'add';
+			updateArrays(eventObj);
+		} else if (value === 'ENTER') {
+			checkGuess();
+		} else if (value === 'BACKSPACE') {
+			eventObj.detail.action = 'backspace';
+			updateArrays(eventObj);
+		}
+
+	}
+
 	onMount(() => {
 		const app = new SvelteToast({
 		// Set where the toast container should be appended into
@@ -179,7 +204,7 @@
 	})
 
 </script>
-
+<svelte:window on:keydown={handleKeyboardInput} />
 <main class="flex flex-col h-screen w-screen bg-white justify-between min-h-710 max-h-screen">
 	<Header />
 	<Gameboard />

@@ -13,19 +13,19 @@
         <h3 class="text-lg font-medium text-gray-900">Here's some stats for you.</h3>
         <div class="mt-2 text-center">
             <div class="text-left px-6 py-2 flex flex-row justify-between">
-                <div class="flex flex-col items-center text-center">
+                <div class="flex flex-col items-center text-center rounded p-1">
                     <strong><p class="text-2xl">{stats.totalGames}</p></strong>
-                    <p>Total Games</p>
+                    <p># Games</p>
                 </div>
-                <div class="flex flex-col items-center text-center">
+                <div class="flex flex-col items-center text-center rounded p-1">
                     <strong><p class="text-2xl">{stats.totalWins}</p></strong>
-                    <p>Total Wins</p>
+                    <p># Wins</p>
                 </div>
-                <div class="flex flex-col items-center text-center">
+                <div class="flex flex-col items-center text-center rounded p-1">
                     <strong><p class="text-2xl">{stats.currentStreak}</p></strong>
                     <p>Current Streak</p>
                 </div>
-                <div class="flex flex-col items-center text-center">
+                <div class="flex flex-col items-center text-center rounded p-1">
                     <strong><p class="text-2xl">{stats.maxDayStreak}</p></strong>
                     <p>Longest Streak</p>
                 </div>

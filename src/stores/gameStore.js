@@ -183,7 +183,20 @@ const words = [
 ];
 
 const today = new Date().toDateString();
-const randomWord = words[56];
+
+function pickWord() {
+	let dateDiff = Date.parse(today) - Date.parse('Mon Feb 21 2022');
+	const wordListLength = words.length;
+	while (dateDiff > wordListLength) {
+		dateDiff = dateDiff - wordListLength;
+	}
+	return dateDiff;
+}
+
+
+const randomWord = words[pickWord()];
+// const randomWord = words[Math.floor(Math.random() * words.length)];
+console.log(randomWord);
 const todaysWord = readable(randomWord);
 
 const wordLength = derived(todaysWord, ($todaysWord) => $todaysWord.length);
