@@ -17,6 +17,7 @@
         <button class="ml-auto align-middle" on:click={() => showModal = !showModal}>
             <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" style="vertical-align: middle; display: inline;" width="25" height="25" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M10.657 12.071L5 6.414L6.414 5l5.657 5.657L17.728 5l1.414 1.414l-5.657 5.657l5.657 5.657l-1.414 1.414l-5.657-5.657l-5.657 5.657L5 17.728z"/></svg>					
         </button>
+        <h3 class="text-4xl font-medium text-gray-900 mb-3">{ $hasWon ? '🤩' : '🙁'}</h3>
         <h3 class="text-lg font-medium text-gray-900">{ $hasWon ? 'Well done!' : 'Better luck next time.'}</h3>
         <div class="mt-2 text-center">
             <p class="text-md text-gray-500">{ $hasWon ? 'You did great.' : 'Tomorrow is all you.'}</p>

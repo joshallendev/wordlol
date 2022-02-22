@@ -22,11 +22,12 @@
 		stats,
 		showStats,
 		showInfo,
-		numGuesses
+		numGuesses,
+		showHint
 	} from '../stores/gameStore';
 	import { SvelteToast, toast } from '@zerodevx/svelte-toast'
 	import { onMount } from 'svelte';
-import { validate_each_argument } from 'svelte/internal';
+	import HintModal from '../components/HintModal.svelte';
 
 	export let newStats = stats;
 	export let showModal = false;
@@ -216,6 +217,9 @@ import { validate_each_argument } from 'svelte/internal';
 	{/if}
 	{#if $showInfo === true }
 		<InfoModal />
+	{/if}
+	{#if $showHint === true }
+		<HintModal />
 	{/if}
 	<Keyboard on:letter={updateArrays} on:checkguess={checkGuess} />
 </main>

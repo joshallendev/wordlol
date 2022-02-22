@@ -255,6 +255,7 @@ const boardBuilder = () => {
 	const stats = savedStats ? savedStats : statsObj;
 	const showStats = writable(false);
 	const showInfo = writable(false);
+	const showHint = writable(false);
 
 	export {
 		today,
@@ -275,5 +276,6 @@ const boardBuilder = () => {
 		stats,
 		showStats,
 		showInfo,
-		numGuesses
+		numGuesses,
+		showHint
 	};
