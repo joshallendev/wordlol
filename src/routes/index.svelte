@@ -147,7 +147,7 @@
 		if (navigator.share) {
 			navigator.share({
 				title: 'playwordlol.com',
-				text: $hasWon ? `I beat today's wordlol game in ${guessCount} guesses.` : `Checkout today's wordlol`,
+				text: $hasWon ? `I beat today's wordlol game in ${newStats.numGuesses} ${newStats.numGuesses > 1 ? 'guesses' : 'guess'}.` : `Checkout today's wordlol`,
 				url: 'http://playwordlol.com'
 			})
 			.then(() => console.log('Successful share'))
@@ -160,7 +160,7 @@
 
 </script>
 
-<main class="h-screen w-screen bg-light1">
+<main class="flex flex-col h-screen w-screen bg-[#f2f2f2] justify-between min-h-710 max-h-screen">
 	<Header />
 	<Gameboard />
 	{#if $gameOver === true && showModal}
@@ -168,3 +168,4 @@
 	{/if}
 	<Keyboard on:letter={updateArrays} on:checkguess={checkGuess} />
 </main>
+

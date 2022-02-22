@@ -22,19 +22,19 @@ import { fade } from 'svelte/transition';
             <p class="text-md text-gray-500">{ $hasWon ? 'You did great.' : 'Tomorrow is all you.'}</p>
             <p class="text-sm text-gray-500 py-2">Care for some stats?</p>
             <div class="text-left px-6 py-2 flex flex-row justify-between">
-                <div class="flex flex-col items-center">
+                <div class="flex flex-col items-center text-center">
                     <strong><p class="text-2xl">{newStats.totalGames}</p></strong>
                     <p>Total Games</p>
                 </div>
-                <div class="flex flex-col items-center">
+                <div class="flex flex-col items-center text-center">
                     <strong><p class="text-2xl">{newStats.totalWins}</p></strong>
                     <p>Total Wins</p>
                 </div>
-                <div class="flex flex-col items-center">
+                <div class="flex flex-col items-center text-center">
                     <strong><p class="text-2xl">{newStats.currentStreak}</p></strong>
                     <p>Current Streak</p>
                 </div>
-                <div class="flex flex-col items-center">
+                <div class="flex flex-col items-center text-center">
                     <strong><p class="text-2xl">{newStats.maxDayStreak}</p></strong>
                     <p>Longest Streak</p>
                 </div>
