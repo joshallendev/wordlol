@@ -188,7 +188,7 @@ const todaysWord = readable(randomWord);
 
 const wordLength = derived(todaysWord, ($todaysWord) => $todaysWord.length);
 
-const maxGuesses = 5;
+const maxGuesses = 6;
 
 const boardBuilder = () => {
 	let tempRows = [];
@@ -262,5 +262,6 @@ const boardBuilder = () => {
 		gameOver,
 		stats,
 		showStats,
-		showInfo
+		showInfo,
+		numGuesses
 	};

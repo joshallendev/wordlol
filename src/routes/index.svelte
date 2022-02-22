@@ -21,13 +21,12 @@
 		gameOver,
 		stats,
 		showStats,
-		showInfo
+		showInfo,
+		numGuesses
 	} from '../stores/gameStore';
 	import { SvelteToast, toast } from '@zerodevx/svelte-toast'
-import { onMount } from 'svelte';
+	import { onMount } from 'svelte';
 
-
-	let guessCount = 0;
 	export let newStats = stats;
 	export let showModal = false;
 
@@ -70,7 +69,7 @@ import { onMount } from 'svelte';
 			hasWon: $hasWon,
 			gameOver: $gameOver,
 			rows: $gameRows,
-			numGuesses: guessCount
+			numGuesses: $numGuesses
 		};
 		window.localStorage.setItem('savedWordlolGameboard', JSON.stringify(savedGameObj));
 
@@ -85,7 +84,6 @@ import { onMount } from 'svelte';
 		}
 		// is the last day played yesterday? if so the streak grows
 		// otherwise the streak is over :(
-		console.log(Date.parse(today) - Date.parse(newStats.lastDatePlayed));
 		if (Date.parse(today) - Date.parse(newStats.lastDatePlayed) <= 86400000) {
 			newStats.currentStreak++;
 		} else {
@@ -97,22 +95,32 @@ import { onMount } from 'svelte';
 		}
 		newStats.lastDatePlayed = today;
 		newStats.winPct = (newStats.totalWins / newStats.totalGames) * 100;
-		newStats.numGuesses = guessCount;
+		newStats.numGuesses = $numGuesses;
 		window.localStorage.setItem('wordlolstats', JSON.stringify(newStats));
 
 	}
 
 	function checkGuess(): void {
+		
 		// only actually check the guess if the current row
 		// is filled out
 		if (!$gameOver && $currentLetter === $gameRows[$currentArray].length) {
 			// track number of guesses for stats
-			guessCount++;
-
+			$numGuesses++;
 			const guessedWord = $gameRows[$currentArray].join('');
+			let duplicateLetters = false;
 			// check letters in current array for accuracy
 			for (let i = 0; i < $gameRows[$currentArray].length; i++) {
 				const letter = $gameRows[$currentArray][i];
+				let countOfLetter = 0;
+				// check for duplicate letters
+				for (const t of $todaysWord) {
+					if (letter === t) countOfLetter++;
+				}
+
+				// if duplicates found notify the user
+				if (countOfLetter > 1) duplicateLetters = true;
+
 				// if is in right position
 				if (letter === $todaysWord[i]) {
 					$correctLocations = [...$correctLocations, [$currentArray, i]];
@@ -129,12 +137,11 @@ import { onMount } from 'svelte';
 			}
 			if (guessedWord === $todaysWord) {
 				$hasWon = true;
-			} else {
-				toast.push('Sorry that is not the word.');
+			} else if (duplicateLetters) {
+				toast.push('One of the letters you guessed appears in the word more than once!');
 			}
 			// check if they guessed the word or reached the end of guesses
 			if ($hasWon || $currentArray === $gameRows.length - 1) {
-				console.log('game over');
 				$gameOver = true;
 				updateStats();
 				saveGame();
@@ -173,7 +180,7 @@ import { onMount } from 'svelte';
 
 </script>
 
-<main class="flex flex-col h-screen w-screen bg-[#f2f2f2] justify-between min-h-710 max-h-screen">
+<main class="flex flex-col h-screen w-screen bg-white justify-between min-h-710 max-h-screen">
 	<Header />
 	<Gameboard />
 	{#if $gameOver === true && showModal}

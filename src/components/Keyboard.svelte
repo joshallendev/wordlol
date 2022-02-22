@@ -55,10 +55,10 @@
 	{/each}
 
 	<div class="my-3 flex justify-center">
-		<button type="button" class="{letterStyles} bg-actionred w-auto sm:w-auto" on:click={handleCheckGuess}
+		<button type="button" class="{letterStyles} bg-actionred text-white w-auto sm:w-auto" on:click={handleCheckGuess}
 			>CHECK MY GUESS</button
 		>
-		<button type="button" class="{letterStyles} bg-actionred w-auto sm:w-auto" on:click={handleBackspaceClick}
+		<button type="button" class="{letterStyles} bg-actionred text-white w-auto sm:w-auto" on:click={handleBackspaceClick}
 			>BACKSPACE</button
 		>
 	</div>

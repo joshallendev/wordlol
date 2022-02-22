@@ -21,7 +21,7 @@
 				{:else if checkForIncludes($wrongLocations, [i, j])}
 					<div class="{letterStyles} bg-darkgray text-lightgray">{item}</div>
 				{:else}
-					<div class="{letterStyles} bg-[#f2f2f2] border-darkgray border">{item}</div>
+					<div class="{letterStyles} bg-[#f2f2f2] border-darkgray border text-black">{item}</div>
 				{/if}
 			{/each}
 		</div>

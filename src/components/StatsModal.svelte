@@ -30,7 +30,12 @@
                     <p>Longest Streak</p>
                 </div>
             </div>
-            <p class="py-2">Historically you've won <strong>{stats.winPct}%</strong> of the time.</p>
+            {#if stats.winPct }
+                <p class="py-2">Historically you've won <strong>{stats.winPct}%</strong> of the time.</p>
+            {:else}
+                <p class="py-2">Stats will appear here after you've played a game.</p>
+            {/if}
+            
         </div>				
     </div>
 </div>
