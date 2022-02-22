@@ -23,6 +23,8 @@
 		showStats,
 		showInfo
 	} from '../stores/gameStore';
+	import { SvelteToast, toast } from '@zerodevx/svelte-toast'
+import { onMount } from 'svelte';
 
 
 	let guessCount = 0;
@@ -128,7 +130,7 @@
 			if (guessedWord === $todaysWord) {
 				$hasWon = true;
 			} else {
-				// notify?
+				toast.push('Sorry that is not the word.');
 			}
 			// check if they guessed the word or reached the end of guesses
 			if ($hasWon || $currentArray === $gameRows.length - 1) {
@@ -152,7 +154,7 @@
 		if (navigator.share) {
 			navigator.share({
 				title: 'playwordlol.com',
-				text: $hasWon ? `I beat today's wordlol game in ${newStats.numGuesses} ${newStats.numGuesses > 1 ? 'guesses' : 'guess'}.` : `Checkout today's wordlol`,
+				text: $hasWon ? `I beat today's WORDLOL game in ${newStats.numGuesses} ${newStats.numGuesses > 1 ? 'guesses' : 'guess'}.` : `Checkout today's wordlol`,
 				url: 'http://playwordlol.com'
 			})
 			.then(() => console.log('Successful share'))
@@ -162,6 +164,12 @@
 		}
 	}
 
+	onMount(() => {
+		const app = new SvelteToast({
+		// Set where the toast container should be appended into
+		target: document.body
+		});
+	})
 
 </script>
 
@@ -179,4 +187,3 @@
 	{/if}
 	<Keyboard on:letter={updateArrays} on:checkguess={checkGuess} />
 </main>
-
