@@ -43,7 +43,7 @@
             {#if $hasWon }
                 <p class="py-2">Guessed today's WORDLOL in {newStats.numGuesses <= 3 ? 'just' : ''} <strong>{newStats.numGuesses}</strong> {newStats.numGuesses > 1 ? 'guesses' : 'guess'}!</p>
             {/if}
-            <button type="button" class="bg-actionred p-2 mt-4 rounded align-middle" on:click="{handleShare}"> 
+            <button type="button" class="bg-actionred p-2 mt-4 rounded align-middle text-white" on:click="{handleShare}"> 
                 <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" style="vertical-align: middle; display: inline;" width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="currentColor" d="M19.754 11a.75.75 0 0 1 .743.648l.007.102v7a3.25 3.25 0 0 1-3.065 3.246l-.185.005h-11a3.25 3.25 0 0 1-3.244-3.066l-.006-.184V11.75a.75.75 0 0 1 1.494-.102l.006.102v7a1.75 1.75 0 0 0 1.607 1.745l.143.006h11A1.75 1.75 0 0 0 19 18.894l.005-.143V11.75a.75.75 0 0 1 .75-.75ZM6.22 7.216l4.996-4.996a.75.75 0 0 1 .976-.073l.084.072l5.005 4.997a.75.75 0 0 1-.976 1.134l-.084-.073l-3.723-3.716l.001 11.694a.75.75 0 0 1-.648.743l-.102.007a.75.75 0 0 1-.743-.648L11 16.255V4.558L7.28 8.277a.75.75 0 0 1-.976.073l-.084-.073a.75.75 0 0 1-.073-.977l.073-.084l4.996-4.996L6.22 7.216Z"/></svg> Share Results
             </button>
         </div>				
