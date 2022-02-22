@@ -15,7 +15,7 @@
 		<div class="flex flex-row justify-center my-2">
 			{#each row as item, j}
 				{#if checkForIncludes($correctLocations, [i, j])}
-					<div class="{letterStyles} border-correct border-2 text-correct">{item}</div>
+					<div class="{letterStyles} bg-correct text-white">{item}</div>
 				{:else if checkForIncludes($inWordLocations, [i, j])}
 					<div class="{letterStyles} border-robinblue border-2 text-robinblue">{item}</div>
 				{:else if checkForIncludes($wrongLocations, [i, j])}

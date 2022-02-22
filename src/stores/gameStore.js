@@ -242,6 +242,7 @@ const boardBuilder = () => {
 	const savedStats = browser ? JSON.parse(window.localStorage.getItem('wordlolstats')) : null;
 	const stats = savedStats ? savedStats : statsObj;
 	const showStats = writable(false);
+	const showInfo = writable(false);
 
 	export {
 		today,
@@ -260,5 +261,6 @@ const boardBuilder = () => {
 		hasWon,
 		gameOver,
 		stats,
-		showStats
+		showStats,
+		showInfo
 	};

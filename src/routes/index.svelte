@@ -4,6 +4,7 @@
 	import Gameboard from '../components/Gameboard.svelte';
 	import GameOverModal from '../components/GameOverModal.svelte';
 	import StatsModal from '../components/StatsModal.svelte';
+	import InfoModal from '../components/InfoModal.svelte';
 	import {
 		today,
 		todaysWord,
@@ -19,8 +20,10 @@
 		hasWon,
 		gameOver,
 		stats,
-		showStats
+		showStats,
+		showInfo
 	} from '../stores/gameStore';
+
 
 	let guessCount = 0;
 	export let newStats = stats;
@@ -170,6 +173,9 @@
 	{/if}
 	{#if $showStats === true}
 		<StatsModal />
+	{/if}
+	{#if $showInfo === true }
+		<InfoModal />
 	{/if}
 	<Keyboard on:letter={updateArrays} on:checkguess={checkGuess} />
 </main>
