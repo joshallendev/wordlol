@@ -2,7 +2,7 @@
     import { showInfo } from '../stores/gameStore';
     import { fade } from 'svelte/transition';
     const letterStyles: string =
-		'board-letter inline w-14 h-14 mx-1 text-3xl text-lightgray mx-0.5 flex rounded-md justify-center items-center';
+		'board-letter inline w-14 h-14 mx-1 text-3xl mx-0.5 flex rounded-md justify-center items-center';
 </script>
 
 
