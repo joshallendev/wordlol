@@ -7,8 +7,8 @@
 
 
 
-<div in:fade out:fade class="fixed flex items-center flex-col inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
-    <div class="flex flex-col mt-3 text-center bg-white w-3/4 md:w-1/2 pt-2 pb-6 px-4 rounded mt-20 h-3/4 overflow-y-auto">
+<div in:fade out:fade on:click={() => $showInfo = !$showInfo} class="fixed flex items-center flex-col inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
+    <div on:click|stopPropagation class="flex flex-col mt-3 text-center bg-white w-3/4 md:w-1/2 pt-2 pb-6 px-4 rounded mt-20 h-3/4 overflow-y-auto">
         <button class="ml-auto align-middle" on:click="{() => $showInfo = !$showInfo}">
             <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" style="vertical-align: middle; display: inline;" width="25" height="25" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M10.657 12.071L5 6.414L6.414 5l5.657 5.657L17.728 5l1.414 1.414l-5.657 5.657l5.657 5.657l-1.414 1.414l-5.657-5.657l-5.657 5.657L5 17.728z"/></svg>					
         </button>
@@ -35,7 +35,7 @@
             <div class="flex flex-row justify-center my-2">
                 <div class="{letterStyles} bg-[#f2f2f2] border-darkgray border text-black">P</div>
                 <div class="{letterStyles} bg-[#f2f2f2] border-darkgray border text-black">E</div>
-                <div class="{letterStyles} border-robinblue border-2 text-robinblue">N</div>
+                <div class="{letterStyles} bg-squash text-white">N</div>
                 <div class="{letterStyles} bg-[#f2f2f2] border-darkgray border text-black">T</div>
                 <div class="{letterStyles} bg-[#f2f2f2] border-darkgray border text-black">A</div>
             </div>

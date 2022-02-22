@@ -18,7 +18,8 @@ module.exports = {
 				correct: '#39ccb1',
 				lightgray: '#e0e0e0',
 				robinblue: '#00A0BA',
-				darkgray: '#9c9c9c'
+				darkgray: '#9c9c9c',
+				squash: '#B59A27'
 			}
 		}
 	},

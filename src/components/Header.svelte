@@ -2,7 +2,7 @@
 	import { showStats, showInfo } from '../stores/gameStore';
 </script>
 
-<header class="bg-black mb-10 text-white py-3 flex justify-between">
+<header class="bg-black med:mb-10 text-white py-3 flex justify-between">
 	<div class="inline">
 		<p class="px-5 font-semibold inline">WORDLOL</p>
 	</div>

@@ -205,7 +205,7 @@ import { validate_each_argument } from 'svelte/internal';
 
 </script>
 <svelte:window on:keydown={handleKeyboardInput} />
-<main class="flex flex-col h-screen w-screen bg-white justify-between min-h-710 max-h-screen">
+<main class="flex flex-col h-screen w-screen bg-white min-h-710 max-h-screen">
 	<Header />
 	<Gameboard />
 	{#if $gameOver === true && showModal}

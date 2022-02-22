@@ -3,7 +3,7 @@
 	import { fade } from 'svelte/transition'
 
 	const letterStyles: string =
-		'board-letter inline w-14 h-14 mx-1 text-3xl text-lightgray mx-0.5 flex rounded-md justify-center items-center';
+		'board-letter inline w-14 h-14 mx-1 text-3xl mx-0.5 flex rounded-md justify-center items-center';
 
 	function checkForIncludes(arr1: Array<number>, arr2: Array<number>): boolean {
 		return arr1.some((ele) => JSON.stringify(ele) === JSON.stringify(arr2));
@@ -17,9 +17,9 @@
 				{#if checkForIncludes($correctLocations, [i, j])}
 					<div class="{letterStyles} bg-correct text-white">{item}</div>
 				{:else if checkForIncludes($inWordLocations, [i, j])}
-					<div class="{letterStyles} border-robinblue border-2 text-robinblue">{item}</div>
+					<div class="{letterStyles} bg-squash text-white">{item}</div>
 				{:else if checkForIncludes($wrongLocations, [i, j])}
-					<div class="{letterStyles} bg-darkgray text-lightgray">{item}</div>
+					<div class="{letterStyles} bg-darkgray text-white">{item}</div>
 				{:else}
 					<div class="{letterStyles} bg-[#f2f2f2] border-darkgray border text-black">{item}</div>
 				{/if}
