@@ -196,7 +196,6 @@ function pickWord() {
 
 const randomWord = words[pickWord()];
 // const randomWord = words[Math.floor(Math.random() * words.length)];
-console.log(randomWord);
 const todaysWord = readable(randomWord);
 
 const wordLength = derived(todaysWord, ($todaysWord) => $todaysWord.length);
