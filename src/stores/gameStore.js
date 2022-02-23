@@ -185,7 +185,7 @@ const words = [
 const today = new Date().toDateString();
 
 function pickWord() {
-	let dateDiff = Date.parse(today) - Date.parse('Mon Feb 21 2022');
+	let dateDiff = Date.parse(today) - Date.parse('Mon Feb 20 2022');
 	const wordListLength = words.length;
 	while (dateDiff > wordListLength) {
 		dateDiff = dateDiff - wordListLength;
@@ -277,5 +277,6 @@ const boardBuilder = () => {
 		showStats,
 		showInfo,
 		numGuesses,
-		showHint
+		showHint,
+		words
 	};

@@ -8,11 +8,14 @@ html {
 }
 
 :root {
-    --toastContainerRight: auto;
-    --toastContainerTop: 4rem;
+    --toastContainerTop: 0.5rem;
+    --toastContainerRight: 0.5rem;
+    --toastContainerBottom: auto;
+    --toastContainerLeft: 0.5rem;
     --toastWidth: auto;
     --toastBackground: #e0e0e0;
     --toastColor: black;
     --toastBarBackground: #39ccb1;
+    text-align: center;
 
 }

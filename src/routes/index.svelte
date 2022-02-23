@@ -23,11 +23,13 @@
 		showStats,
 		showInfo,
 		numGuesses,
-		showHint
+		showHint,
+		words
 	} from '../stores/gameStore';
 	import { SvelteToast, toast } from '@zerodevx/svelte-toast'
 	import { onMount } from 'svelte';
 	import HintModal from '../components/HintModal.svelte';
+	import validWords from '../../static/validwords';
 
 	export let newStats = stats;
 	export let showModal = false;
@@ -103,13 +105,24 @@
 	}
 
 	function checkGuess(): void {
-		
+		const guessedWord = $gameRows[$currentArray].join('');
+		// if not a valid word then they have to guess again
+		if (!validWords.includes(guessedWord) && !words.includes(guessedWord)) {
+			toast.push('Not a valid word.', {
+				theme: {
+					'--toastBarBackground': '#D13639'
+				}
+			});
+			return;
+		}
 		// only actually check the guess if the current row
 		// is filled out
 		if (!$gameOver && $currentLetter === $gameRows[$currentArray].length) {
 			// track number of guesses for stats
 			$numGuesses++;
-			const guessedWord = $gameRows[$currentArray].join('');
+			
+			console.log(guessedWord.slice(0, -1));
+			
 			let duplicateLetters = false;
 			// check letters in current array for accuracy
 			for (let i = 0; i < $gameRows[$currentArray].length; i++) {

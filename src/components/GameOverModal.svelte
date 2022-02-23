@@ -3,6 +3,8 @@
     import { fade } from 'svelte/transition';
     import {
 		hasWon,
+        today,
+        todaysWord
 	} from '../stores/gameStore';
 
     export let showModal;
@@ -19,9 +21,10 @@
         </button>
         <h3 class="text-4xl font-medium text-gray-900 mb-3">{ $hasWon ? '🤩' : '🙁'}</h3>
         <h3 class="text-lg font-medium text-gray-900">{ $hasWon ? 'Well done!' : 'Better luck next time.'}</h3>
+        {#if !$hasWon }
+            <p>The word was {$todaysWord}</p>
+        {/if}
         <div class="mt-2 text-center">
-            <p class="text-md text-gray-500">{ $hasWon ? 'You did great.' : 'Tomorrow is all you.'}</p>
-            <p class="text-sm text-gray-500 py-2">Care for some stats?</p>
             <div class="text-left px-6 py-2 flex flex-row justify-between">
                 <div class="flex flex-col items-center text-center">
                     <strong><p class="text-2xl">{newStats.totalGames}</p></strong>
