@@ -176,7 +176,7 @@
 		if (navigator.share) {
 			navigator.share({
 				title: 'playwordlol.com',
-				text: $hasWon ? `I beat today's WORDLOL game in ${newStats.numGuesses} ${newStats.numGuesses > 1 ? 'guesses' : 'guess'}.` : `Checkout today's wordlol`,
+				text: $hasWon ? `WORDLOL x/6 ${newStats.numGuesses} ${newStats.numGuesses > 1 ? 'guesses' : 'guess'}.` : `Checkout today's wordlol`,
 				url: 'http://playwordlol.com'
 			})
 			.then(() => console.log('Successful share'))
@@ -218,7 +218,13 @@
 	})
 
 </script>
+
+<svelte:head>
+	<title>WORDLOL</title>
+</svelte:head>
+
 <svelte:window on:keydown={handleKeyboardInput} />
+
 <main class="flex flex-col h-screen w-screen bg-white min-h-710 max-h-screen">
 	<Header />
 	<Gameboard />
