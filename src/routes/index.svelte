@@ -175,7 +175,7 @@
 
 	function generateShareText() {
 		let tmpString = $hasWon ? `WORDLOL ${newStats.numGuesses}/${maxGuesses}\n` : `Checkout today's wordlol\n`;
-		for (let i = 0; i < $gameRows.length; i++) {
+		for (let i = 0; i < newStats.numGuesses; i++) {
 			for (let j = 0; j < $gameRows[i].length; j++) {
 				const loc = [i,j];
 				if (checkForIncludes($correctLocations, loc)) {
