@@ -185,8 +185,8 @@
 				} else {
 					tmpString+='⚫';
 				} 
-				tmpString+='\n';
 			}
+			tmpString+='\n';
 		}
 		return tmpString;
 	}
