@@ -24,7 +24,8 @@
 		showInfo,
 		numGuesses,
 		showHint,
-		words
+		words,
+		maxGuesses
 	} from '../stores/gameStore';
 	import { SvelteToast, toast } from '@zerodevx/svelte-toast'
 	import { onMount } from 'svelte';
@@ -172,11 +173,33 @@
 		}
 	}
 
+	function generateShareText() {
+		let tmpString = $hasWon ? `WORDLOL ${newStats.numGuesses}/${maxGuesses}\n` : `Checkout today's wordlol\n`;
+		for (let i = 0; i < $gameRows.length; i++) {
+			for (let j = 0; j < $gameRows[i].length; j++) {
+				const loc = [i,j];
+				if (checkForIncludes($correctLocations, loc)) {
+					tmpString+='🟢';
+				} else if (checkForIncludes($inWordLocations, loc)) {
+					tmpString+='🟡';
+				} else {
+					tmpString+='⚫';
+				} 
+				tmpString+='\n';
+			}
+		}
+		return tmpString;
+	}
+
+	function checkForIncludes(arr1: Array<number>, arr2: Array<number>): boolean {
+		return arr1.some((ele) => JSON.stringify(ele) === JSON.stringify(arr2));
+	}
+
 	export function handleShare(): void {
 		if (navigator.share) {
 			navigator.share({
 				title: 'playwordlol.com',
-				text: $hasWon ? `WORDLOL x/6 ${newStats.numGuesses} ${newStats.numGuesses > 1 ? 'guesses' : 'guess'}.` : `Checkout today's wordlol`,
+				text: generateShareText(),
 				url: 'http://playwordlol.com'
 			})
 			.then(() => console.log('Successful share'))
