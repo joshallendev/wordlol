@@ -179,11 +179,11 @@
 			for (let j = 0; j < $gameRows[i].length; j++) {
 				const loc = [i,j];
 				if (checkForIncludes($correctLocations, loc)) {
-					tmpString+='🟢';
+					tmpString+='🟩';
 				} else if (checkForIncludes($inWordLocations, loc)) {
-					tmpString+='🟡';
+					tmpString+='🟨';
 				} else {
-					tmpString+='⚫';
+					tmpString+='⬜';
 				} 
 			}
 			tmpString+='\n';
