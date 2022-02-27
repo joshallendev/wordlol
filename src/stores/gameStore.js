@@ -914,6 +914,8 @@ const boardBuilder = () => {
 	return tempRows;
 	};
 
+    const saveVersion = 1;
+
 	const rows = boardBuilder();
 	let savedGame = browser 
 	? JSON.parse(window.localStorage.getItem('savedWordlolGameboard'))
@@ -922,7 +924,10 @@ const boardBuilder = () => {
 	// otherwise disregard it
 	if (savedGame?.saveDate != today) {
 		savedGame = null;
-	}
+	} else if (savedGame.saveVersion != saveVersion) {
+        savedGame = null;
+    }
+
 
 	// game data
 	const currentArray = writable(savedGame ? savedGame.currentArray : 0);
@@ -984,5 +989,6 @@ const boardBuilder = () => {
 		numGuesses,
 		showHint,
 		words,
-        hintsUsed
+        hintsUsed,
+        saveVersion
 	};

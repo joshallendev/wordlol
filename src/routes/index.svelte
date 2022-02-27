@@ -26,7 +26,8 @@
 		showHint,
 		words,
 		maxGuesses,
-		hintsUsed
+		hintsUsed,
+		saveVersion
 	} from '../stores/gameStore';
 	import { SvelteToast, toast } from '@zerodevx/svelte-toast'
 	import { onMount } from 'svelte';
@@ -76,7 +77,8 @@ import { loop_guard } from 'svelte/internal';
 			gameOver: $gameOver,
 			rows: $gameRows,
 			numGuesses: $numGuesses,
-			hints: $hintsUsed
+			hints: $hintsUsed,
+			saveVersion
 		};
 		window.localStorage.setItem('savedWordlolGameboard', JSON.stringify(savedGameObj));
 	}
