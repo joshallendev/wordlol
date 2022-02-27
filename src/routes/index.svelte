@@ -180,7 +180,7 @@ import { loop_guard } from 'svelte/internal';
 
 	function generateShareText() {
 		let tmpString = $hasWon ? `WORDLOL ${newStats.numGuesses}/${maxGuesses}` +
-			`✨ ${$hintsUsed === 0 ? 'no hints used!' : $hintsUsed}${$hintsUsed > 1 ? 'hints used' : 'hint used'} \n` : `Checkout today's wordlol\n`;
+			`\n✨ ${$hintsUsed === 0 ? 'no hints used!' : $hintsUsed}${$hintsUsed > 1 ? ' hints used' : ' hint used'} \n` : `Checkout today's wordlol\n`;
 		for (let i = 0; i < newStats.numGuesses; i++) {
 			for (let j = 0; j < $gameRows[i].length; j++) {
 				const loc = [i,j];

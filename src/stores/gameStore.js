@@ -914,14 +914,19 @@ const boardBuilder = () => {
 	return tempRows;
 	};
 
-    const saveVersion = 1;
+    const saveVersion = 2;
 
+    
 	const rows = boardBuilder();
 	let savedGame = browser 
 	? JSON.parse(window.localStorage.getItem('savedWordlolGameboard'))
 	: undefined;
 	// ensure saved game is for same day as today 
 	// otherwise disregard it
+    if (browser && savedGame?.saveVersion != 2) {
+        window.localStorage.removeItem('savedWordlolGameboard');
+        window.localStorage.removeItem('wordlolstats');
+    }
 	if (savedGame?.saveDate != today) {
 		savedGame = null;
 	} else if (savedGame.saveVersion != saveVersion) {
