@@ -8,7 +8,7 @@
 	</div>
 	{#if !$gameOver}
 		<div>
-			<button class="text-2xl animate-pulse" type="button" on:click={() => $showHint = !$showHint}>
+			<button class="text-2xl {'animate-pulse'}" type="button" on:click={() => $showHint = !$showHint}>
 				✨
 			</button>
 		</div>

@@ -963,9 +963,7 @@ const boardBuilder = () => {
 	const showInfo = writable(false);
 	const showHint = writable(false);
 
-    const hintsUsed = writable(savedGame ? savedGame.hintsUsed : 0);
-
-    
+    const hintsUsed = writable(savedGame ? savedGame.hints : 0);    
 
 	export {
 		today,

@@ -104,6 +104,7 @@ import { loop_guard } from 'svelte/internal';
 		newStats.lastDatePlayed = today;
 		newStats.winPct = (newStats.totalWins / newStats.totalGames) * 100;
 		newStats.numGuesses = $numGuesses;
+		newStats.hints = newStats.hints + $hintsUsed;
 		window.localStorage.setItem('wordlolstats', JSON.stringify(newStats));
 	}
 
@@ -115,7 +116,7 @@ import { loop_guard } from 'svelte/internal';
 		);
 		
 		// if not a valid word then they have to guess again
-		if (!validWords.includes(guessedWord) && !words.includes(guessedWord)) {
+		if (!validWords.includes(guessedWord) && !words.some(e => e.word === guessedWord)) {
 			toast.push('Not a valid word.', {
 				theme: {
 					'--toastBarBackground': '#D13639'
