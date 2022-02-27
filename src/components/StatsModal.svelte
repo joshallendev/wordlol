@@ -30,6 +30,7 @@
                     <p>Longest Streak</p>
                 </div>
             </div>
+            <p class="py-2">You've used <strong>{stats.hints ?? '0'}</strong> hints along the way.</p>
             {#if stats.winPct }
                 <p class="py-2">Historically you've won <strong>{stats.winPct}%</strong> of the time.</p>
             {/if}

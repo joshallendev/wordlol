@@ -25,12 +25,14 @@
 		numGuesses,
 		showHint,
 		words,
-		maxGuesses
+		maxGuesses,
+		hintsUsed
 	} from '../stores/gameStore';
 	import { SvelteToast, toast } from '@zerodevx/svelte-toast'
 	import { onMount } from 'svelte';
 	import HintModal from '../components/HintModal.svelte';
 	import validWords from '../../static/validwords';
+import { loop_guard } from 'svelte/internal';
 
 	export let newStats = stats;
 	export let showModal = false;
@@ -38,21 +40,20 @@
 	if ($gameOver) {
 		showModal = true; 
 	}
-
 	function updateArrays(event: any) {
 		if (!$gameOver) {
 			const text = event.detail.text;
 			switch (event.detail.action) {
 				case 'add':
 					if ($currentLetter < $gameRows[$currentArray].length) {
-						$gameRows[$currentArray][$currentLetter] = text;
+						$gameRows[$currentArray][$currentLetter].content = text;
 						$currentLetter++;
 					}
 					break;
 				case 'backspace':
 					// go back a letter but never lass than 0
 					$currentLetter > 0 ? $currentLetter-- : null;
-					$gameRows[$currentArray][$currentLetter] = '';
+					$gameRows[$currentArray][$currentLetter].content = '';
 					break;
 				default:
 					break;
@@ -74,10 +75,10 @@
 			hasWon: $hasWon,
 			gameOver: $gameOver,
 			rows: $gameRows,
-			numGuesses: $numGuesses
+			numGuesses: $numGuesses,
+			hints: $hintsUsed
 		};
 		window.localStorage.setItem('savedWordlolGameboard', JSON.stringify(savedGameObj));
-
 	}
 
 	function updateStats(): void {
@@ -102,11 +103,15 @@
 		newStats.winPct = (newStats.totalWins / newStats.totalGames) * 100;
 		newStats.numGuesses = $numGuesses;
 		window.localStorage.setItem('wordlolstats', JSON.stringify(newStats));
-
 	}
 
 	function checkGuess(): void {
-		const guessedWord = $gameRows[$currentArray].join('');
+		// const guessedWord = $gameRows[$currentArray].join('');
+		const guessedWord = $gameRows[$currentArray].reduce(
+			(prev, curr) => prev.concat('', curr.content),
+			''
+		);
+		
 		// if not a valid word then they have to guess again
 		if (!validWords.includes(guessedWord) && !words.includes(guessedWord)) {
 			toast.push('Not a valid word.', {
@@ -121,16 +126,13 @@
 		if (!$gameOver && $currentLetter === $gameRows[$currentArray].length) {
 			// track number of guesses for stats
 			$numGuesses++;
-			
-			console.log(guessedWord.slice(0, -1));
-			
 			let duplicateLetters = false;
 			// check letters in current array for accuracy
 			for (let i = 0; i < $gameRows[$currentArray].length; i++) {
-				const letter = $gameRows[$currentArray][i];
+				const letter = $gameRows[$currentArray][i].content;
 				let countOfLetter = 0;
 				// check for duplicate letters
-				for (const t of $todaysWord) {
+				for (const t of $todaysWord.word) {
 					if (letter === t) countOfLetter++;
 				}
 
@@ -138,10 +140,10 @@
 				if (countOfLetter > 1) duplicateLetters = true;
 
 				// if is in right position
-				if (letter === $todaysWord[i]) {
+				if (letter === $todaysWord.word[i]) {
 					$correctLocations = [...$correctLocations, [$currentArray, i]];
 					$correctLetters = [...$correctLetters, letter];
-				} else if ($todaysWord.includes(letter)) {
+				} else if ($todaysWord.word.includes(letter)) {
 					$inWordLocations = [...$inWordLocations, [$currentArray, i]];
 					$inWordLetters = [...$inWordLetters, letter];
 				} else {
@@ -151,7 +153,7 @@
 				// else if included in the word at all
 				// otherwise not a valid letter
 			}
-			if (guessedWord === $todaysWord) {
+			if (guessedWord === $todaysWord.word) {
 				$hasWon = true;
 			} else if (duplicateLetters) {
 				toast.push('One of the letters you guessed appears in the word more than once!');
@@ -174,7 +176,8 @@
 	}
 
 	function generateShareText() {
-		let tmpString = $hasWon ? `WORDLOL ${newStats.numGuesses}/${maxGuesses}\n` : `Checkout today's wordlol\n`;
+		let tmpString = $hasWon ? `WORDLOL ${newStats.numGuesses}/${maxGuesses}` +
+			`✨ ${$hintsUsed === 0 ? 'no hints used!' : $hintsUsed}${$hintsUsed > 1 ? 'hints used' : 'hint used'} \n` : `Checkout today's wordlol\n`;
 		for (let i = 0; i < newStats.numGuesses; i++) {
 			for (let j = 0; j < $gameRows[i].length; j++) {
 				const loc = [i,j];
@@ -261,7 +264,7 @@
 		<InfoModal />
 	{/if}
 	{#if $showHint === true }
-		<HintModal />
+		<HintModal on:hint={saveGame} />
 	{/if}
 	<Keyboard on:letter={updateArrays} on:checkguess={checkGuess} />
 </main>

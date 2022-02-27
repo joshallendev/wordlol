@@ -12,7 +12,7 @@
 	let keyboard;
 
 	const letterStyles: string =
-		'key-letter h-14 w-10 sm:w-14 flex justify-center px-2 py-4 sm:px-4 font-medium mx-0.5 text-sm select-none rounded';
+		'key-letter grow sm:grow-0 h-14 w-10 sm:w-14 flex justify-center px-2 py-4 sm:px-4 font-medium mx-0.5 text-sm select-none rounded hover:shadow-2xl';
 
 	function handleLetterClick(e): void {
 		const text: string = e.target.innerText;
@@ -37,6 +37,20 @@
 		dispatch('checkguess');
 	}
 
+	$: setLetterStyles = (letter) => {
+		let classes:string = "";
+		if ($correctLetters.includes(letter)) {
+			classes = letterStyles + " text-black bg-correct";
+		} else if ($inWordLetters.includes(letter)) {
+			classes = letterStyles + " bg-squash text-white";
+		} else if ($wrongLetters.includes(letter)) {
+			classes = letterStyles + " text-black bg-darkgray";
+		} else {
+			classes = letterStyles + " text-black bg-lightgray";
+		}
+		return classes;
+	}
+
 </script>
 
 <div on:click={handleLetterClick}>
@@ -47,15 +61,7 @@
 				>ENTER</button>
 			{/if}
 			{#each row as letter}
-				{#if $correctLetters.includes(letter)}
-					<button type="button" class="{letterStyles} text-black bg-correct">{letter}</button>
-				{:else if $wrongLetters.includes(letter)}
-					<button type="button" class="{letterStyles} text-black bg-darkgray">{letter}</button>
-				{:else if $inWordLetters.includes(letter)}
-					<button type="button" class="{letterStyles} text-black bg-squash">{letter}</button>
-				{:else}
-					<button type="button" class="{letterStyles} text-black bg-lightgray">{letter}</button>
-				{/if}
+				<button type="button" class={setLetterStyles(letter)}>{letter}</button>
 			{/each}
 			{#if i === 2 }
 			<button type="button" class="{letterStyles} bg-actionred text-white w-auto sm:w-auto" on:click={handleBackspaceClick}
@@ -66,10 +72,7 @@
 </div>
 
 <style>
-	* {
-		transition: all 1s linear;
-	}
 	.key-letter {
-  		transition: background-color 0.5s ease;
+  		transition: all 0.5s ease;
 	}
 </style>
