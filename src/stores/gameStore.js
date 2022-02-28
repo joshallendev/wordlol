@@ -888,13 +888,7 @@ function pickWord() {
 }
 
 
-// const randomWord = words[pickWord()];
-const randomWord = {
-    "word": "POPPY",
-    "type": "champion",
-    "clue": ['keeper of the hammer']
-};
-// const randomWord = words[Math.floor(Math.random() * words.length)];
+const randomWord = words[pickWord()];
 const todaysWord = readable(randomWord);
 
 const wordLength = derived(todaysWord, ($todaysWord) => $todaysWord.word.length);
