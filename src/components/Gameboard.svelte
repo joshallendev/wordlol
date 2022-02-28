@@ -1,10 +1,9 @@
 <script lang="ts">
 	import { correctLocations, wrongLocations, inWordLocations, gameRows } from '../stores/gameStore';
-	import { fly, fade, blur, slide, draw, crossfade, scale} from 'svelte/transition';
-	import {flip} from 'svelte/animate';
+	import { fade, scale } from 'svelte/transition';
 
 	const letterStyles: string =
-		'board-letter inline w-14 h-14 mx-1 text-3xl mx-0.5 flex rounded-md justify-center items-center';
+		'board-letter select-none inline w-14 h-14 mx-1 text-3xl mx-0.5 flex rounded-md justify-center items-center';
 
 
 

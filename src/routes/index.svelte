@@ -27,16 +27,19 @@
 		words,
 		maxGuesses,
 		hintsUsed,
-		saveVersion
+		saveVersion,
+		showSettings
 	} from '../stores/gameStore';
 	import { SvelteToast, toast } from '@zerodevx/svelte-toast'
 	import { onMount } from 'svelte';
 	import HintModal from '../components/HintModal.svelte';
 	import validWords from '../../static/validwords';
-import { loop_guard } from 'svelte/internal';
+	import Particles from '../components/Particles.svelte';
+	import SettingsModal from '../components/SettingsModal.svelte';
 
 	export let newStats = stats;
 	export let showModal = false;
+	let fireworksJSON;
 
 	if ($gameOver) {
 		showModal = true; 
@@ -108,73 +111,108 @@ import { loop_guard } from 'svelte/internal';
 		window.localStorage.setItem('wordlolstats', JSON.stringify(newStats));
 	}
 
+	function replaceAtIndex(str,index,newValue) {
+		if(index > str.length-1) {
+			return str
+		} else {
+			return str.substring(0,index) + newValue + str.substring(index+1)
+		}
+	}
+
 	function checkGuess(): void {
 		// const guessedWord = $gameRows[$currentArray].join('');
 		const guessedWord = $gameRows[$currentArray].reduce(
 			(prev, curr) => prev.concat('', curr.content),
 			''
 		);
+
+		
+		if (guessedWord.length < $todaysWord.word.length) {
+			toast.push('Not enough letters', {
+				theme: {
+					'--toastBarBackground': '#D13639'
+				}
+			});
+			return;
+		} 
+
+
 		
 		// if not a valid word then they have to guess again
 		if (!validWords.includes(guessedWord) && !words.some(e => e.word === guessedWord)) {
-			toast.push('Not a valid word.', {
+			toast.push('Not a valid word', {
 				theme: {
 					'--toastBarBackground': '#D13639'
 				}
 			});
 			return;
 		}
-		// only actually check the guess if the current row
-		// is filled out
-		if (!$gameOver && $currentLetter === $gameRows[$currentArray].length) {
-			// track number of guesses for stats
-			$numGuesses++;
-			let duplicateLetters = false;
-			// check letters in current array for accuracy
-			for (let i = 0; i < $gameRows[$currentArray].length; i++) {
-				const letter = $gameRows[$currentArray][i].content;
-				let countOfLetter = 0;
-				// check for duplicate letters
-				for (const t of $todaysWord.word) {
-					if (letter === t) countOfLetter++;
-				}
 
-				// if duplicates found notify the user
-				if (countOfLetter > 1) duplicateLetters = true;
 
-				// if is in right position
-				if (letter === $todaysWord.word[i]) {
-					$correctLocations = [...$correctLocations, [$currentArray, i]];
-					$correctLetters = [...$correctLetters, letter];
-				} else if ($todaysWord.word.includes(letter)) {
-					$inWordLocations = [...$inWordLocations, [$currentArray, i]];
-					$inWordLetters = [...$inWordLetters, letter];
-				} else {
-					$wrongLocations = [...$wrongLocations, [$currentArray, i]];
-					$wrongLetters = [...$wrongLetters, letter];
-				}
-				// else if included in the word at all
-				// otherwise not a valid letter
+		// track number of guesses for stats
+		$numGuesses++;
+
+		let duplicateLetters = false;
+
+		let tempUserWord = guessedWord;
+		let tempTodaysWord = $todaysWord.word;
+		let countOfLetter = 0;
+		let letterCount = {};
+		console.table({tempTodaysWord, tempUserWord});
+		// check for correct letters 
+		for (let i = 0; i < tempUserWord.length; i++) {
+			if (tempUserWord[i] === tempTodaysWord[i]) {
+				$correctLocations = [...$correctLocations, [$currentArray, i]];
+				$correctLetters = [...$correctLetters, tempUserWord[i]];
+				tempUserWord = replaceAtIndex(tempUserWord, i, '#');
+				tempTodaysWord = replaceAtIndex(tempTodaysWord, i, '@');
 			}
-			if (guessedWord === $todaysWord.word) {
-				$hasWon = true;
-			} else if (duplicateLetters) {
-				toast.push('One of the letters you guessed appears in the word more than once!');
-			}
-			// check if they guessed the word or reached the end of guesses
-			if ($hasWon || $currentArray === $gameRows.length - 1) {
-				$gameOver = true;
-				updateStats();
-				saveGame();
-				showModal = true;
-				
+		}
+		console.table({tempTodaysWord, tempUserWord});
+		// check for in-word letters
+		for (let i = 0; i < tempUserWord.length; i++) {
+			// count occurrences of each letter
+			if (letterCount[tempUserWord[i]]) {
+				letterCount[tempUserWord[i]] += 1;
 			} else {
-				$hasWon = false;
-				$gameOver = false;
-				$currentArray++;
-				$currentLetter = 0;
-				saveGame();
+				letterCount[tempUserWord[i]] = 1;
 			}
+
+			if (tempTodaysWord.includes(tempUserWord[i])) {
+				$inWordLocations = [...$inWordLocations, [$currentArray, i]];
+				$inWordLetters = [...$inWordLetters, guessedWord[i]];
+				tempUserWord = replaceAtIndex(tempUserWord, i, '#');
+				tempTodaysWord = replaceAtIndex(tempTodaysWord, i, '@');
+			}
+		}
+		console.table({tempTodaysWord, tempUserWord});
+		// check for in-word letters
+		for (let i = 0; i < tempUserWord.length; i++) {
+			if (tempUserWord[i] != '#') {
+				$wrongLocations = [...$wrongLocations, [$currentArray, i]];
+				$wrongLetters = [...$wrongLetters, tempUserWord[i]];
+			}
+		}
+		console.table({tempTodaysWord, tempUserWord}); 
+
+		if (guessedWord === $todaysWord.word) {
+			$hasWon = true;
+		} else if (Object.values(letterCount).some(el => el > 1)) {
+			toast.push('A letter you guessed appears in the word more than once');
+		}
+		// check if they guessed the word or reached the end of guesses
+		if ($hasWon || $currentArray === $gameRows.length - 1) {
+			$gameOver = true;
+			updateStats();
+			saveGame();
+			showModal = true;
+			
+		} else {
+			$hasWon = false;
+			$gameOver = false;
+			$currentArray++;
+			$currentLetter = 0;
+			saveGame();
 		}
 	}
 
@@ -236,7 +274,6 @@ import { loop_guard } from 'svelte/internal';
 			eventObj.detail.action = 'backspace';
 			updateArrays(eventObj);
 		}
-
 	}
 
 	onMount(() => {
@@ -249,11 +286,13 @@ import { loop_guard } from 'svelte/internal';
 </script>
 
 <svelte:head>
-	<title>WORDLOL</title>
+	<title>WORDLOL - A League of Legends Word Game</title>
 </svelte:head>
 
 <svelte:window on:keydown={handleKeyboardInput} />
-
+{#if $hasWon }
+	<Particles particlesUrl=".//particles/fireworks.json" />
+{/if}
 <main class="flex flex-col h-screen w-screen bg-white min-h-710 max-h-screen">
 	<Header />
 	<Gameboard />
@@ -268,6 +307,9 @@ import { loop_guard } from 'svelte/internal';
 	{/if}
 	{#if $showHint === true }
 		<HintModal on:hint={saveGame} />
+	{/if}
+	{#if $showSettings === true }
+		<SettingsModal />
 	{/if}
 	<Keyboard on:letter={updateArrays} on:checkguess={checkGuess} />
 </main>

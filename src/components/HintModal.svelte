@@ -40,7 +40,9 @@
     <div 
         on:click|stopPropagation 
         class="flex flex-col mt-3 text-center bg-white w-3/4 md:w-1/2 pt-2 pb-6 px-4 rounded mt-20 overflow-y-auto">
-        <button 
+        <div class="flex flex-row mb-4">
+            <h3 class="text-lg font-semibold text-gray-900">MAGIC HINT BUTTON</h3>
+            <button 
             class="ml-auto align-middle" 
             on:click="{() => $showHint = !$showHint}">
             <svg 
@@ -59,7 +61,7 @@
                 />
             </svg>					
         </button>
-        <h2 class="text-2xl font-medium text-gray-900 mb-2">MAGIC HINT BUTTON</h2>
+        </div>
         <p class="mb-2">No shame in using a hint, but it does get tracked in your stats if you reveal it.</p>
         <section class="flex flex-col items-center">
             <button type="button" class="bg-lightgray rounded mb-6 p-2" on:click={() => {

@@ -880,7 +880,7 @@ function pickWord() {
 	let dateDiff = Date.parse(today) - Date.parse('Sat Jan 01 2022');
     // convert to whole days
     dateDiff = Math.round(dateDiff / (1000 * 3600 * 24));
-    if (dateDiff >= words.length) {
+    while (dateDiff >= words.length) {
         // get the left overs
         dateDiff = dateDiff % words.length;
     }
@@ -888,7 +888,12 @@ function pickWord() {
 }
 
 
-const randomWord = words[pickWord()];
+// const randomWord = words[pickWord()];
+const randomWord = {
+    "word": "POPPY",
+    "type": "champion",
+    "clue": ['keeper of the hammer']
+};
 // const randomWord = words[Math.floor(Math.random() * words.length)];
 const todaysWord = readable(randomWord);
 
@@ -967,6 +972,7 @@ const boardBuilder = () => {
 	const showStats = writable(false);
 	const showInfo = writable(false);
 	const showHint = writable(false);
+	const showSettings = writable(false);
 
     const hintsUsed = writable(savedGame ? savedGame.hints : 0);    
 
@@ -993,5 +999,6 @@ const boardBuilder = () => {
 		showHint,
 		words,
         hintsUsed,
-        saveVersion
+        saveVersion,
+        showSettings
 	};

@@ -30,7 +30,9 @@ import { loop_guard } from 'svelte/internal';
         on:click|stopPropagation 
         on:scroll={handleScroll}
         class="flex flex-col mt-3 text-center bg-white w-3/4 md:w-1/2 pt-2 pb-6 px-4 rounded mt-20 h-3/4 overflow-y-auto pb-5">
-        <button 
+        <div class="flex flex-row mb-4">
+            <h3 class="text-lg font-semibold text-gray-900">HOW TO PLAY</h3>
+            <button 
             class="ml-auto align-middle" 
             on:click="{() => $showInfo = !$showInfo}">
             <svg 
@@ -49,27 +51,27 @@ import { loop_guard } from 'svelte/internal';
                 />
             </svg>					
         </button>
-        <h2 class="text-xl font-medium text-gray-900 mb-4">HOW TO PLAY</h2>
+        </div>
         <section id="instructions" class="text-left">
             <p class="py-1">Guess the League of Legends related <strong>WORDLOL</strong> in 6 tries or less.</p>
-            <p class="py-1">Words are not limited to champion names.</p>
-            <p class="py-1">Words over 5 letters will have random characters revealed to help.</p>
+            <p class="py-1">Words are not limited to champion names. They may include game terms, item names, etc.</p>
+            <p class="py-1">Hints are available if you might need them. Click the ✨ icon in the header at the top of the page.</p>
             <p class="py-1">After guessing the letters will change colors to show how close you are to the secret word.</p>
             <p class="py-1">If using a keyboard, you can type on that or the on-screen keys.</p>
         </section>
-        <section id="examples">
+        <section id="examples" class="border-t border-lightgray text-left">
             <p class="text-l font-semibold py-4">EXAMPLES</p>
-            <div class="flex flex-row justify-center my-2">
-                <div class="{letterStyles} bg-[#f2f2f2] border-darkgray border text-black">K</div>
-                <div class="{letterStyles} bg-[#f2f2f2] border-darkgray border text-black">A</div>
-                <div class="{letterStyles} bg-[#f2f2f2] border-darkgray border text-black">I</div>
-                <div class="{letterStyles} bg-[#f2f2f2] border-darkgray border text-black">S</div>
-                <div class="{letterStyles} bg-correct text-white">A</div>
+            <div class="flex flex-row justify-left my-2">
+                <div class="{letterStyles} bg-[#f2f2f2] border-darkgray border text-black">L</div>
+                <div class="{letterStyles} bg-[#f2f2f2] border-darkgray border text-black">U</div>
+                <div class="{letterStyles} bg-[#f2f2f2] border-darkgray border text-black">D</div>
+                <div class="{letterStyles} bg-[#f2f2f2] border-darkgray border text-black">E</div>
+                <div class="{letterStyles} bg-correct text-white">N</div>
             </div>
+            <input type="checkbox" class="toggle"> checked
+            <p class="py-1"><strong>N</strong> is in the correct position.</p>
 
-            <p class="py-1"><strong>A</strong> is in the correct position.</p>
-
-            <div class="flex flex-row justify-center my-2">
+            <div class="flex flex-row justify-left my-2">
                 <div class="{letterStyles} bg-[#f2f2f2] border-darkgray border text-black">P</div>
                 <div class="{letterStyles} bg-[#f2f2f2] border-darkgray border text-black">E</div>
                 <div class="{letterStyles} bg-squash text-white">N</div>
@@ -79,7 +81,7 @@ import { loop_guard } from 'svelte/internal';
 
             <p class="py-1"><strong>N</strong> is in the word but in the wrong location.</p>
 
-            <div class="flex flex-row justify-center my-2">
+            <div class="flex flex-row justify-left my-2">
                 <div class="{letterStyles} bg-darkgray text-lightgray">T</div>
                 <div class="{letterStyles} bg-[#f2f2f2] border-darkgray border text-black">E</div>
                 <div class="{letterStyles} bg-[#f2f2f2] border-darkgray border text-black">E</div>
@@ -90,8 +92,8 @@ import { loop_guard } from 'svelte/internal';
             <p class="py-1"><strong>T</strong> is not in the word at all.</p>
 
         </section>        
-        <div class="mt-2">
-            <p class="text-l font-semibold py-4">About WORDLOL</p>
+        <div class="mt-2 border-t border-lightgray text-left">
+            <p class="text-l font-semibold py-4">ABOUT WORDLOL</p>
             <p class="py-1">WORDLOL is a League of Legends themed clone of the original Wordle game.</p>
             <p><a class="font-semibold hover:text-actionred hover:underline" href="https://github.com/joshallendev/wordlol">Peek at the code</a></p>
             <p><a class="font-semibold hover:text-actionred hover:underline" href="https://www.nytimes.com/games/wordle/index.html">Play Wordle</a></p>
