@@ -68,7 +68,6 @@ import { loop_guard } from 'svelte/internal';
                 <div class="{letterStyles} bg-[#f2f2f2] border-darkgray border text-black">E</div>
                 <div class="{letterStyles} bg-correct text-white">N</div>
             </div>
-            <input type="checkbox" class="toggle"> checked
             <p class="py-1"><strong>N</strong> is in the correct position.</p>
 
             <div class="flex flex-row justify-left my-2">
