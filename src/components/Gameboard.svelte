@@ -3,7 +3,7 @@
 	import { fade, scale } from 'svelte/transition';
 
 	const letterStyles: string =
-		'board-letter select-none inline w-12 h-12 sm:w-14 sm:h-14 mx-1 text-3xl mx-0.5 flex rounded-md justify-center items-center';
+		'board-letter select-none inline w-14 h-14 mx-1 text-3xl mx-0.5 flex rounded-md justify-center items-center';
 
 
 
@@ -26,7 +26,7 @@
 	}
 </script>
 
-<div transition:fade class="md:mt-20">
+<div transition:fade>
 	{#each $gameRows as row, i}
 		<div class="{row.status === 'wrong' && !$gameOver ? 'board-row-wrong ' : ''}flex flex-row justify-center my-2">
 			{#each row.letters as item, j}
