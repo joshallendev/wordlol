@@ -34,7 +34,7 @@
                     <p># Wins</p>
                 </div>
                 <div class="flex flex-col items-center text-center rounded p-1">
-                    <strong><p class="text-2xl">{stats.winPct}%</p></strong>
+                    <strong><p class="text-2xl">{stats.winPct?? 0}%</p></strong>
                     <p>Win Pct</p>
                 </div>
                 <div class="flex flex-col items-center text-center rounded p-1">

@@ -218,8 +218,15 @@
 	}
 
 	function generateShareText() {
-		let tmpString = $hasWon ? `WORDLOL ${newStats.numGuesses}/${maxGuesses}` +
-			`\n✨ ${$hintsUsed === 0 ? 'no hints used!' : $hintsUsed}${$hintsUsed > 1 ? ' hints used' : ' hint used'} \n` : `Checkout today's wordlol\n`;
+		let tmpString = $hasWon ? `WORDLOL ${newStats.numGuesses}/${maxGuesses}\n✨` : `WORDLOL X/${maxGuesses}\n✨`;
+		if ($hintsUsed === 0) {
+			tmpString += `no hints used! \n`;
+		} else if ($hintsUsed > 1) {
+			tmpString += $hintsUsed + ' hints used';
+		} else {
+			tmpString += $hintsUsed + ' hint used';
+		}
+		tmpString += '\n';
 		for (let i = 0; i < newStats.numGuesses; i++) {
 			for (let j = 0; j < $gameRows[i].letters.length; j++) {
 				const loc = [i,j];
