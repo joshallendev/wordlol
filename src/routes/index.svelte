@@ -49,15 +49,15 @@
 			const text = event.detail.text;
 			switch (event.detail.action) {
 				case 'add':
-					if ($currentLetter < $gameRows[$currentArray].length) {
-						$gameRows[$currentArray][$currentLetter].content = text;
+					if ($currentLetter < $gameRows[$currentArray].letters.length) {
+						$gameRows[$currentArray].letters[$currentLetter].content = text;
 						$currentLetter++;
 					}
 					break;
 				case 'backspace':
 					// go back a letter but never lass than 0
 					$currentLetter > 0 ? $currentLetter-- : null;
-					$gameRows[$currentArray][$currentLetter].content = '';
+					$gameRows[$currentArray].letters[$currentLetter].content = '';
 					break;
 				default:
 					break;
@@ -120,8 +120,7 @@
 	}
 
 	function checkGuess(): void {
-		// const guessedWord = $gameRows[$currentArray].join('');
-		const guessedWord = $gameRows[$currentArray].reduce(
+		const guessedWord = $gameRows[$currentArray].letters.reduce(
 			(prev, curr) => prev.concat('', curr.content),
 			''
 		);
@@ -152,15 +151,21 @@
 		// track number of guesses for stats
 		$numGuesses++;
 
-		let duplicateLetters = false;
-
 		let tempUserWord = guessedWord;
 		let tempTodaysWord = $todaysWord.word;
-		let countOfLetter = 0;
 		let letterCount = {};
-		console.table({tempTodaysWord, tempUserWord});
+
+		// check for duplicate letters 
+		// for (let i = 0; i < tempUserWord.length; i++) {
+		// 	const ltrRegex = new RegExp()
+		// 	if (tempTodaysWord.match(/[tempUserWord[i]]/)) {
+		// 		letterCount[tempUserWord[i]] += 1;
+		// 	} 
+		// }
+
 		// check for correct letters 
 		for (let i = 0; i < tempUserWord.length; i++) {
+
 			if (tempUserWord[i] === tempTodaysWord[i]) {
 				$correctLocations = [...$correctLocations, [$currentArray, i]];
 				$correctLetters = [...$correctLetters, tempUserWord[i]];
@@ -168,16 +173,9 @@
 				tempTodaysWord = replaceAtIndex(tempTodaysWord, i, '@');
 			}
 		}
-		console.table({tempTodaysWord, tempUserWord});
+
 		// check for in-word letters
 		for (let i = 0; i < tempUserWord.length; i++) {
-			// count occurrences of each letter
-			if (letterCount[tempUserWord[i]]) {
-				letterCount[tempUserWord[i]] += 1;
-			} else {
-				letterCount[tempUserWord[i]] = 1;
-			}
-
 			if (tempTodaysWord.includes(tempUserWord[i])) {
 				$inWordLocations = [...$inWordLocations, [$currentArray, i]];
 				$inWordLetters = [...$inWordLetters, guessedWord[i]];
@@ -185,7 +183,6 @@
 				tempTodaysWord = replaceAtIndex(tempTodaysWord, i, '@');
 			}
 		}
-		console.table({tempTodaysWord, tempUserWord});
 		// check for in-word letters
 		for (let i = 0; i < tempUserWord.length; i++) {
 			if (tempUserWord[i] != '#') {
@@ -193,12 +190,16 @@
 				$wrongLetters = [...$wrongLetters, tempUserWord[i]];
 			}
 		}
-		console.table({tempTodaysWord, tempUserWord}); 
 
 		if (guessedWord === $todaysWord.word) {
 			$hasWon = true;
-		} else if (Object.values(letterCount).some(el => el > 1)) {
+		} 
+		if (Object.values(letterCount).some(el => el > 1)) {
+			console.log(letterCount);
 			toast.push('A letter you guessed appears in the word more than once');
+		}
+		if (!$hasWon) {
+			$gameRows[$currentArray].status = 'wrong';
 		}
 		// check if they guessed the word or reached the end of guesses
 		if ($hasWon || $currentArray === $gameRows.length - 1) {
@@ -220,7 +221,7 @@
 		let tmpString = $hasWon ? `WORDLOL ${newStats.numGuesses}/${maxGuesses}` +
 			`\n✨ ${$hintsUsed === 0 ? 'no hints used!' : $hintsUsed}${$hintsUsed > 1 ? ' hints used' : ' hint used'} \n` : `Checkout today's wordlol\n`;
 		for (let i = 0; i < newStats.numGuesses; i++) {
-			for (let j = 0; j < $gameRows[i].length; j++) {
+			for (let j = 0; j < $gameRows[i].letters.length; j++) {
 				const loc = [i,j];
 				if (checkForIncludes($correctLocations, loc)) {
 					tmpString+='🟩';
@@ -253,19 +254,22 @@
 		}
 	}
 
+	function isAlpha(val) {
+		console.log(val);
+		return typeof val === "string" && val.length === 1 && /[A-Za-z]/.test(val);
+	}
+
 	function handleKeyboardInput(e) {
 		const value = e?.key.toUpperCase();
 		if (!value) return;
 		
-		// tests if the key typed is alpha char 
-		const isAlpha = typeof value === "string" && value.length === 1 && /[A-Za-z]/.test(value);
 		let eventObj = {
 			detail: {
 				text: value,
 				action: null
 			}
 		};
-		if (isAlpha) {
+		if (isAlpha(value)) {
 			eventObj.detail.action = 'add';
 			updateArrays(eventObj);
 		} else if (value === 'ENTER') {

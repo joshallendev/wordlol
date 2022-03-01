@@ -81,7 +81,7 @@ import { loop_guard } from 'svelte/internal';
             <p class="py-1"><strong>N</strong> is in the word but in the wrong location.</p>
 
             <div class="flex flex-row justify-left my-2">
-                <div class="{letterStyles} bg-darkgray text-lightgray">T</div>
+                <div class="{letterStyles} bg-darkgray text-white">T</div>
                 <div class="{letterStyles} bg-[#f2f2f2] border-darkgray border text-black">E</div>
                 <div class="{letterStyles} bg-[#f2f2f2] border-darkgray border text-black">E</div>
                 <div class="{letterStyles} bg-[#f2f2f2] border-darkgray border text-black">M</div>

@@ -25,15 +25,11 @@
         {#if !$hasWon }
             <p>The word was {$todaysWord}</p>
         {/if}
-        <div class="mt-2 text-center">
+        <div class="mt-2 text-center flex-col">
             <div class="text-left px-6 py-2 flex flex-row justify-between">
                 <div class="flex flex-col items-center text-center">
                     <strong><p class="text-2xl">{newStats.totalGames}</p></strong>
                     <p>Total Games</p>
-                </div>
-                <div class="flex flex-col items-center text-center">
-                    <strong><p class="text-2xl">{newStats.totalWins}</p></strong>
-                    <p>Total Wins</p>
                 </div>
                 <div class="flex flex-col items-center text-center">
                     <strong><p class="text-2xl">{newStats.currentStreak}</p></strong>
@@ -44,8 +40,20 @@
                     <p>Longest Streak</p>
                 </div>
             </div>
-            <p class="py-2">Historically you've won <strong>{newStats.winPct}%</strong> of the time.</p>
-            <p class="py-2">You've used <strong>{newStats.hints ?? '0'}</strong> hints along the way.</p>
+            <div class="text-left px-6 py-2 flex flex-row justify-between">
+                <div class="flex flex-col items-center text-center">
+                    <strong><p class="text-2xl">{newStats.totalWins}</p></strong>
+                    <p>Total Wins</p>
+                </div>
+                <div class="flex flex-col items-center text-center">
+                    <strong><p class="text-2xl">{newStats.winPct}%</p></strong>
+                    <p>Win Pct</p>
+                </div>
+                <div class="flex flex-col items-center text-center">
+                    <strong><p class="text-2xl">{newStats.hints ?? '0'}</p></strong>
+                    <p>Total Hints</p>
+                </div>
+            </div>
             {#if $hasWon }
                 <p class="py-2">Guessed today's WORDLOL in {newStats.numGuesses <= 3 ? 'just' : ''} <strong>{newStats.numGuesses}</strong> {newStats.numGuesses > 1 ? 'guesses' : 'guess'}!</p>
 

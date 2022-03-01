@@ -294,8 +294,8 @@ const words = [
     },
     {
         "word": "SERAPH",
-        "type": "champion",
-        "clue": ['starry-eyed songstress']
+        "type": "game item",
+        "clue": ['let it embrace you']
     },
     {
         "word": "SORAKA",
@@ -889,6 +889,11 @@ function pickWord() {
 
 
 const randomWord = words[pickWord()];
+// const randomWord = {
+//     "word": "MAOKAI",
+//     "type": "champion",
+//     "clue": ["the twisted treant"]
+// }
 const todaysWord = readable(randomWord);
 
 const wordLength = derived(todaysWord, ($todaysWord) => $todaysWord.word.length);
@@ -899,9 +904,13 @@ const boardBuilder = () => {
 	let ltrCount = 0;
 	let tempRows = [];
 	for (let i = 0; i < maxGuesses; i++) {
-		const row = [];
+		// const row = [];
+		const row = {
+            status: '', 
+            letters: []
+        };
 		for (let j = 0; j < randomWord.word.length; j++) {
-			row.push({
+			row.letters.push({
 				id: ltrCount,
 				content: ''
 			});
@@ -926,9 +935,11 @@ const boardBuilder = () => {
         window.localStorage.removeItem('savedWordlolGameboard');
         window.localStorage.removeItem('wordlolstats');
     }
-	if (savedGame?.saveDate != today) {
+	if (browser && savedGame?.saveDate != today) {
+        window.localStorage.removeItem('savedWordlolGameboard');
 		savedGame = null;
-	} else if (savedGame.saveVersion != saveVersion) {
+	} else if (browser && savedGame.saveVersion != saveVersion) {
+        window.localStorage.removeItem('savedWordlolGameboard');
         savedGame = null;
     }
 

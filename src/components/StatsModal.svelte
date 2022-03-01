@@ -20,10 +20,6 @@
                     <p># Games</p>
                 </div>
                 <div class="flex flex-col items-center text-center rounded p-1">
-                    <strong><p class="text-2xl">{stats.totalWins}</p></strong>
-                    <p># Wins</p>
-                </div>
-                <div class="flex flex-col items-center text-center rounded p-1">
                     <strong><p class="text-2xl">{stats.currentStreak}</p></strong>
                     <p>Current Streak</p>
                 </div>
@@ -32,11 +28,20 @@
                     <p>Longest Streak</p>
                 </div>
             </div>
-            <p class="py-2">You've used <strong>{stats.hints ?? '0'}</strong> hints along the way.</p>
-            {#if stats.winPct }
-                <p class="py-2">Historically you've won <strong>{stats.winPct}%</strong> of the time.</p>
-            {/if}
-            
+            <div class="text-left px-6 py-2 flex flex-row justify-between">
+                <div class="flex flex-col items-center text-center rounded p-1">
+                    <strong><p class="text-2xl">{stats.totalWins}</p></strong>
+                    <p># Wins</p>
+                </div>
+                <div class="flex flex-col items-center text-center rounded p-1">
+                    <strong><p class="text-2xl">{stats.winPct}%</p></strong>
+                    <p>Win Pct</p>
+                </div>
+                <div class="flex flex-col items-center text-center rounded p-1">
+                    <strong><p class="text-2xl">{stats.hints ?? '0'}</p></strong>
+                    <p>Total Hints</p>
+                </div>
+            </div>            
         </div>				
     </div>
 </div>
