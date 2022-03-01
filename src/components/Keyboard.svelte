@@ -53,7 +53,7 @@
 
 </script>
 
-<div on:click={handleLetterClick} class="sm:fixed sm:bottom-0 w-full">
+<div on:click={handleLetterClick} class="fixed bottom-0 w-full">
 	{#each letterArrays as row, i}
 	<div class="my-3 flex justify-center">
 			{#if i === 2 }

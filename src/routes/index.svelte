@@ -176,13 +176,15 @@
 
 		// check for in-word letters
 		for (let i = 0; i < tempUserWord.length; i++) {
-			if (tempTodaysWord.includes(tempUserWord[i])) {
+
+			const tmpltr = tempUserWord[i];
+			// if (tempTodaysWord.includes(tempUserWord[i])) {
+			if (tempTodaysWord.includes(tmpltr)) {
 				$inWordLocations = [...$inWordLocations, [$currentArray, i]];
-				$inWordLetters = [...$inWordLetters, guessedWord[i]];
-				tempUserWord = replaceAtIndex(tempUserWord, i, '#');
-				tempTodaysWord = replaceAtIndex(tempTodaysWord, i, '@');
+				$inWordLetters = [...$inWordLetters, tempUserWord[i]];
 			}
 		}
+
 		// check for in-word letters
 		for (let i = 0; i < tempUserWord.length; i++) {
 			if (tempUserWord[i] != '#') {
@@ -195,7 +197,6 @@
 			$hasWon = true;
 		} 
 		if (Object.values(letterCount).some(el => el > 1)) {
-			console.log(letterCount);
 			toast.push('A letter you guessed appears in the word more than once');
 		}
 		if (!$hasWon) {
@@ -262,7 +263,6 @@
 	}
 
 	function isAlpha(val) {
-		console.log(val);
 		return typeof val === "string" && val.length === 1 && /[A-Za-z]/.test(val);
 	}
 
@@ -304,7 +304,7 @@
 {#if $hasWon }
 	<Particles particlesUrl=".//particles/fireworks.json" />
 {/if}
-<main class="flex flex-col h-screen w-screen bg-white min-h-710 max-h-screen">
+<main class="flex flex-col bg-white min-h-710 max-h-screen overflow-y-clip">
 	<Header />
 	<Gameboard />
 	{#if $gameOver === true && showModal}

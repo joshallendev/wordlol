@@ -23,7 +23,7 @@
         <h3 class="text-4xl font-medium text-gray-900 mb-3">{ $hasWon ? '🤩' : '🙁'}</h3>
         <h3 class="text-lg font-medium text-gray-900">{ $hasWon ? 'Well done!' : 'Better luck next time.'}</h3>
         {#if !$hasWon }
-            <p>The word was {$todaysWord}</p>
+            <p>The word was {$todaysWord.word}</p>
         {/if}
         <div class="mt-2 text-center flex-col">
             <div class="text-left px-6 py-2 flex flex-row justify-between">
