@@ -2,25 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-    background-color: #f2f2f2;
-    touch-action: manipulation;
-    background-color: white;
-    height: 100%;
-    height: -moz-available;
-    height: -webkit-fill-available; 
-    height: stretch;
+html,
+body {
+	background-color: #f2f2f2;
+	touch-action: manipulation;
+	background-color: white;
+	height: 100%;
+	height: -moz-available;
+	height: -webkit-fill-available;
+	height: stretch; 
+    height: var(--app-height);
 }
 
 :root {
-    --toastContainerTop: 0.5rem;
-    --toastContainerRight: 0.5rem;
-    --toastContainerBottom: auto;
-    --toastContainerLeft: 0.5rem;
-    --toastWidth: auto;
-    --toastBackground: #e0e0e0;
-    --toastColor: black;
-    --toastBarBackground: #39ccb1;
-    text-align: center;
-
+	--toastContainerTop: 0.5rem;
+	--toastContainerRight: 0.5rem;
+	--toastContainerBottom: auto;
+	--toastContainerLeft: 0.5rem;
+	--toastWidth: auto;
+	--toastBackground: #e0e0e0;
+	--toastColor: black;
+	--toastBarBackground: #39ccb1;
+	--app-height: 100%;
+	text-align: center;
 }

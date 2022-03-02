@@ -37,41 +37,47 @@
 	}
 
 	$: setLetterStyles = (letter) => {
-		let classes:string = "";
+		let classes: string = '';
 		if ($correctLetters.includes(letter)) {
-			classes = letterStyles + " text-black bg-correct";
+			classes = letterStyles + ' text-black bg-correct';
 		} else if ($inWordLetters.includes(letter)) {
-			classes = letterStyles + " bg-squash text-white";
+			classes = letterStyles + ' bg-squash text-white';
 		} else if ($wrongLetters.includes(letter)) {
-			classes = letterStyles + " text-black bg-darkgray";
+			classes = letterStyles + ' text-black bg-darkgray';
 		} else {
-			classes = letterStyles + " text-black bg-lightgray";
+			classes = letterStyles + ' text-black bg-lightgray';
 		}
 		return classes;
-	}
-
+	};
 </script>
-
-<div on:click={handleLetterClick} >
-	{#each letterArrays as row, i}
-	<div class="my-3 flex justify-center">
-			{#if i === 2 }
-			<button type="button" class="{letterStyles} bg-actionred text-white w-auto sm:w-auto" on:click={handleCheckGuess}
-				>ENTER</button>
-			{/if}
-			{#each row as letter}
-				<button type="button" class={setLetterStyles(letter)}>{letter}</button>
-			{/each}
-			{#if i === 2 }
-			<button type="button" class="{letterStyles} bg-actionred text-white w-auto sm:w-auto" on:click={handleBackspaceClick}
-			>BACK</button>
-			{/if}
-		</div>
-	{/each}
+<div class="flex flex-col justify-end">
+	<div on:click={handleLetterClick}>
+		{#each letterArrays as row, i}
+			<div class="my-3 flex justify-center">
+				{#if i === 2}
+					<button
+						type="button"
+						class="{letterStyles} bg-actionred text-white w-auto sm:w-auto"
+						on:click={handleCheckGuess}>ENTER</button
+					>
+				{/if}
+				{#each row as letter}
+					<button type="button" class={setLetterStyles(letter)}>{letter}</button>
+				{/each}
+				{#if i === 2}
+					<button
+						type="button"
+						class="{letterStyles} bg-actionred text-white w-auto sm:w-auto"
+						on:click={handleBackspaceClick}>BACK</button
+					>
+				{/if}
+			</div>
+		{/each}
+	</div>
 </div>
 
 <style>
 	.key-letter {
-  		transition: all 0.5s ease;
+		transition: all 0.5s ease;
 	}
 </style>

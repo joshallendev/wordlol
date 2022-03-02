@@ -3,7 +3,7 @@ module.exports = {
 	theme: {
 		extend: {
 			fontFamily: {
-				'barlow': ['Barlow', 'sans-serif']
+				barlow: ['Barlow', 'sans-serif']
 			},
 			colors: {
 				minion: '#FDE74C',

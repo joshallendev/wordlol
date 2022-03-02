@@ -30,7 +30,7 @@
 		saveVersion,
 		showSettings
 	} from '../stores/gameStore';
-	import { SvelteToast, toast } from '@zerodevx/svelte-toast'
+	import { SvelteToast, toast } from '@zerodevx/svelte-toast';
 	import { onMount } from 'svelte';
 	import HintModal from '../components/HintModal.svelte';
 	import validWords from '../../static/validwords';
@@ -42,7 +42,7 @@
 	let fireworksJSON;
 
 	if ($gameOver) {
-		showModal = true; 
+		showModal = true;
 	}
 	function updateArrays(event: any) {
 		if (!$gameOver) {
@@ -100,7 +100,7 @@
 		} else {
 			newStats.currentStreak = 1;
 		}
-		// has the current streak gotten bigger than the record? 
+		// has the current streak gotten bigger than the record?
 		if (newStats.currentStreak > newStats.maxDayStreak) {
 			newStats.maxDayStreak = newStats.currentStreak;
 		}
@@ -108,14 +108,15 @@
 		newStats.winPct = (newStats.totalWins / newStats.totalGames) * 100;
 		newStats.numGuesses = $numGuesses;
 		newStats.hints = newStats.hints + $hintsUsed;
+		console.table(newStats);
 		window.localStorage.setItem('wordlolstats', JSON.stringify(newStats));
 	}
 
-	function replaceAtIndex(str,index,newValue) {
-		if(index > str.length-1) {
-			return str
+	function replaceAtIndex(str, index, newValue) {
+		if (index > str.length - 1) {
+			return str;
 		} else {
-			return str.substring(0,index) + newValue + str.substring(index+1)
+			return str.substring(0, index) + newValue + str.substring(index + 1);
 		}
 	}
 
@@ -125,7 +126,6 @@
 			''
 		);
 
-		
 		if (guessedWord.length < $todaysWord.word.length) {
 			toast.push('Not enough letters', {
 				theme: {
@@ -133,12 +133,10 @@
 				}
 			});
 			return;
-		} 
+		}
 
-
-		
 		// if not a valid word then they have to guess again
-		if (!validWords.includes(guessedWord) && !words.some(e => e.word === guessedWord)) {
+		if (!validWords.includes(guessedWord) && !words.some((e) => e.word === guessedWord)) {
 			toast.push('Not a valid word', {
 				theme: {
 					'--toastBarBackground': '#D13639'
@@ -147,7 +145,6 @@
 			return;
 		}
 
-
 		// track number of guesses for stats
 		$numGuesses++;
 
@@ -155,17 +152,16 @@
 		let tempTodaysWord = $todaysWord.word;
 		let letterCount = {};
 
-		// check for duplicate letters 
+		// check for duplicate letters
 		// for (let i = 0; i < tempUserWord.length; i++) {
 		// 	const ltrRegex = new RegExp()
 		// 	if (tempTodaysWord.match(/[tempUserWord[i]]/)) {
 		// 		letterCount[tempUserWord[i]] += 1;
-		// 	} 
+		// 	}
 		// }
 
-		// check for correct letters 
+		// check for correct letters
 		for (let i = 0; i < tempUserWord.length; i++) {
-
 			if (tempUserWord[i] === tempTodaysWord[i]) {
 				$correctLocations = [...$correctLocations, [$currentArray, i]];
 				$correctLetters = [...$correctLetters, tempUserWord[i]];
@@ -176,7 +172,6 @@
 
 		// check for in-word letters
 		for (let i = 0; i < tempUserWord.length; i++) {
-
 			const tmpltr = tempUserWord[i];
 			// if (tempTodaysWord.includes(tempUserWord[i])) {
 			if (tempTodaysWord.includes(tmpltr)) {
@@ -195,8 +190,8 @@
 
 		if (guessedWord === $todaysWord.word) {
 			$hasWon = true;
-		} 
-		if (Object.values(letterCount).some(el => el > 1)) {
+		}
+		if (Object.values(letterCount).some((el) => el > 1)) {
 			toast.push('A letter you guessed appears in the word more than once');
 		}
 		if (!$hasWon) {
@@ -204,11 +199,10 @@
 		}
 		// check if they guessed the word or reached the end of guesses
 		if ($hasWon || $currentArray === $gameRows.length - 1) {
-			$gameOver = true;
 			updateStats();
+			$gameOver = true;
 			saveGame();
 			showModal = true;
-			
 		} else {
 			$hasWon = false;
 			$gameOver = false;
@@ -219,7 +213,9 @@
 	}
 
 	function generateShareText() {
-		let tmpString = $hasWon ? `WORDLOL ${newStats.numGuesses}/${maxGuesses}\n✨` : `WORDLOL X/${maxGuesses}\n✨`;
+		let tmpString = $hasWon
+			? `WORDLOL ${newStats.numGuesses}/${maxGuesses}\n✨`
+			: `WORDLOL X/${maxGuesses}\n✨`;
 		if ($hintsUsed === 0) {
 			tmpString += `no hints used! \n`;
 		} else if ($hintsUsed > 1) {
@@ -230,16 +226,16 @@
 		tmpString += '\n';
 		for (let i = 0; i < newStats.numGuesses; i++) {
 			for (let j = 0; j < $gameRows[i].letters.length; j++) {
-				const loc = [i,j];
+				const loc = [i, j];
 				if (checkForIncludes($correctLocations, loc)) {
-					tmpString+='🟩';
+					tmpString += '🟩';
 				} else if (checkForIncludes($inWordLocations, loc)) {
-					tmpString+='🟨';
+					tmpString += '🟨';
 				} else {
-					tmpString+='⬜';
-				} 
+					tmpString += '⬜';
+				}
 			}
-			tmpString+='\n';
+			tmpString += '\n';
 		}
 		return tmpString;
 	}
@@ -250,26 +246,27 @@
 
 	export function handleShare(): void {
 		if (navigator.share) {
-			navigator.share({
-				title: 'playwordlol.com',
-				text: generateShareText(),
-				url: 'http://playwordlol.com'
-			})
-			.then(() => console.log('Successful share'))
-			.catch((error) => console.log('Error sharing', error));
+			navigator
+				.share({
+					title: 'playwordlol.com',
+					text: generateShareText(),
+					url: 'http://playwordlol.com'
+				})
+				.then(() => console.log('Successful share'))
+				.catch((error) => console.log('Error sharing', error));
 		} else {
 			console.log('no navigator share support');
 		}
 	}
 
 	function isAlpha(val) {
-		return typeof val === "string" && val.length === 1 && /[A-Za-z]/.test(val);
+		return typeof val === 'string' && val.length === 1 && /[A-Za-z]/.test(val);
 	}
 
 	function handleKeyboardInput(e) {
 		const value = e?.key.toUpperCase();
 		if (!value) return;
-		
+
 		let eventObj = {
 			detail: {
 				text: value,
@@ -286,13 +283,18 @@
 			updateArrays(eventObj);
 		}
 	}
-
+	const appHeight = () => {
+		const doc = document.documentElement
+		doc.style.setProperty('--app-height', `${window.innerHeight}px`)
+	}
 	onMount(() => {
 		const app = new SvelteToast({
-		// Set where the toast container should be appended into
-		target: document.body
+			// Set where the toast container should be appended into
+			target: document.body
 		});
-	})
+		appHeight();
+	});
+
 
 </script>
 
@@ -300,26 +302,26 @@
 	<title>WORDLOL - A League of Legends Word Game</title>
 </svelte:head>
 
-<svelte:window on:keydown={handleKeyboardInput} />
-{#if $hasWon }
+<svelte:window on:keydown={handleKeyboardInput} on:resize={appHeight}/>
+{#if $hasWon}
 	<Particles particlesUrl=".//particles/fireworks.json" />
 {/if}
-<main class="flex flex-col bg-white justify-between overflow-y-clip font-barlow text-xl">
+<main class="flex flex-col h-full bg-white justify-between overflow-x-hidden font-barlow text-xl">
 	<Header />
 	<Gameboard />
 	{#if $gameOver === true && showModal}
-		<GameOverModal bind:showModal={showModal} {newStats} {handleShare}/>
+		<GameOverModal bind:showModal {newStats} {handleShare} />
 	{/if}
 	{#if $showStats === true}
 		<StatsModal />
 	{/if}
-	{#if $showInfo === true }
+	{#if $showInfo === true}
 		<InfoModal />
 	{/if}
-	{#if $showHint === true }
+	{#if $showHint === true}
 		<HintModal on:hint={saveGame} />
 	{/if}
-	{#if $showSettings === true }
+	{#if $showSettings === true}
 		<SettingsModal />
 	{/if}
 	<Keyboard on:letter={updateArrays} on:checkguess={checkGuess} />
