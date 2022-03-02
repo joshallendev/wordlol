@@ -9,10 +9,9 @@
 		['Z', 'X', 'C', 'V', 'B', 'N', 'M']
 	];
 	const dispatch = createEventDispatcher();
-	let keyboard;
 
 	const letterStyles: string =
-		'key-letter grow sm:grow-0 h-14 w-10 sm:w-14 flex justify-center px-2 py-4 sm:px-4 font-medium mx-0.5 text-sm select-none rounded hover:shadow-2xl';
+		'key-letter grow sm:grow-0 h-14 w-10 sm:w-14 flex justify-center px-2 py-3 sm:px-4 font-medium mx-0.5 text-xl select-none rounded hover:shadow-2xl';
 
 	function handleLetterClick(e): void {
 		const text: string = e.target.innerText;
@@ -53,7 +52,7 @@
 
 </script>
 
-<div on:click={handleLetterClick}>
+<div on:click={handleLetterClick} >
 	{#each letterArrays as row, i}
 	<div class="my-3 flex justify-center">
 			{#if i === 2 }

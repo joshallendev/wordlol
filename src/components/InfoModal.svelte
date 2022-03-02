@@ -29,7 +29,7 @@ import { loop_guard } from 'svelte/internal';
 
         on:click|stopPropagation 
         on:scroll={handleScroll}
-        class="flex flex-col mt-3 text-center bg-white w-3/4 md:w-1/2 pt-2 pb-6 px-4 rounded mt-20 h-3/4 overflow-y-auto pb-5">
+        class="flex flex-col text-center bg-white w-5/6 md:w-1/2 pt-2 pb-5 px-4 rounded mt-20 h-3/4 overflow-y-auto">
         <div class="flex flex-row mb-4">
             <h3 class="text-lg font-semibold text-gray-900">HOW TO PLAY</h3>
             <button 

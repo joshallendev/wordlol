@@ -16,14 +16,14 @@
 
 
 <div on:click={() => showModal = !showModal} in:fade out:fade class="fixed flex items-center flex-col inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
-    <div on:click|stopPropagation class="flex flex-col mt-3 text-center bg-white w-3/4 md:w-1/2 pt-2 pb-6 px-4 rounded mt-20">
+    <div on:click|stopPropagation class="flex flex-col mt-3 text-center bg-white w-5/6 md:w-1/2 pt-2 pb-6 px-4 rounded mt-20">
         <button class="ml-auto align-middle" on:click={() => showModal = !showModal}>
             <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" style="vertical-align: middle; display: inline;" width="25" height="25" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M10.657 12.071L5 6.414L6.414 5l5.657 5.657L17.728 5l1.414 1.414l-5.657 5.657l5.657 5.657l-1.414 1.414l-5.657-5.657l-5.657 5.657L5 17.728z"/></svg>					
         </button>
         <h3 class="text-4xl font-medium text-gray-900 mb-3">{ $hasWon ? '🤩' : '🙁'}</h3>
         <h3 class="text-lg font-medium text-gray-900">{ $hasWon ? 'Well done!' : 'Better luck next time.'}</h3>
         {#if !$hasWon }
-            <p>The word was {$todaysWord.word}</p>
+            <p>Today's word was <strong>{$todaysWord.word}</strong></p>
         {/if}
         <div class="mt-2 text-center flex-col">
             <div class="text-left px-6 py-2 flex flex-row justify-between">

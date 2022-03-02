@@ -26,18 +26,21 @@
 	}
 </script>
 
-<div transition:fade>
-	{#each $gameRows as row, i}
-		<div class="{row.status === 'wrong' && !$gameOver ? 'board-row-wrong ' : ''}flex flex-row justify-center my-2">
-			{#each row.letters as item, j}
-			<div class={setLetterStyles([i, j])}>
-				{#key item.content}
-						<p in:scale out:scale>{item.content}</p>
-						{/key}
-						</div>
-			{/each}
-		</div>
-	{/each}
+<div class="flex-col grow">
+	<div transition:fade class="self-start mx-auto sm:mt-20">
+		{#each $gameRows as row, i}
+			<div class="{row.status === 'wrong' && !$gameOver ? 'board-row-wrong ' : ''}flex flex-row justify-center my-2">
+				{#each row.letters as item, j}
+				<div class={setLetterStyles([i, j])}>
+					{#key item.content}
+							<p in:scale out:scale>{item.content}</p>
+							{/key}
+							</div>
+				{/each}
+			</div>
+		{/each}
+	</div>
+
 </div>
 
 <style>

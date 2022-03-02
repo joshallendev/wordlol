@@ -980,6 +980,8 @@ const boardBuilder = () => {
 	const showSettings = writable(false);
 
     const hintsUsed = writable(savedGame ? savedGame.hints : 0);    
+    const revealType = writable(false);
+    const revealClue = writable(false);
 
 	export {
 		today,
@@ -1005,5 +1007,7 @@ const boardBuilder = () => {
 		words,
         hintsUsed,
         saveVersion,
-        showSettings
+        showSettings,
+        revealType,
+        revealClue
 	};

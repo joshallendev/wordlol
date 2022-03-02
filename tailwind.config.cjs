@@ -2,6 +2,9 @@ module.exports = {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
 	theme: {
 		extend: {
+			fontFamily: {
+				'barlow': ['Barlow', 'sans-serif']
+			},
 			colors: {
 				minion: '#FDE74C',
 				darkminion: '#B6A102',
