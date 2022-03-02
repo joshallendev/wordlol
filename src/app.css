@@ -5,6 +5,11 @@
 html {
     background-color: #f2f2f2;
     touch-action: manipulation;
+    background-color: white;
+    height: 100%;
+    height: -moz-available;
+    height: -webkit-fill-available; 
+    height: stretch;
 }
 
 :root {

@@ -304,7 +304,7 @@
 {#if $hasWon }
 	<Particles particlesUrl=".//particles/fireworks.json" />
 {/if}
-<main class="flex flex-col bg-white h-full justify-between overflow-y-clip font-barlow text-xl">
+<main class="flex flex-col bg-white justify-between overflow-y-clip font-barlow text-xl">
 	<Header />
 	<Gameboard />
 	{#if $gameOver === true && showModal}
