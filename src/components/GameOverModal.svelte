@@ -32,10 +32,10 @@
 					fill-rule="evenodd"
 					d="M10.657 12.071L5 6.414L6.414 5l5.657 5.657L17.728 5l1.414 1.414l-5.657 5.657l5.657 5.657l-1.414 1.414l-5.657-5.657l-5.657 5.657L5 17.728z"
 				/></svg
-			>
+			>close
 		</button>
-		<h3 class="text-4xl font-medium text-gray-900 mb-3">{$hasWon ? '🤩' : '🙁'}</h3>
-		<h3 class="text-lg font-medium text-gray-900">
+		<h3 class="text-4xl font-medium mb-3">{$hasWon ? '🤩' : '🙁'}</h3>
+		<h3 class="text-3xl font-medium text-gray-900">
 			{$hasWon ? 'Well done!' : 'Better luck next time.'}
 		</h3>
 		{#if !$hasWon}
@@ -43,31 +43,31 @@
 		{/if}
 		<div class="mt-2 text-center flex-col">
 			<div class="text-left px-6 py-2 flex flex-row justify-between">
-				<div class="flex flex-col items-center text-center">
+				<div class="flex flex-col items-center text-center w-1/3">
 					<strong><p class="text-2xl">{newStats.totalGames}</p></strong>
-					<p>Total Games</p>
+					<p class="text-base">Total Games</p>
 				</div>
-				<div class="flex flex-col items-center text-center">
+				<div class="flex flex-col items-center text-center w-1/3">
 					<strong><p class="text-2xl">{newStats.currentStreak}</p></strong>
-					<p>Current Streak</p>
+					<p class="text-base">Current Streak</p>
 				</div>
-				<div class="flex flex-col items-center text-center">
+				<div class="flex flex-col items-center text-center w-1/3">
 					<strong><p class="text-2xl">{newStats.maxDayStreak}</p></strong>
-					<p>Longest Streak</p>
+					<p class="text-base">Longest Streak</p>
 				</div>
 			</div>
 			<div class="text-left px-6 py-2 flex flex-row justify-between">
-				<div class="flex flex-col items-center text-center">
+				<div class="flex flex-col items-center text-center w-1/3">
 					<strong><p class="text-2xl">{newStats.totalWins}</p></strong>
-					<p>Total Wins</p>
+					<p class="text-base">Total Wins</p>
 				</div>
-				<div class="flex flex-col items-center text-center">
+				<div class="flex flex-col items-center text-center w-1/3">
 					<strong><p class="text-2xl">{newStats.winPct}%</p></strong>
-					<p>Win Pct</p>
+					<p class="text-base">Win Pct</p>
 				</div>
-				<div class="flex flex-col items-center text-center">
+				<div class="flex flex-col items-center text-center w-1/3">
 					<strong><p class="text-2xl">{newStats.hints ?? '0'}</p></strong>
-					<p>Total Hints</p>
+					<p class="text-base">Total Hints</p>
 				</div>
 			</div>
 			{#if $hasWon}

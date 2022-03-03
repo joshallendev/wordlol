@@ -172,11 +172,12 @@
 
 		// check for in-word letters
 		for (let i = 0; i < tempUserWord.length; i++) {
-			const tmpltr = tempUserWord[i];
 			// if (tempTodaysWord.includes(tempUserWord[i])) {
-			if (tempTodaysWord.includes(tmpltr)) {
+			const indx = tempTodaysWord.indexOf(tempUserWord[i]);
+			if (indx >= 0) {
 				$inWordLocations = [...$inWordLocations, [$currentArray, i]];
 				$inWordLetters = [...$inWordLetters, tempUserWord[i]];
+				tempTodaysWord = replaceAtIndex(tempTodaysWord, indx, '@');
 			}
 		}
 
@@ -259,11 +260,11 @@
 		}
 	}
 
-	function isAlpha(val) {
+	function isAlpha(val: any) {
 		return typeof val === 'string' && val.length === 1 && /[A-Za-z]/.test(val);
 	}
 
-	function handleKeyboardInput(e) {
+	function handleKeyboardInput(e: KeyboardEvent) {
 		const value = e?.key.toUpperCase();
 		if (!value) return;
 

@@ -20,7 +20,7 @@
 		} else if (checkForIncludes($wrongLocations, loc)) {
 			classes = letterStyles + ' bg-darkgray text-white';
 		} else {
-			classes = letterStyles + ' bg-[#f2f2f2] border-darkgray border text-black';
+			classes = letterStyles + ' bg-[#f2f2f2]  text-black';
 		}
 		return classes;
 	};

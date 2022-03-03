@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { showSettings } from '../stores/gameStore';
-	import { fade } from 'svelte/transition';
+	import { fade, scale } from 'svelte/transition';
 </script>
 
 <div
@@ -10,8 +10,10 @@
 	class="fixed flex items-center flex-col inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full"
 >
 	<div
+		in:scale
+		out:scale
 		on:click|stopPropagation
-		class="flex flex-col mt-3 text-center bg-white w-5/6 md:w-1/2 pt-2 pb-6 px-4 rounded mt-20"
+		class="flex flex-col text-center bg-white w-5/6 md:w-1/2 pt-2 pb-6 px-4 rounded mt-20"
 	>
 		<div class="flex flex-row mb-4">
 			<h3 class="text-lg font-semibold text-gray-900">SETTINGS</h3>
@@ -31,7 +33,7 @@
 						d="M10.657 12.071L5 6.414L6.414 5l5.657 5.657L17.728 5l1.414 1.414l-5.657 5.657l5.657 5.657l-1.414 1.414l-5.657-5.657l-5.657 5.657L5 17.728z"
 					/></svg
 				>
-			</button>
+			close</button>
 		</div>
 
 		<div class="flex justify-between border-b border-lightgray py-4 align-middle">

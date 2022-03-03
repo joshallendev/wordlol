@@ -11,13 +11,14 @@
 
 <header class="bg-black med:mb-10 text-white py-3 flex justify-between">
 	<div class="flex-row justify-start">
-		<p class="px-5 font-semibold text-left">WORDLOL</p>
+		<p class="px-5 font-semibold text-left"><a href="/">WORDLOL</a></p>
 	</div>
 	{#if !$gameOver}
 		<div>
 			<button
 				class="text-2xl {$hintsUsed < 2 ? 'animate-pulse' : ''}"
 				type="button"
+				aria-label="hint"
 				on:click={() => ($showHint = !$showHint)}
 			>
 				✨
@@ -25,7 +26,7 @@
 		</div>
 	{/if}
 	<div class="inline pr-2 justify-end text-right">
-		<button type="button" on:click={() => ($showInfo = !$showInfo)}>
+		<button type="button" aria-label="information" on:click={() => ($showInfo = !$showInfo)}>
 			<svg
 				class="cursor-pointer"
 				xmlns="http://www.w3.org/2000/svg"
@@ -43,7 +44,7 @@
 			>
 		</button>
 
-		<button type="button" class="ml-2" on:click={() => ($showStats = !$showStats)}>
+		<button type="button" class="ml-2" aria-label="statistics" on:click={() => ($showStats = !$showStats)}>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				aria-hidden="true"
@@ -65,7 +66,7 @@
 			>
 		</button>
 
-		<button type="button" class="ml-2" on:click={() => ($showSettings = !$showSettings)}>
+		<button type="button" class="ml-2" aria-label="settings" on:click={() => ($showSettings = !$showSettings)}>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				aria-hidden="true"

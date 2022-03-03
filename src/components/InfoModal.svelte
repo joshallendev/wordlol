@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { showInfo } from '../stores/gameStore';
-	import { fade } from 'svelte/transition';
+	import { fade, scale } from 'svelte/transition';
 
 	const letterStyles: string =
 		'board-letter inline w-14 h-14 mx-1 text-3xl mx-0.5 flex rounded-md justify-center items-center';
@@ -20,12 +20,14 @@
 </script>
 
 <div
-	in:fade
+in:fade
 	out:fade
 	on:click={() => ($showInfo = !$showInfo)}
 	class="fixed flex items-center flex-col inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full"
 >
 	<div
+	in:scale
+	out:scale
 		id="info-modal"
 		on:click|stopPropagation
 		on:scroll={handleScroll}
@@ -50,7 +52,7 @@
 						d="M10.657 12.071L5 6.414L6.414 5l5.657 5.657L17.728 5l1.414 1.414l-5.657 5.657l5.657 5.657l-1.414 1.414l-5.657-5.657l-5.657 5.657L5 17.728z"
 					/>
 				</svg>
-			</button>
+			close</button>
 		</div>
 		<section id="instructions" class="text-left">
 			<p class="py-1">
@@ -110,8 +112,19 @@
 
 			<p class="py-1">Techie details:</p>
 			<ul class="list-disc list-inside m-2">
-				<li>Built in SvelteKit</li>
-				<li>Hosted on Netlify</li>
+				<li>Built in <a
+					class="text-actionred hover:font-semibold hover:underline"
+					href="https://kit.svelte.dev/">SvelteKit</a
+				>
+			</li>
+				<li>Styled with <a
+					class="text-actionred hover:font-semibold hover:underline"
+					href="https://tailwindcss.com/">Tailwind CSS</a
+				></li>
+				<li>Hosted on <a
+					class="text-actionred hover:font-semibold hover:underline"
+					href="https://www.netlify.com/">Netlify</a
+				></li>
 			</ul>
 			<p>
 				<a

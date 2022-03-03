@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { showHint, todaysWord, hintsUsed, revealType, revealClue } from '../stores/gameStore';
-	import { fade } from 'svelte/transition';
+	import { fade, scale } from 'svelte/transition';
 	import { createEventDispatcher } from 'svelte';
 
 	const letterStyles: string =
@@ -34,6 +34,8 @@
 	class="fixed flex items-center flex-col inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto"
 >
 	<div
+	in:scale
+	out:scale
 		on:click|stopPropagation
 		class="flex flex-col mt-3 text-center bg-white w-3/4 md:w-1/2 pt-2 pb-6 px-4 rounded mt-20 overflow-y-auto"
 	>
@@ -56,7 +58,7 @@
 						d="M10.657 12.071L5 6.414L6.414 5l5.657 5.657L17.728 5l1.414 1.414l-5.657 5.657l5.657 5.657l-1.414 1.414l-5.657-5.657l-5.657 5.657L5 17.728z"
 					/>
 				</svg>
-			</button>
+			close</button>
 		</div>
 		<p class="mb-2">
 			No shame in using a hint, but it does get tracked in your stats if you reveal it.
