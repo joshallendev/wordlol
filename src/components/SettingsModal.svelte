@@ -13,10 +13,10 @@
 		in:scale
 		out:scale
 		on:click|stopPropagation
-		class="flex flex-col text-center bg-white w-5/6 md:w-1/2 pt-2 pb-6 px-4 rounded mt-20"
+		class="flex flex-col text-center bg-white dark:bg-gray-800 dark:text-white w-5/6 md:w-1/2 pt-2 pb-6 px-4 rounded mt-20"
 	>
 		<div class="flex flex-row mb-4">
-			<h3 class="text-lg font-semibold text-gray-900">SETTINGS</h3>
+			<h3 class="text-lg font-semibold">SETTINGS</h3>
 			<button class="ml-auto align-middle" on:click={() => ($showSettings = !$showSettings)}>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -40,7 +40,7 @@
 			<p>Dark Mode</p>
 			<div class="form-check form-switch">
 				<input
-					class="form-check-input appearance-none w-9 -ml-10 rounded-full float-left h-5 align-top bg-white bg-no-repeat bg-contain bg-gray-300 focus:outline-none cursor-pointer shadow-sm"
+					class="form-check-input appearance-none w-9 -ml-10 rounded-full float-left h-5 align-top bg-no-repeat bg-contain bg-gray-300 focus:outline-none cursor-pointer shadow-sm"
 					type="checkbox"
 					role="switch"
 					id="flexSwitchCheckDefault"
@@ -51,7 +51,7 @@
 			<p>Hard Mode</p>
 			<div class="form-check form-switch">
 				<input
-					class="form-check-input appearance-none w-9 -ml-10 rounded-full float-left h-5 align-top bg-white bg-no-repeat bg-contain bg-gray-300 focus:outline-none cursor-pointer shadow-sm"
+					class="form-check-input appearance-none w-9 -ml-10 rounded-full float-left h-5 align-top bg-no-repeat bg-contain bg-gray-300 focus:outline-none cursor-pointer shadow-sm"
 					type="checkbox"
 					role="switch"
 					id="flexSwitchCheckDefault"
@@ -62,7 +62,7 @@
 			<p>High Contrast Mode</p>
 			<div class="form-check form-switch">
 				<input
-					class="form-check-input appearance-none w-9 -ml-10 rounded-full float-left h-5 align-top bg-white bg-no-repeat bg-contain bg-gray-300 focus:outline-none cursor-pointer shadow-sm"
+					class="form-check-input appearance-none w-9 -ml-10 rounded-full float-left h-5 align-top bg-no-repeat bg-contain bg-gray-300 focus:outline-none cursor-pointer shadow-sm"
 					type="checkbox"
 					role="switch"
 					id="flexSwitchCheckDefault"

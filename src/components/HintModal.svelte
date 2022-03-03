@@ -37,10 +37,10 @@
 	in:scale
 	out:scale
 		on:click|stopPropagation
-		class="flex flex-col mt-3 text-center bg-white w-3/4 md:w-1/2 pt-2 pb-6 px-4 rounded mt-20 overflow-y-auto"
+		class="flex flex-col text-center bg-white dark:bg-gray-800 w-3/4 md:w-1/2 pt-2 pb-6 px-4 rounded mt-20 overflow-y-auto"
 	>
 		<div class="flex flex-row mb-4">
-			<h3 class="text-lg font-semibold text-gray-900">MAGIC HINT BUTTON</h3>
+			<h3 class="text-lg font-semibold">MAGIC HINT BUTTON</h3>
 			<button class="ml-auto align-middle" on:click={() => $showHint = !$showHint}>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -67,7 +67,7 @@
 			{#if !$revealType}
 				<button
 					type="button"
-					class="bg-lightgray rounded mb-6 p-2"
+					class="bg-lightgray text-black rounded mb-6 p-2"
 					on:click={() => {$revealType = !$revealType;handleHintReveal();}}
 				>
 					✨ show me the hint! ✨
@@ -80,7 +80,7 @@
 			{#if $revealType && !$revealClue}
 				<button
 					type="button"
-					class="block bg-lightgray rounded mb-6 p-2"
+					class="block bg-lightgray text-black rounded mb-6 p-2"
 					on:click={() => {$revealClue = !$revealClue; handleHintReveal();}}
 				>
 					✨ i'm stuck.. show me another hint! ✨

@@ -923,7 +923,6 @@ const boardBuilder = () => {
 
 const saveVersion = 2;
 
-const rows = boardBuilder();
 let savedGame = browser
 	? JSON.parse(window.localStorage.getItem('savedWordlolGameboard'))
 	: undefined;
@@ -950,7 +949,7 @@ if (browser) {
 // game data
 const currentArray = writable(savedGame ? savedGame.currentArray : 0);
 const currentLetter = writable(savedGame ? savedGame.currentLetter : 0);
-const gameRows = writable(savedGame ? savedGame.rows : rows);
+const gameRows = writable(savedGame ? savedGame.rows : boardBuilder());
 const hasWon = writable(savedGame ? savedGame.hasWon : false);
 const gameOver = writable(savedGame ? savedGame.gameOver : false);
 const numGuesses = writable(savedGame ? savedGame.numGuesses : 0);

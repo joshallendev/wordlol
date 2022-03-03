@@ -13,10 +13,10 @@
 		in:scale
 		out:scale
 		on:click|stopPropagation
-		class="flex flex-col mt-3 text-center bg-white w-3/4 md:w-1/2 pt-2 pb-6 px-4 rounded mt-20"
+		class="flex flex-col text-center bg-white dark:bg-gray-800 dark:text-white w-3/4 md:w-1/2 pt-2 pb-6 px-4 rounded mt-20"
 	>
 		<div class="flex flex-row">
-			<h3 class="text-lg font-semibold text-gray-900">STATISTICS</h3>
+			<h3 class="text-lg font-semibold">STATISTICS</h3>
 			<button class="ml-auto align-middle" on:click={() => ($showStats = !$showStats)}>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"

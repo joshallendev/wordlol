@@ -31,10 +31,10 @@ in:fade
 		id="info-modal"
 		on:click|stopPropagation
 		on:scroll={handleScroll}
-		class="flex flex-col text-center bg-white w-5/6 md:w-1/2 pt-2 pb-5 px-4 rounded mt-20 h-3/4 overflow-y-auto"
+		class="flex flex-col text-center bg-white dark:bg-gray-800 dark:text-white w-5/6 md:w-1/2 pt-2 pb-5 px-4 rounded mt-20 h-3/4 overflow-y-auto"
 	>
 		<div class="flex flex-row mb-4">
-			<h3 class="text-lg font-semibold text-gray-900">HOW TO PLAY</h3>
+			<h3 class="text-lg font-semibold">HOW TO PLAY</h3>
 			<button class="ml-auto align-middle" on:click={() => ($showInfo = !$showInfo)}>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
