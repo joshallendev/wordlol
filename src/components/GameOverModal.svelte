@@ -35,7 +35,7 @@
 			>close
 		</button>
 		<h3 class="text-4xl font-medium mb-3">{$hasWon ? '🤩' : '🙁'}</h3>
-		<h3 class="text-3xl font-medium text-gray-900">
+		<h3 class="text-3xl font-medium">
 			{$hasWon ? 'Well done!' : 'Better luck next time.'}
 		</h3>
 		{#if !$hasWon}
