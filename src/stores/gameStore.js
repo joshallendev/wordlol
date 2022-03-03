@@ -947,12 +947,12 @@ let savedThemes = {
 };
 
 if (browser) {
-	savedThemes = JSON.parse(window.localStorage.getItem('wordlol-theme'));
+	savedThemes = JSON.parse(window.localStorage.getItem('wordlol-theme')) ?? savedThemes;
 }
 
 function getDarkModePref() {
 	if (browser) {
-		if (savedThemes.darkmode) {
+		if (savedThemes.darkmode === true) {
 			return true;
 		} else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
 			return true;
