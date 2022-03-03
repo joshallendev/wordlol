@@ -940,33 +940,31 @@ if (browser && savedGame?.saveDate != today) {
 	savedGame = null;
 }
 
+let savedThemes = {
+	darkmode: false,
+	hardmode: false, 
+	contrast: false
+};
+
+if (browser) {
+	savedThemes = JSON.parse(window.localStorage.getItem('wordlol-theme'));
+}
+
 function getDarkModePref() {
 	if (browser) {
-		if (window.localStorage.getItem('darkmode') === 'true') {
+		if (savedThemes.darkmode) {
 			return true;
 		} else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
 			return true;
 		}
-	} 
+	}
 	return false;
-}
-
-function getHardModePref() {
-	if (browser) {
-		return window.localStorage.getItem('hardmode') === 'true';
-	}
-}
-
-function getContrastPref() {
-	if (browser) {
-		return window.localStorage.getItem('contrast') === 'true';
-	}
 }
 
 const themeObj = {
 	darkmode: getDarkModePref(),
-	hardmode: getHardModePref(), 
-	contrast: getContrastPref()
+	hardmode: savedThemes.hardmode, 
+	contrast: savedThemes.contrast
 }
 
 const themePref = writable(themeObj);

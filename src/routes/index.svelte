@@ -41,7 +41,6 @@
 	export let newStats = stats;
 	export let showModal = false;
 	let fireworksJSON;
-
 	if ($gameOver) {
 		showModal = true;
 	}
@@ -297,8 +296,6 @@
 		appHeight();
 
 	});
-	console.log($themePref);
-
 </script>
 
 <svelte:head>

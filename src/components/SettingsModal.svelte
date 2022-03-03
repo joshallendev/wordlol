@@ -2,12 +2,11 @@
 	import { showSettings, themePref } from '../stores/gameStore';
 	import { fade, scale } from 'svelte/transition';
 
-	function handleSettingsChange(e: Event) {
-		console.log(e.target.checked);
+	function handleSettingsChange(e: any) {
 		const name = e.target.name;
 		const value = e.target.checked;
 		$themePref[name] = value;
-		window.localStorage.setItem(name, value);
+		window.localStorage.setItem('wordlol-theme', JSON.stringify($themePref));
  	}
 </script>
 
