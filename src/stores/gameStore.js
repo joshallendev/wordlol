@@ -952,9 +952,11 @@ if (browser) {
 
 function getDarkModePref() {
 	if (browser) {
-		if (savedThemes.darkmode === true) {
+		if (savedThemes.darkmode === false) {
+			return false;
+		} else if (savedThemes.darkmode === true) {
 			return true;
-		} else if (!savedThemes.darkmode === false && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+		} else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
 			return true;
 		}
 	}
