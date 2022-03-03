@@ -45,7 +45,7 @@
 		} else if ($wrongLetters.includes(letter)) {
 			classes = letterStyles + ' text-black bg-darkgray';
 		} else {
-			classes = letterStyles + ' text-black bg-lightgray';
+			classes = letterStyles + ' text-black bg-lightgray dark:bg-gray-600 dark:text-white';
 		}
 		return classes;
 	};
