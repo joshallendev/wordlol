@@ -940,11 +940,36 @@ if (browser && savedGame?.saveDate != today) {
 	savedGame = null;
 }
 
-if (browser) {
-	const prefersDarkMode = readable(window.matchMedia('(prefers-color-scheme: dark)').matches);
-} else {
-	const prefersDarkMode = readable(false);
+function getDarkModePref() {
+	if (browser) {
+		if (window.localStorage.getItem('darkmode') === 'true') {
+			return true;
+		} else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+			return true;
+		}
+	} 
+	return false;
 }
+
+function getHardModePref() {
+	if (browser) {
+		return window.localStorage.getItem('hardmode') === 'true';
+	}
+}
+
+function getContrastPref() {
+	if (browser) {
+		return window.localStorage.getItem('contrast') === 'true';
+	}
+}
+
+const themeObj = {
+	darkmode: getDarkModePref(),
+	hardmode: getHardModePref(), 
+	contrast: getContrastPref()
+}
+
+const themePref = writable(themeObj);
 
 // game data
 const currentArray = writable(savedGame ? savedGame.currentArray : 0);
@@ -1011,5 +1036,6 @@ export {
 	saveVersion,
 	showSettings,
 	revealType,
-	revealClue
+	revealClue,
+	themePref
 };

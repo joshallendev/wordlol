@@ -11,7 +11,7 @@
 	const dispatch = createEventDispatcher();
 
 	const letterStyles: string =
-		'key-letter grow sm:grow-0 h-14 w-10 sm:w-14 flex justify-center px-2 py-3 sm:px-4 font-medium mx-0.5 text-xl select-none rounded hover:shadow-2xl';
+		'key-letter grow sm:grow-0 h-14 w-10 sm:w-14 flex justify-center px-2 py-3 sm:px-4 font-medium mx-0.5 text-xl select-none rounded hover:shadow-2xl hover:scale-110';
 
 	function handleLetterClick(e): void {
 		const text: string = e.target.innerText;

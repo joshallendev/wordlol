@@ -11,7 +11,7 @@
 
 <header class="bg-black med:mb-10 text-white py-3 flex justify-between">
 	<div class="flex-row justify-start">
-		<p class="px-5 font-semibold text-left"><a href="/">WORDLOL</a></p>
+		<p class="px-5 font-semibold text-left hover:text-actionred"><a href="/">WORDLOL</a></p>
 	</div>
 	{#if !$gameOver}
 		<div>

@@ -41,7 +41,7 @@
 	>
 		<div class="flex flex-row mb-4">
 			<h3 class="text-lg font-semibold">MAGIC HINT BUTTON</h3>
-			<button class="ml-auto align-middle" on:click={() => $showHint = !$showHint}>
+			<button class="ml-auto align-middle hover:text-actionred" on:click={() => $showHint = !$showHint}>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					aria-hidden="true"

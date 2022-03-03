@@ -28,7 +28,8 @@
 		maxGuesses,
 		hintsUsed,
 		saveVersion,
-		showSettings
+		showSettings,
+		themePref
 	} from '../stores/gameStore';
 	import { SvelteToast, toast } from '@zerodevx/svelte-toast';
 	import { onMount } from 'svelte';
@@ -294,8 +295,9 @@
 			target: document.body
 		});
 		appHeight();
-	});
 
+	});
+	console.log($themePref);
 
 </script>
 
@@ -307,23 +309,25 @@
 {#if $hasWon}
 	<Particles particlesUrl=".//particles/fireworks.json" />
 {/if}
-<main class="flex flex-col h-full bg-white dark:bg-gray-800 dark:text-white justify-between overflow-x-hidden font-barlow text-xl">
-	<Header />
-	<Gameboard />
-	{#if $gameOver === true && showModal}
-		<GameOverModal bind:showModal {newStats} {handleShare} />
-	{/if}
-	{#if $showStats === true}
-		<StatsModal />
-	{/if}
-	{#if $showInfo === true}
-		<InfoModal />
-	{/if}
-	{#if $showHint === true}
-		<HintModal on:hint={saveGame} />
-	{/if}
-	{#if $showSettings === true}
-		<SettingsModal />
-	{/if}
-	<Keyboard on:letter={updateArrays} on:checkguess={checkGuess} />
+<main class="{$themePref.darkmode ? 'dark' : null} h-full">
+	<div class="flex flex-col h-full bg-white dark:bg-gray-800 dark:text-white justify-between overflow-x-hidden font-barlow text-xl">
+		<Header />
+		<Gameboard />
+		{#if $gameOver === true && showModal}
+			<GameOverModal bind:showModal {newStats} {handleShare} />
+		{/if}
+		{#if $showStats === true}
+			<StatsModal />
+		{/if}
+		{#if $showInfo === true}
+			<InfoModal />
+		{/if}
+		{#if $showHint === true}
+			<HintModal on:hint={saveGame} />
+		{/if}
+		{#if $showSettings === true}
+			<SettingsModal />
+		{/if}
+		<Keyboard on:letter={updateArrays} on:checkguess={checkGuess} />
+	</div>
 </main>

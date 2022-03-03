@@ -35,7 +35,7 @@ in:fade
 	>
 		<div class="flex flex-row mb-4">
 			<h3 class="text-lg font-semibold">HOW TO PLAY</h3>
-			<button class="ml-auto align-middle" on:click={() => ($showInfo = !$showInfo)}>
+			<button class="ml-auto align-middle hover:text-actionred" on:click={() => ($showInfo = !$showInfo)}>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					aria-hidden="true"

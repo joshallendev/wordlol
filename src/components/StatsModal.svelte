@@ -17,7 +17,7 @@
 	>
 		<div class="flex flex-row">
 			<h3 class="text-lg font-semibold">STATISTICS</h3>
-			<button class="ml-auto align-middle" on:click={() => ($showStats = !$showStats)}>
+			<button class="ml-auto align-middle hover:text-actionred" on:click={() => ($showStats = !$showStats)}>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					aria-hidden="true"

@@ -17,7 +17,7 @@
 		on:click|stopPropagation
 		class="flex flex-col mtext-center bg-white dark:bg-gray-800 w-5/6 md:w-1/2 pt-2 pb-6 px-4 rounded mt-20"
 	>
-		<button class="ml-auto align-middle" on:click={() => (showModal = !showModal)}>
+		<button class="ml-auto align-middle hover:text-actionred" on:click={() => (showModal = !showModal)}>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				aria-hidden="true"

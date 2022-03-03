@@ -14,11 +14,11 @@
 	$: setLetterStyles = (loc) => {
 		let classes: string = '';
 		if (checkForIncludes($correctLocations, loc)) {
-			classes = letterStyles + ' bg-correct text-white dark:text-black';
+			classes = letterStyles + ' bg-correct text-white';
 		} else if (checkForIncludes($inWordLocations, loc)) {
-			classes = letterStyles + ' bg-squash text-white dark:text-black';
+			classes = letterStyles + ' bg-squash text-white';
 		} else if (checkForIncludes($wrongLocations, loc)) {
-			classes = letterStyles + ' bg-darkgray text-white dark:text-black';
+			classes = letterStyles + ' bg-darkgray text-white';
 		} else {
 			classes = letterStyles + ' bg-[#f2f2f2]  dark:bg-gray-500';
 		}

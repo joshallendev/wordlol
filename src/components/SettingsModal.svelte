@@ -1,6 +1,14 @@
 <script lang="ts">
-	import { showSettings } from '../stores/gameStore';
+	import { showSettings, themePref } from '../stores/gameStore';
 	import { fade, scale } from 'svelte/transition';
+
+	function handleSettingsChange(e: Event) {
+		console.log(e.target.checked);
+		const name = e.target.name;
+		const value = e.target.checked;
+		$themePref[name] = value;
+		window.localStorage.setItem(name, value);
+ 	}
 </script>
 
 <div
@@ -17,7 +25,7 @@
 	>
 		<div class="flex flex-row mb-4">
 			<h3 class="text-lg font-semibold">SETTINGS</h3>
-			<button class="ml-auto align-middle" on:click={() => ($showSettings = !$showSettings)}>
+			<button class="ml-auto align-middle hover:text-actionred" on:click={() => ($showSettings = !$showSettings)}>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					aria-hidden="true"
@@ -39,34 +47,28 @@
 		<div class="flex justify-between border-b border-lightgray py-4 align-middle">
 			<p>Dark Mode</p>
 			<div class="form-check form-switch">
-				<input
-					class="form-check-input appearance-none w-9 -ml-10 rounded-full float-left h-5 align-top bg-no-repeat bg-contain bg-gray-300 focus:outline-none cursor-pointer shadow-sm"
-					type="checkbox"
-					role="switch"
-					id="flexSwitchCheckDefault"
-				/>
+				<label class="relative flex justify-between items-center group p-2 text-xl">
+					<input on:change={handleSettingsChange} bind:checked={$themePref.darkmode} type="checkbox" name="darkmode" class="absolute left-1/2 -translate-x-1/2 w-full h-full peer appearance-none rounded-md" />
+					<span class="w-10 h-5 flex items-center flex-shrink-0 ml-4 bg-gray-300 rounded-full duration-300 ease-in-out peer-checked:bg-correct after:w-4 after:h-4 after:bg-white after:rounded-full after:shadow-md after:duration-300 peer-checked:after:translate-x-5 group-hover:after:translate-x-1"></span>
+				</label>
 			</div>
 		</div>
 		<div class="flex justify-between border-b border-lightgray py-4 align-middle">
 			<p>Hard Mode</p>
 			<div class="form-check form-switch">
-				<input
-					class="form-check-input appearance-none w-9 -ml-10 rounded-full float-left h-5 align-top bg-no-repeat bg-contain bg-gray-300 focus:outline-none cursor-pointer shadow-sm"
-					type="checkbox"
-					role="switch"
-					id="flexSwitchCheckDefault"
-				/>
+				<label class="relative flex justify-between items-center group p-2 text-xl">
+					<input on:change={handleSettingsChange} bind:checked={$themePref.hardmode} type="checkbox" name="hardmode" class="absolute left-1/2 -translate-x-1/2 w-full h-full peer appearance-none rounded-md" />
+					<span class="w-10 h-5 flex items-center flex-shrink-0 ml-4 bg-gray-300 rounded-full duration-300 ease-in-out peer-checked:bg-correct after:w-4 after:h-4 after:bg-white after:rounded-full after:shadow-md after:duration-300 peer-checked:after:translate-x-5 group-hover:after:translate-x-1"></span>
+				</label>
 			</div>
 		</div>
 		<div class="flex justify-between border-b border-lightgray py-4 align-middle">
 			<p>High Contrast Mode</p>
 			<div class="form-check form-switch">
-				<input
-					class="form-check-input appearance-none w-9 -ml-10 rounded-full float-left h-5 align-top bg-no-repeat bg-contain bg-gray-300 focus:outline-none cursor-pointer shadow-sm"
-					type="checkbox"
-					role="switch"
-					id="flexSwitchCheckDefault"
-				/>
+				<label class="relative flex justify-between items-center group p-2 text-xl">
+					<input on:change={handleSettingsChange} bind:checked={$themePref.contrast} type="checkbox" name="contrast" class="absolute left-1/2 -translate-x-1/2 w-full h-full peer appearance-none rounded-md" />
+					<span class="w-10 h-5 flex items-center flex-shrink-0 ml-4 bg-gray-300 rounded-full duration-300 ease-in-out peer-checked:bg-correct after:w-4 after:h-4 after:bg-white after:rounded-full after:shadow-md after:duration-300 peer-checked:after:translate-x-5 group-hover:after:translate-x-1"></span>
+				</label>
 			</div>
 		</div>
 		<div class="flex justify-between border-b border-lightgray py-4 align-middle">
