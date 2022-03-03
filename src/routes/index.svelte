@@ -306,7 +306,7 @@
 {#if $hasWon}
 	<Particles particlesUrl=".//particles/fireworks.json" />
 {/if}
-<main class="{$themePref.darkmode ? 'dark' : null} h-full">
+<main class="{$themePref.darkmode === true ? 'dark' : ''} h-full">
 	<div class="flex flex-col h-full bg-white dark:bg-gray-800 dark:text-white justify-between overflow-x-hidden font-barlow text-xl">
 		<Header />
 		<Gameboard />
