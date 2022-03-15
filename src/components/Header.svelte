@@ -5,16 +5,18 @@
 		showHint,
 		hintsUsed,
 		gameOver,
-		showSettings
+		showSettings,
+		currentArray
 	} from '../stores/gameStore';
+	import { fade, scale } from 'svelte/transition';
 </script>
 
 <header class="bg-black med:mb-10 text-white py-3 flex justify-between">
 	<div class="flex-row justify-start">
 		<p class="px-5 font-semibold text-left hover:text-actionred"><a href="/">WORDLOL</a></p>
 	</div>
-	{#if !$gameOver}
-		<div>
+	{#if !$gameOver && $currentArray > 2}
+		<div in:scale out:scale>
 			<button
 				class="text-2xl {$hintsUsed < 2 ? 'animate-pulse' : ''}"
 				type="button"

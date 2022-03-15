@@ -40,7 +40,6 @@
 
 	export let newStats = stats;
 	export let showModal = false;
-	let fireworksJSON;
 	if ($gameOver) {
 		showModal = true;
 	}

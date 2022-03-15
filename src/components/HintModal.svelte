@@ -40,7 +40,7 @@
 		class="flex flex-col text-center bg-white dark:bg-gray-800 w-3/4 md:w-1/2 pt-2 pb-6 px-4 rounded mt-20 overflow-y-auto"
 	>
 		<div class="flex flex-row mb-4">
-			<h3 class="text-lg font-semibold">MAGIC HINT BUTTON</h3>
+			<h3 class="text-lg font-semibold">NEED A HINT?</h3>
 			<button class="ml-auto align-middle hover:text-actionred" on:click={() => $showHint = !$showHint}>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"

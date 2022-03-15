@@ -62,7 +62,7 @@ in:fade
 				Words are not limited to champion names. They may include game terms, item names, etc.
 			</p>
 			<p class="py-1">
-				Hints are available if you might need them. Click the ✨ icon in the header at the top of
+				Hints are available if you might need them after round 3. Click the ✨ icon in the header at the top of
 				the page.
 			</p>
 			<p class="py-1">
