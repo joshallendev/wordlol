@@ -121,95 +121,97 @@
 	}
 
 	function checkGuess(): void {
-		const guessedWord = $gameRows[$currentArray].letters.reduce(
-			(prev, curr) => prev.concat('', curr.content),
-			''
-		);
-
-		if (guessedWord.length < $todaysWord.word.length) {
-			toast.push('Not enough letters', {
-				theme: {
-					'--toastBarBackground': '#D13639'
+		if (!$gameOver) {
+			const guessedWord = $gameRows[$currentArray].letters.reduce(
+				(prev, curr) => prev.concat('', curr.content),
+				''
+			);
+	
+			if (guessedWord.length < $todaysWord.word.length) {
+				toast.push('Not enough letters', {
+					theme: {
+						'--toastBarBackground': '#D13639'
+					}
+				});
+				return;
+			}
+	
+			// if not a valid word then they have to guess again
+			if (!validWords.includes(guessedWord) && !words.some((e) => e.word === guessedWord)) {
+				toast.push('Not a valid word', {
+					theme: {
+						'--toastBarBackground': '#D13639'
+					}
+				});
+				return;
+			}
+	
+			// track number of guesses for stats
+			$numGuesses++;
+	
+			let tempUserWord = guessedWord;
+			let tempTodaysWord = $todaysWord.word;
+			let letterCount = {};
+	
+			// check for duplicate letters
+			// for (let i = 0; i < tempUserWord.length; i++) {
+			// 	const ltrRegex = new RegExp()
+			// 	if (tempTodaysWord.match(/[tempUserWord[i]]/)) {
+			// 		letterCount[tempUserWord[i]] += 1;
+			// 	}
+			// }
+	
+			// check for correct letters
+			for (let i = 0; i < tempUserWord.length; i++) {
+				if (tempUserWord[i] === tempTodaysWord[i]) {
+					$correctLocations = [...$correctLocations, [$currentArray, i]];
+					$correctLetters = [...$correctLetters, tempUserWord[i]];
+					tempUserWord = replaceAtIndex(tempUserWord, i, '#');
+					tempTodaysWord = replaceAtIndex(tempTodaysWord, i, '@');
 				}
-			});
-			return;
-		}
-
-		// if not a valid word then they have to guess again
-		if (!validWords.includes(guessedWord) && !words.some((e) => e.word === guessedWord)) {
-			toast.push('Not a valid word', {
-				theme: {
-					'--toastBarBackground': '#D13639'
+			}
+	
+			// check for in-word letters
+			for (let i = 0; i < tempUserWord.length; i++) {
+				// if (tempTodaysWord.includes(tempUserWord[i])) {
+				const indx = tempTodaysWord.indexOf(tempUserWord[i]);
+				if (indx >= 0) {
+					$inWordLocations = [...$inWordLocations, [$currentArray, i]];
+					$inWordLetters = [...$inWordLetters, tempUserWord[i]];
+					tempTodaysWord = replaceAtIndex(tempTodaysWord, indx, '@');
 				}
-			});
-			return;
-		}
-
-		// track number of guesses for stats
-		$numGuesses++;
-
-		let tempUserWord = guessedWord;
-		let tempTodaysWord = $todaysWord.word;
-		let letterCount = {};
-
-		// check for duplicate letters
-		// for (let i = 0; i < tempUserWord.length; i++) {
-		// 	const ltrRegex = new RegExp()
-		// 	if (tempTodaysWord.match(/[tempUserWord[i]]/)) {
-		// 		letterCount[tempUserWord[i]] += 1;
-		// 	}
-		// }
-
-		// check for correct letters
-		for (let i = 0; i < tempUserWord.length; i++) {
-			if (tempUserWord[i] === tempTodaysWord[i]) {
-				$correctLocations = [...$correctLocations, [$currentArray, i]];
-				$correctLetters = [...$correctLetters, tempUserWord[i]];
-				tempUserWord = replaceAtIndex(tempUserWord, i, '#');
-				tempTodaysWord = replaceAtIndex(tempTodaysWord, i, '@');
 			}
-		}
-
-		// check for in-word letters
-		for (let i = 0; i < tempUserWord.length; i++) {
-			// if (tempTodaysWord.includes(tempUserWord[i])) {
-			const indx = tempTodaysWord.indexOf(tempUserWord[i]);
-			if (indx >= 0) {
-				$inWordLocations = [...$inWordLocations, [$currentArray, i]];
-				$inWordLetters = [...$inWordLetters, tempUserWord[i]];
-				tempTodaysWord = replaceAtIndex(tempTodaysWord, indx, '@');
+	
+			// check for in-word letters
+			for (let i = 0; i < tempUserWord.length; i++) {
+				if (tempUserWord[i] != '#') {
+					$wrongLocations = [...$wrongLocations, [$currentArray, i]];
+					$wrongLetters = [...$wrongLetters, tempUserWord[i]];
+				}
 			}
-		}
-
-		// check for in-word letters
-		for (let i = 0; i < tempUserWord.length; i++) {
-			if (tempUserWord[i] != '#') {
-				$wrongLocations = [...$wrongLocations, [$currentArray, i]];
-				$wrongLetters = [...$wrongLetters, tempUserWord[i]];
+	
+			if (guessedWord === $todaysWord.word) {
+				$hasWon = true;
 			}
-		}
-
-		if (guessedWord === $todaysWord.word) {
-			$hasWon = true;
-		}
-		if (Object.values(letterCount).some((el) => el > 1)) {
-			toast.push('A letter you guessed appears in the word more than once');
-		}
-		if (!$hasWon) {
-			$gameRows[$currentArray].status = 'wrong';
-		}
-		// check if they guessed the word or reached the end of guesses
-		if ($hasWon || $currentArray === $gameRows.length - 1) {
-			updateStats();
-			$gameOver = true;
-			saveGame();
-			showModal = true;
-		} else {
-			$hasWon = false;
-			$gameOver = false;
-			$currentArray++;
-			$currentLetter = 0;
-			saveGame();
+			if (Object.values(letterCount).some((el) => el > 1)) {
+				toast.push('A letter you guessed appears in the word more than once');
+			}
+			if (!$hasWon) {
+				$gameRows[$currentArray].status = 'wrong';
+			}
+			// check if they guessed the word or reached the end of guesses
+			if ($hasWon || $currentArray === $gameRows.length - 1) {
+				updateStats();
+				$gameOver = true;
+				saveGame();
+				showModal = true;
+			} else {
+				$hasWon = false;
+				$gameOver = false;
+				$currentArray++;
+				$currentLetter = 0;
+				saveGame();
+			}
 		}
 	}
 
@@ -306,7 +308,7 @@
 {#if $hasWon}
 	<Particles particlesUrl=".//particles/fireworks.json" />
 {/if}
-<main class="transition-all {$themePref.darkmode === true ? 'dark h-full' : 'h-full'}">
+<main class="transition-all select-none {$themePref.darkmode === true ? 'dark h-full' : 'h-full'}">
 	<div class="flex flex-col h-full bg-white dark:bg-gray-800 dark:text-white justify-between overflow-x-hidden font-barlow text-xl">
 		<Header />
 		<Gameboard />

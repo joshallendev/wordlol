@@ -4,7 +4,7 @@
 		<meta charset="utf-8" />
 		<meta name="robots" content="noindex nofollow" />
 		<meta name="description" content="A League of Legends flavored word game inspired by Wordle." />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 		<link rel="icon" href="%svelte.assets%/favicon.ico" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -12,6 +12,31 @@
 		%svelte.head%
 	</head>
 	<body>
-		<div class="h-full">%svelte.body%</div>
+		<div class="h-full select-none">%svelte.body%</div>
 	</body>
 </html>
+<script>
+	const savedThemes = JSON.parse(window.localStorage.getItem('wordlol-theme'));
+	let background = '';
+	if (savedThemes?.darkmode === false) {
+		background = '#fff';
+	} else if (savedThemes?.darkmode === true) {
+		background = '#1f2937';
+	} else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+		background = '#1f2937';
+	}
+	document.documentElement.style.setProperty('--app-background', background);
+	window.addEventListener('DOMContentLoaded', function () {
+		document.body.style.visibility = 'visible';
+		document.body.style.opacity = '1';
+	});
+</script>
+<!-- setting this here to prevent white flash on load -->
+<style>
+	body {
+		visibility: hidden;
+		opacity: 0;
+		transition: opacity 1s;
+		touch-action: manipulation;
+	}
+</style>

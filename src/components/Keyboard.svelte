@@ -11,7 +11,7 @@
 	const dispatch = createEventDispatcher();
 
 	const letterStyles: string =
-		'key-letter grow sm:grow-0 h-14 w-10 sm:w-14 flex justify-center px-2 py-3 sm:px-4 font-medium mx-0.5 text-xl select-none rounded hover:shadow-2xl hover:scale-110';
+		'key-letter grow sm:grow-0 h-14 w-14 flex justify-center px-2 py-3 sm:px-4 font-medium mx-0.5 text-xl select-none rounded hover:shadow-2xl';
 
 	function handleLetterClick(e): void {
 		const text: string = e.target.innerText;
@@ -57,7 +57,7 @@
 				{#if i === 2}
 					<button
 						type="button"
-						class="{letterStyles} bg-actionred text-white w-auto sm:w-auto"
+						class="{letterStyles} text-white w-auto sm:w-auto text-black bg-lightgray dark:bg-gray-600 dark:text-white"
 						on:click={handleCheckGuess}>ENTER</button
 					>
 				{/if}
@@ -67,8 +67,10 @@
 				{#if i === 2}
 					<button
 						type="button"
-						class="{letterStyles} bg-actionred text-white w-auto sm:w-auto"
-						on:click={handleBackspaceClick}>BACK</button
+						class="{letterStyles} text-white w-auto sm:w-auto text-black bg-lightgray dark:bg-gray-600 dark:text-white"
+						on:click={handleBackspaceClick}>
+						<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" style="vertical-align: middle; display: inline;" 			width="2rem" height="2rem" preserveAspectRatio="xMidYMid meet" viewBox="0 0 512 512"><path fill="currentColor" d="M227.313 363.313L312 278.627l84.687 84.686l22.626-22.626L334.627 256l84.686-84.687l-22.626-22.626L312 233.373l-84.687-84.686l-22.626 22.626L289.373 256l-84.686 84.687l22.626 22.626z"/><path fill="currentColor" d="M472 64H194.644a24.091 24.091 0 0 0-17.42 7.492L16 241.623v28.754l161.224 170.131a24.091 24.091 0 0 0 17.42 7.492H472a24.028 24.028 0 0 0 24-24V88a24.028 24.028 0 0 0-24-24Zm-8 352H198.084L48 257.623v-3.246L198.084 96H464Z"/></svg>
+						</button
 					>
 				{/if}
 			</div>

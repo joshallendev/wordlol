@@ -9,7 +9,7 @@
 	import { fade, scale } from 'svelte/transition';
 
 	const letterStyles: string =
-		'board-letter select-none inline w-14 h-14 mx-1 text-3xl mx-0.5 flex rounded-md justify-center items-center';
+		'board-letter select-none inline w-14 h-14 mx-1 md:mx-2 md:h-16 md:w-16 text-4xl flex rounded-md justify-center items-center';
 
 	$: setLetterStyles = (loc) => {
 		let classes: string = '';
@@ -30,7 +30,7 @@
 	}
 </script>
 
-<div class="flex flex-col items-center">
+<div class="flex flex-col items-center pointer-events-none">
 	<div transition:fade>
 		{#each $gameRows as row, i}
 			<div
@@ -41,7 +41,7 @@
 				{#each row.letters as item, j}
 					<div class={setLetterStyles([i, j])}>
 						{#key item.content}
-							<p in:scale out:scale>{item.content}</p>
+							<span in:scale out:scale>{item.content}</span>
 						{/key}
 					</div>
 				{/each}
