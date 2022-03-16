@@ -35,7 +35,7 @@
 			>close
 		</button>
 		<h3 class="text-4xl font-medium mb-3">{$hasWon ? '🤩' : '🙁'}</h3>
-		<h3 class="text-3xl font-medium">
+		<h3 class="text-2xl font-medium">
 			{$hasWon ? 'Well done!' : 'Better luck next time.'}
 		</h3>
 		{#if !$hasWon}
@@ -70,18 +70,40 @@
 					<p class="text-base">Total Hints</p>
 				</div>
 			</div>
-			{#if $hasWon}
-				<p class="py-2">
-					Guessed today's WORDLOL in {newStats.numGuesses <= 3 ? 'just' : ''}
-					<strong>{newStats.numGuesses}</strong>
-					{newStats.numGuesses > 1 ? 'guesses' : 'guess'}!
-				</p>
-
-				<p class="py-2">
-					{$hintsUsed > 0
-						? `You used ${$hintsUsed} ${$hintsUsed === 1 ? 'hint' : 'hints'} today.`
-						: "You didn't use a single hint today. Impressive!"}
-				</p>
+			{#if newStats.guessCounts }
+			<div class="w-full rounded-lg py-2">
+				<p>Guess Distribtuion</p>
+				<span>-- under construction --</span>
+				<div class="text-sm">
+					<div class="flex flex-row align-middle mx-2 h-4 my-1">
+						<div class="px-2 text-sm">1</div>
+						<div class="w-full bg-correct rounded-xl">#</div>
+					</div>
+					<div class="flex flex-row align-middle mx-2 h-4 my-1">
+						<div class="px-2 text-sm">2</div>
+						<div class="w-full bg-correct rounded-xl">#</div>
+					</div>
+					<div class="flex flex-row align-middle mx-2 h-4 my-1">
+						<div class="px-2 text-sm">3</div>
+						<div class="w-full bg-correct rounded-xl">#</div>
+					</div>
+					<div class="flex flex-row align-middle mx-2 h-4 my-1">
+						<div class="px-2 text-sm">4</div>
+						<div class="w-full bg-correct rounded-xl">#</div>
+					</div>
+					<div class="flex flex-row align-middle mx-2 h-4 my-1">
+						<div class="px-2 text-sm">5</div>
+						<div class="w-full bg-correct rounded-xl">#</div>
+					</div>
+					<div class="flex flex-row align-middle mx-2 h-4 my-1">
+						<div class="px-2">6</div>
+						<div class="w-full bg-correct rounded-xl">#</div>
+					</div>
+				</div>
+			</div>
+			{/if}
+			{#if $hasWon && $hintsUsed === 0}
+				<p class="py-2">You didn't use a single hint today. Impressive!</p>
 			{/if}
 			<button
 				type="button"

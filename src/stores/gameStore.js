@@ -928,7 +928,7 @@ let savedGame = browser
 	: undefined;
 // ensure saved game is for same day as today
 // otherwise disregard it
-if (browser && savedGame?.saveVersion != 2) {
+if (browser && savedGame && savedGame?.saveVersion != 2) {
 	window.localStorage.removeItem('savedWordlolGameboard');
 	window.localStorage.removeItem('wordlolstats');
 }
@@ -996,7 +996,15 @@ const statsObj = {
 	currentStreak: 0,
 	maxDayStreak: 0,
 	numGuesses: 0,
-	hints: 0
+	hints: 0,
+	guessCounts: {
+		1: 0,
+		2: 0, 
+		3: 0, 
+		4: 0, 
+		5: 0, 
+		6: 0
+	}
 };
 
 const savedStats = browser ? JSON.parse(window.localStorage.getItem('wordlolstats')) : null;

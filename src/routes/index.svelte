@@ -106,6 +106,14 @@
 		newStats.lastDatePlayed = today;
 		newStats.winPct = (newStats.totalWins / newStats.totalGames) * 100;
 		newStats.numGuesses = $numGuesses;
+		if (!newStats.guessCounts) {
+			newStats.guessCounts = {};
+		}
+		if (newStats.guessCounts[$numGuesses]) {
+			newStats.guessCounts[$numGuesses] += 1;
+		} else {
+			newStats.guessCounts[$numGuesses] = 1;
+		}
 		newStats.hints = newStats.hints + $hintsUsed;
 		console.table(newStats);
 		window.localStorage.setItem('wordlolstats', JSON.stringify(newStats));
@@ -251,8 +259,7 @@
 			navigator
 				.share({
 					title: 'playwordlol.com',
-					text: generateShareText(),
-					url: 'http://playwordlol.com'
+					text: generateShareText()
 				})
 				.then(() => console.log('Successful share'))
 				.catch((error) => console.log('Error sharing', error));
