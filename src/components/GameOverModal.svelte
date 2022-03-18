@@ -44,35 +44,35 @@
 		<div class="mt-2 text-center flex-col">
 			<div class="text-left px-6 py-2 flex flex-row justify-between">
 				<div class="flex flex-col items-center text-center w-1/3">
-					<strong><p class="text-2xl">{newStats.totalGames}</p></strong>
+					<strong><p class="text-l">{newStats.totalGames}</p></strong>
 					<p class="text-base">Total Games</p>
 				</div>
 				<div class="flex flex-col items-center text-center w-1/3">
-					<strong><p class="text-2xl">{newStats.currentStreak}</p></strong>
+					<strong><p class="text-l">{newStats.currentStreak}</p></strong>
 					<p class="text-base">Current Streak</p>
 				</div>
 				<div class="flex flex-col items-center text-center w-1/3">
-					<strong><p class="text-2xl">{newStats.maxDayStreak}</p></strong>
+					<strong><p class="text-l">{newStats.maxDayStreak}</p></strong>
 					<p class="text-base">Longest Streak</p>
 				</div>
 			</div>
 			<div class="text-left px-6 py-2 flex flex-row justify-between">
 				<div class="flex flex-col items-center text-center w-1/3">
-					<strong><p class="text-2xl">{newStats.totalWins}</p></strong>
+					<strong><p class="text-l">{newStats.totalWins}</p></strong>
 					<p class="text-base">Total Wins</p>
 				</div>
 				<div class="flex flex-col items-center text-center w-1/3">
-					<strong><p class="text-2xl">{newStats.winPct}%</p></strong>
+					<strong><p class="text-l">{newStats.winPct}%</p></strong>
 					<p class="text-base">Win Pct</p>
 				</div>
 				<div class="flex flex-col items-center text-center w-1/3">
-					<strong><p class="text-2xl">{newStats.hints ?? '0'}</p></strong>
+					<strong><p class="text-l">{newStats.hints ?? '0'}</p></strong>
 					<p class="text-base">Total Hints</p>
 				</div>
 			</div>
 			<GuessCountMeters stats={newStats} />
 			{#if $hasWon && $hintsUsed === 0}
-				<p class="py-2">You didn't use a single hint today. Impressive!</p>
+				<p class="py-2 text-l">You didn't use a single hint today. Impressive!</p>
 			{/if}
 			<button
 				type="button"
