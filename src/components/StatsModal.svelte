@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { stats, showStats } from '../stores/gameStore';
 	import { fade, scale } from 'svelte/transition';
+import GuessCountMeters from './GuessCountMeters.svelte';
+export let newStats;
 </script>
 
 <div
@@ -64,5 +66,6 @@
 				</div>
 			</div>
 		</div>
+		<GuessCountMeters stats={newStats} />
 	</div>
 </div>

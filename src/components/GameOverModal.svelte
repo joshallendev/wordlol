@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
 	import { hasWon, hintsUsed, todaysWord } from '../stores/gameStore';
-
+	import GuessCountMeters from './GuessCountMeters.svelte';
 	export let showModal;
 	export let newStats;
 	export let handleShare;
@@ -70,38 +70,7 @@
 					<p class="text-base">Total Hints</p>
 				</div>
 			</div>
-			{#if newStats.guessCounts }
-			<div class="w-full rounded-lg py-2">
-				<p>Guess Distribtuion</p>
-				<span>-- under construction --</span>
-				<div class="text-sm">
-					<div class="flex flex-row align-middle mx-2 h-4 my-1">
-						<div class="px-2 text-sm">1</div>
-						<div class="w-full bg-correct rounded-xl">#</div>
-					</div>
-					<div class="flex flex-row align-middle mx-2 h-4 my-1">
-						<div class="px-2 text-sm">2</div>
-						<div class="w-full bg-correct rounded-xl">#</div>
-					</div>
-					<div class="flex flex-row align-middle mx-2 h-4 my-1">
-						<div class="px-2 text-sm">3</div>
-						<div class="w-full bg-correct rounded-xl">#</div>
-					</div>
-					<div class="flex flex-row align-middle mx-2 h-4 my-1">
-						<div class="px-2 text-sm">4</div>
-						<div class="w-full bg-correct rounded-xl">#</div>
-					</div>
-					<div class="flex flex-row align-middle mx-2 h-4 my-1">
-						<div class="px-2 text-sm">5</div>
-						<div class="w-full bg-correct rounded-xl">#</div>
-					</div>
-					<div class="flex flex-row align-middle mx-2 h-4 my-1">
-						<div class="px-2">6</div>
-						<div class="w-full bg-correct rounded-xl">#</div>
-					</div>
-				</div>
-			</div>
-			{/if}
+			<GuessCountMeters stats={newStats} />
 			{#if $hasWon && $hintsUsed === 0}
 				<p class="py-2">You didn't use a single hint today. Impressive!</p>
 			{/if}

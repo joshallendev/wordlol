@@ -322,7 +322,7 @@
 			<GameOverModal bind:showModal {newStats} {handleShare} />
 		{/if}
 		{#if $showStats === true}
-			<StatsModal />
+			<StatsModal {newStats}/>
 		{/if}
 		{#if $showInfo === true}
 			<InfoModal />
