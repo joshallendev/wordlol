@@ -28,7 +28,7 @@
 </script>
 {#if stats.guessCounts }
     <div class="w-full rounded-lg py-2">
-        <p class="font-semibold text-base">GEUSS DISTRIBUTION</p>
+        <p class="font-semibold text-base">GUESS DISTRIBUTION</p>
         <div class="text-sm">
         {#each guessEntries as guessEntry }
             <div class="flex flex-row align-middle mx-2 h-5 my-1">
