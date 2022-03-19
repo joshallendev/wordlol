@@ -128,6 +128,7 @@
 	}
 
 	function checkGuess(): void {
+		toast.pop(0);
 		if (!$gameOver) {
 			const guessedWord = $gameRows[$currentArray].letters.reduce(
 				(prev, curr) => prev.concat('', curr.content),
