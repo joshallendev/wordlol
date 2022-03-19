@@ -258,18 +258,20 @@
 
 	function generateShareText() {
 		let tmpString = $hasWon
-			? `WORDLOL ${newStats.numGuesses}/${maxGuesses}\n✨`
-			: `WORDLOL X/${maxGuesses}\n✨`;
+			? `WORDLOL ${newStats.numGuesses}/${maxGuesses}\n`
+			: `WORDLOL X/${maxGuesses}\n`;
 		if ($hintsUsed === 0) {
 			tmpString += `no hints used! \n`;
 		} 
-		tmpString += '\n';
 		for (let i = 0; i < newStats.numGuesses; i++) {
-			const hintCount = $gameRows[i].status.match('hint').length;
-			if (hintCount === 1) {
-				tmpString += '✨1 hint used\n';
-			} else {
-				tmpString += `✨${hintCount} hints used\n`;
+			if($gameRows[i].status.includes('hint')) {
+				const hintCount = $gameRows[i].status.match('hint').length;
+				console.log($gameRows[i].status.match('hint').length);
+				if (hintCount === 1) {
+					tmpString += '✨1 hint used\n';
+				} else {
+					tmpString += `✨${hintCount} hints used\n`;
+				}
 			}
 			for (let j = 0; j < $gameRows[i].letters.length; j++) {
 				const loc = [i, j];
@@ -283,6 +285,7 @@
 			}
 			tmpString += '\n';
 		}
+		console.log(tmpString);
 		return tmpString;
 	}
 
