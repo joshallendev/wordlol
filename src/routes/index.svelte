@@ -163,15 +163,11 @@
 				return;
 			}
 
-			console.log($revealedLetters);
-
 			// hard mode edits 
 			if ($themePref.hardmode === true && $revealedLetters.length > 0) {
-				console.log($revealedLetters);
 				let unusedLetter = 0;
 				for (let index = 0; index < $revealedLetters.length; index++) {
 					if (!guessedWord.includes($revealedLetters[index])) {
-						console.log(index);
 						unusedLetter++;
 					}
 					
@@ -284,7 +280,6 @@
 			}
 			tmpString += '\n';
 		}
-		console.log(tmpString);
 		return tmpString;
 	}
 
