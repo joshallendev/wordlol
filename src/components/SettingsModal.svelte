@@ -51,7 +51,9 @@
 					<span class="w-10 h-5 flex items-center flex-shrink-0 ml-4 bg-gray-300 rounded-full duration-300 ease-in-out peer-checked:bg-correct after:w-4 after:h-4 after:bg-white after:rounded-full after:shadow-md after:duration-300 peer-checked:after:translate-x-5 group-hover:after:translate-x-1"></span>
 				</label>
 			</div>
-			<span class="text-sm w-full text-left">Turn the lights off.</span>
+			<span class="text-sm w-full text-left">{
+				$themePref.darkmode ? 'Lights are currently off.' : 'Turn the lights off.'
+			}</span>
 		</div>
 		<div class="flex flex-wrap justify-between border-b border-lightgray py-4 align-middle">
 			<p>Hard Mode</p>
@@ -61,7 +63,9 @@
 					<span class="w-10 h-5 flex items-center flex-shrink-0 ml-4 bg-gray-300 rounded-full duration-300 ease-in-out peer-checked:bg-correct after:w-4 after:h-4 after:bg-white after:rounded-full after:shadow-md after:duration-300 peer-checked:after:translate-x-5 group-hover:after:translate-x-1"></span>
 				</label>
 			</div>
-			<span class="text-sm w-full text-left">All revealed letters must be used in the next turn.</span>
+			<span class="text-sm w-full text-left">{
+				$themePref.hardmode ? 'All revealed letters must be used in the next turn.' : 'Requires all revealed letters to be used in each guess.'
+			}</span>
 		</div>
 		<div class="flex flex-wrap justify-between border-b border-lightgray py-4 align-middle">
 			<p>High Contrast Mode</p>
@@ -71,7 +75,9 @@
 					<span class="w-10 h-5 flex items-center flex-shrink-0 ml-4 bg-gray-300 rounded-full duration-300 ease-in-out peer-checked:bg-correct after:w-4 after:h-4 after:bg-white after:rounded-full after:shadow-md after:duration-300 peer-checked:after:translate-x-5 group-hover:after:translate-x-1"></span>
 				</label>
 			</div>
-			<span class="text-sm w-full text-left">Improved visibility.</span>
+			<span class="text-sm w-full text-left">{
+				$themePref.contrast ? 'Visibility is improved.' : 'Improved visibility.'
+			}</span>
 		</div>
 		<div class="flex justify-between border-b border-lightgray py-4 align-middle">
 			<p>Feedback</p>
