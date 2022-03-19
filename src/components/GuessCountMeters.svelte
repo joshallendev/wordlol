@@ -21,7 +21,6 @@
         if (!width) {
             width = 10;
         }
-        console.table({value, outcome: width.toString() + "%" })
         return width.toString() + "%";
     }
 
