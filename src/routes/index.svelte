@@ -129,6 +129,12 @@
 		}
 	}
 
+	function addToArrIfNotExists(elem, arr) {
+		if (arr.indexOf(elem) < 0) {
+			arr.push(elem);
+		}
+	}
+
 	function checkGuess(): void {
 		toast.pop(0);
 		if (!$gameOver) {
@@ -197,7 +203,7 @@
 			// check for correct letters
 			for (let i = 0; i < tempUserWord.length; i++) {
 				if (tempUserWord[i] === tempTodaysWord[i]) {
-					$revealedLetters.push(tempUserWord[i]);
+					addToArrIfNotExists(tempUserWord[i], $revealedLetters);
 					$correctLocations = [...$correctLocations, [$currentArray, i]];
 					$correctLetters = [...$correctLetters, tempUserWord[i]];
 					tempUserWord = replaceAtIndex(tempUserWord, i, '#');
@@ -212,7 +218,7 @@
 				if (indx >= 0) {
 					$inWordLocations = [...$inWordLocations, [$currentArray, i]];
 					$inWordLetters = [...$inWordLetters, tempUserWord[i]];
-					$revealedLetters.push(tempUserWord[i]);
+					addToArrIfNotExists(tempUserWord[i], $revealedLetters);
 					tempTodaysWord = replaceAtIndex(tempTodaysWord, indx, '@');
 				}
 			}
@@ -232,7 +238,7 @@
 				toast.push('A letter you guessed appears in the word more than once');
 			}
 			if (!$hasWon) {
-				$gameRows[$currentArray].status = 'wrong';
+				$gameRows[$currentArray].status +=' wrong';
 			}
 			// check if they guessed the word or reached the end of guesses
 			if ($hasWon || $currentArray === $gameRows.length - 1) {
@@ -272,6 +278,9 @@
 				} else {
 					tmpString += '⬜';
 				}
+			}
+			if ($gameRows[i].status.includes('hint')) {
+				tmpString += '✨ hint used ✨';
 			}
 			tmpString += '\n';
 		}

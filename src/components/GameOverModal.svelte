@@ -2,6 +2,7 @@
 	import { fade } from 'svelte/transition';
 	import { hasWon, hintsUsed, todaysWord } from '../stores/gameStore';
 	import GuessCountMeters from './GuessCountMeters.svelte';
+import Stats from './Stats.svelte';
 	export let showModal;
 	export let newStats;
 	export let handleShare;
@@ -42,32 +43,7 @@
 			<p>Today's word was <strong>{$todaysWord.word}</strong></p>
 		{/if}
 		<div class="mt-2 text-center flex-col">
-			<div class="text-left px-1 py-2 flex flex-row justify-between flex-wrap">
-				<div class="flex flex-col items-center text-center w-1/3 md:w-1/6">
-					<strong><p class="text-l">{newStats.totalGames}</p></strong>
-					<p class="text-base w-1/2 text-center">Games Played</p>
-				</div>
-				<div class="flex flex-col items-center text-center w-1/3 md:w-1/6">
-					<strong><p class="text-l">{newStats.winPct}%</p></strong>
-					<p class="text-base w-1/2">Win Pct</p>
-				</div>
-				<div class="flex flex-col items-center text-center w-1/3 md:w-1/6">
-					<strong><p class="text-l">{newStats.totalWins}</p></strong>
-					<p class="text-base w-1/2">Total Wins</p>
-				</div>
-				<div class="flex flex-col items-center text-center w-1/3 md:w-1/6">
-					<strong><p class="text-l">{newStats.currentStreak}</p></strong>
-					<p class="text-base w-1/2">Current Streak</p>
-				</div>
-				<div class="flex flex-col items-center text-center w-1/3 md:w-1/6">
-					<strong><p class="text-l">{newStats.maxDayStreak}</p></strong>
-					<p class="text-base w-1/2">Longest Streak</p>
-				</div>
-				<div class="flex flex-col items-center text-center w-1/3 md:w-1/6">
-					<strong><p class="text-l">{newStats.hints ?? '0'}</p></strong>
-					<p class="text-base w-1/2">Total Hints</p>
-				</div>
-			</div>
+			<Stats stats={newStats} />
 			<GuessCountMeters stats={newStats} />
 			{#if $hasWon && $hintsUsed === 0}
 				<p class="py-2 text-l">You didn't use a single hint today. Impressive!</p>

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { showHint, todaysWord, hintsUsed, revealType, revealClue } from '../stores/gameStore';
+	import { showHint, todaysWord, hintsUsed, revealType, revealClue, gameRows, currentArray } from '../stores/gameStore';
 	import { fade, scale } from 'svelte/transition';
 	import { createEventDispatcher } from 'svelte';
 
@@ -20,6 +20,7 @@
 	}
 
 	function handleHintReveal() {
+		$gameRows[$currentArray].status +=' hint';
 		if ($hintsUsed < 2) {
 			$hintsUsed++;
 		}

@@ -34,9 +34,10 @@
 	<div transition:fade>
 		{#each $gameRows as row, i}
 			<div
-				class="{row.status === 'wrong' && !$gameOver
+				class="{row.status.includes('wrong') && !$gameOver
 					? 'board-row-wrong '
-					: ''}flex flex-row justify-center my-2"
+					: ''}
+					flex flex-row justify-center my-2"
 			>
 				{#each row.letters as item, j}
 					<div class={setLetterStyles([i, j])}>
@@ -58,6 +59,11 @@
 	.board-row-wrong {
 		animation: shake-horizontal 0.5s;
 		animation-iteration-count: 1;
+	}
+
+	.board-row-hint {
+		border: 1px solid red;
+		border-radius: 3%;
 	}
 
 	@keyframes shake-horizontal {

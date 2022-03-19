@@ -928,7 +928,7 @@ let savedGame = browser
 	: undefined;
 // ensure saved game is for same day as today
 // otherwise disregard it
-if (browser && savedGame && savedGame?.saveVersion != 2) {
+if (browser && savedGame && savedGame?.saveVersion != saveVersion) {
 	window.localStorage.removeItem('savedWordlolGameboard');
 	window.localStorage.removeItem('wordlolstats');
 }
