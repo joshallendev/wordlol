@@ -8,7 +8,7 @@
         <p class="text-base w-1/2 text-center">Games Played</p>
     </div>
     <div class="flex flex-col items-center text-center w-1/3 md:w-1/6">
-        <strong><p class="text-l">{stats.winPct}%</p></strong>
+        <strong><p class="text-l">{stats.winPct || '0'}%</p></strong>
         <p class="text-base w-1/2">Win Pct</p>
     </div>
     <div class="flex flex-col items-center text-center w-1/3 md:w-1/6">
