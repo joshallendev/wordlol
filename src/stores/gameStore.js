@@ -978,6 +978,7 @@ const gameRows = writable(savedGame ? savedGame.rows : boardBuilder());
 const hasWon = writable(savedGame ? savedGame.hasWon : false);
 const gameOver = writable(savedGame ? savedGame.gameOver : false);
 const numGuesses = writable(savedGame ? savedGame.numGuesses : 0);
+const revealedLetters = writable(savedGame ? savedGame.revealedLetters : []);
 
 // letter tracking
 const correctLetters = writable(savedGame ? savedGame.correctLetters : []);
@@ -1045,5 +1046,6 @@ export {
 	showSettings,
 	revealType,
 	revealClue,
-	themePref
+	themePref,
+	revealedLetters
 };

@@ -29,7 +29,8 @@
 		hintsUsed,
 		saveVersion,
 		showSettings,
-		themePref
+		themePref,
+		revealedLetters
 	} from '../stores/gameStore';
 	import { SvelteToast, toast } from '@zerodevx/svelte-toast';
 	import { onMount } from 'svelte';
@@ -80,7 +81,8 @@
 			rows: $gameRows,
 			numGuesses: $numGuesses,
 			hints: $hintsUsed,
-			saveVersion
+			saveVersion,
+			revealedLetters: $revealedLetters
 		};
 		window.localStorage.setItem('savedWordlolGameboard', JSON.stringify(savedGameObj));
 	}
@@ -153,6 +155,29 @@
 				});
 				return;
 			}
+
+			console.log($revealedLetters);
+
+			// hard mode edits 
+			if ($themePref.hardmode === true && $revealedLetters.length > 0) {
+				console.log($revealedLetters);
+				let unusedLetter = 0;
+				for (let index = 0; index < $revealedLetters.length; index++) {
+					if (!guessedWord.includes($revealedLetters[index])) {
+						console.log(index);
+						unusedLetter++;
+					}
+					
+				}
+				if (unusedLetter > 0) {
+					toast.push(`Hard Mode is enabled. You must use previously revealed letters: ${$revealedLetters.join(', ')}`, {
+						theme: {
+							'--toastBarBackground': '#D13639'
+						}
+					});
+					return;
+				}
+			}
 	
 			// track number of guesses for stats
 			$numGuesses++;
@@ -172,6 +197,7 @@
 			// check for correct letters
 			for (let i = 0; i < tempUserWord.length; i++) {
 				if (tempUserWord[i] === tempTodaysWord[i]) {
+					$revealedLetters.push(tempUserWord[i]);
 					$correctLocations = [...$correctLocations, [$currentArray, i]];
 					$correctLetters = [...$correctLetters, tempUserWord[i]];
 					tempUserWord = replaceAtIndex(tempUserWord, i, '#');
@@ -186,6 +212,7 @@
 				if (indx >= 0) {
 					$inWordLocations = [...$inWordLocations, [$currentArray, i]];
 					$inWordLetters = [...$inWordLetters, tempUserWord[i]];
+					$revealedLetters.push(tempUserWord[i]);
 					tempTodaysWord = replaceAtIndex(tempTodaysWord, indx, '@');
 				}
 			}
