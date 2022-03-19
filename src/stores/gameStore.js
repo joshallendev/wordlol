@@ -886,8 +886,8 @@ function pickWord() {
 	}
 	return dateDiff;
 }
-
-const randomWord = words[pickWord()];
+const wordIndex = pickWord();
+const randomWord = words[wordIndex];
 // const randomWord = {
 //     "word": "MAOKAI",
 //     "type": "champion",
@@ -1047,5 +1047,6 @@ export {
 	revealType,
 	revealClue,
 	themePref,
-	revealedLetters
+	revealedLetters,
+	wordIndex
 };

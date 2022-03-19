@@ -30,7 +30,8 @@
 		saveVersion,
 		showSettings,
 		themePref,
-		revealedLetters
+		revealedLetters,
+		wordIndex
 	} from '../stores/gameStore';
 	import { SvelteToast, toast } from '@zerodevx/svelte-toast';
 	import { onMount } from 'svelte';
@@ -258,20 +259,18 @@
 
 	function generateShareText() {
 		let tmpString = $hasWon
-			? `WORDLOL ${newStats.numGuesses}/${maxGuesses}\n`
-			: `WORDLOL X/${maxGuesses}\n`;
+			? `WORDLOL ${wordIndex} ${newStats.numGuesses}/${maxGuesses}\n`
+			: `WORDLOL ${wordIndex} X/${maxGuesses}\n`;
 		if ($hintsUsed === 0) {
 			tmpString += `no hints used! \n`;
-		} 
+		} else if ($hintsUsed === 1) {
+			tmpString += `1 hint used\n`;
+		} else if ($hintsUsed === 2) {
+			tmpString += `2 hints used\n`;
+		}
 		for (let i = 0; i < newStats.numGuesses; i++) {
 			if($gameRows[i].status.includes('hint')) {
-				const hintCount = $gameRows[i].status.match('hint').length;
-				console.log($gameRows[i].status.match('hint').length);
-				if (hintCount === 1) {
-					tmpString += '✨1 hint used\n';
-				} else {
-					tmpString += `✨${hintCount} hints used\n`;
-				}
+				tmpString += '✨ hint\n';
 			}
 			for (let j = 0; j < $gameRows[i].letters.length; j++) {
 				const loc = [i, j];
