@@ -269,6 +269,9 @@
 		}
 		tmpString += '\n';
 		for (let i = 0; i < newStats.numGuesses; i++) {
+			if ($gameRows[i].status.includes('hint')) {
+				tmpString += '✨ hint used ✨\n';
+			}
 			for (let j = 0; j < $gameRows[i].letters.length; j++) {
 				const loc = [i, j];
 				if (checkForIncludes($correctLocations, loc)) {
@@ -278,9 +281,6 @@
 				} else {
 					tmpString += '⬜';
 				}
-			}
-			if ($gameRows[i].status.includes('hint')) {
-				tmpString += '✨ hint used ✨';
 			}
 			tmpString += '\n';
 		}
