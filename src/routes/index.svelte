@@ -262,15 +262,14 @@
 			: `WORDLOL X/${maxGuesses}\n✨`;
 		if ($hintsUsed === 0) {
 			tmpString += `no hints used! \n`;
-		} else if ($hintsUsed > 1) {
-			tmpString += $hintsUsed + ' hints used';
-		} else {
-			tmpString += $hintsUsed + ' hint used';
-		}
+		} 
 		tmpString += '\n';
 		for (let i = 0; i < newStats.numGuesses; i++) {
-			if ($gameRows[i].status.includes('hint')) {
-				tmpString += '✨ hint used ✨\n';
+			const hintCount = $gameRows[i].status.match('hint').length;
+			if (hintCount === 1) {
+				tmpString += '✨1 hint used\n';
+			} else {
+				tmpString += `✨${hintCount} hints used\n`;
 			}
 			for (let j = 0; j < $gameRows[i].letters.length; j++) {
 				const loc = [i, j];
