@@ -906,6 +906,7 @@ const boardBuilder = () => {
 		// const row = [];
 		const row = {
 			status: '',
+			hintsUsed: 0,
 			letters: []
 		};
 		for (let j = 0; j < randomWord.word.length; j++) {

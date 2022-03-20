@@ -20,7 +20,11 @@
 	}
 
 	function handleHintReveal() {
-		$gameRows[$currentArray].status +=' hint';
+		if ($gameRows[$currentArray].hintsUsed === NaN || $gameRows[$currentArray].hintsUsed < 0) {
+			$gameRows[$currentArray].hintsUsed = 0;
+		}
+
+		$gameRows[$currentArray].hintsUsed++;
 		if ($hintsUsed < 2) {
 			$hintsUsed++;
 		}

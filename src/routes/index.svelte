@@ -118,7 +118,6 @@
 			newStats.guessCounts[$numGuesses] = 1;
 		}
 		newStats.hints = newStats.hints + $hintsUsed;
-		console.table(newStats);
 		window.localStorage.setItem('wordlolstats', JSON.stringify(newStats));
 	}
 
@@ -254,33 +253,36 @@
 	}
 
 	function generateShareText() {
-		let tmpString = $hasWon
+		let shareText = $hasWon
 			? `WORDLOL ${wordIndex} ${newStats.numGuesses}/${maxGuesses}\n`
 			: `WORDLOL ${wordIndex} X/${maxGuesses}\n`;
 		if ($hintsUsed === 0) {
-			tmpString += `no hints used! \n`;
+			shareText += `no hints used! \n`;
 		} else if ($hintsUsed === 1) {
-			tmpString += `1 hint used\n`;
+			shareText += `1 hint used\n`;
 		} else if ($hintsUsed === 2) {
-			tmpString += `2 hints used\n`;
+			shareText += `2 hints used\n`;
 		}
 		for (let i = 0; i < newStats.numGuesses; i++) {
-			if($gameRows[i].status.includes('hint')) {
-				tmpString += '✨ hint\n';
+			if($gameRows[i].hintsUsed === 1) {
+				shareText += '✨ hint\n';
+			} else if ($gameRows[i].hintsUsed > 1) {
+				shareText += `✨ ${$gameRows[i].hintsUsed} hints\n`;
 			}
 			for (let j = 0; j < $gameRows[i].letters.length; j++) {
 				const loc = [i, j];
 				if (checkForIncludes($correctLocations, loc)) {
-					tmpString += '🟩';
+					shareText += '🟩';
 				} else if (checkForIncludes($inWordLocations, loc)) {
-					tmpString += '🟨';
+					shareText += '🟨';
 				} else {
-					tmpString += '⬜';
+					shareText += '⬜';
 				}
 			}
-			tmpString += '\n';
+			shareText += '\n';
 		}
-		return tmpString;
+		console.log(shareText);
+		return shareText;
 	}
 
 	function checkForIncludes(arr1: Array<number>, arr2: Array<number>): boolean {
