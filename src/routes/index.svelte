@@ -268,6 +268,7 @@
 			}
 			shareText += '\n';
 		}
+		console.log(shareText);
 		return shareText;
 	}
 

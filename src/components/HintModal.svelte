@@ -20,14 +20,12 @@
 	}
 
 	function handleHintReveal() {
-		if ($game.gameRows[$game.currentArray].game.hints === NaN || $game.gameRows[$game.currentArray].game.hints < 0) {
-			$game.gameRows[$game.currentArray].game.hints = 0;
+		if ($game.rows[$game.currentArray].hints === NaN || $game.rows[$game.currentArray].hints < 0) {
+			$game.rows[$game.currentArray].hints = 0;
 		}
 
-		$game.gameRows[$game.currentArray].game.hints++;
-		if ($game.hints < 2) {
-			$game.hints++;
-		}
+		$game.rows[$game.currentArray].hints++;
+		$game.hints++;
 		dispatch('hint');
 	}
 </script>
