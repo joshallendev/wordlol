@@ -23,7 +23,9 @@ module.exports = {
 				lightgray: '#e0e0e0',
 				robinblue: '#00A0BA',
 				darkgray: '#9c9c9c',
-				squash: '#B59A27'
+				squash: '#B59A27',
+
+
 			}
 		}
 	},

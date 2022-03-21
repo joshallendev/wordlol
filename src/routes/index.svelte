@@ -8,29 +8,16 @@
 	import {
 		today,
 		todaysWord,
-		correctLocations,
-		wrongLocations,
-		inWordLocations,
-		correctLetters,
-		wrongLetters,
-		inWordLetters,
-		currentArray,
-		currentLetter,
-		gameRows,
-		hasWon,
-		gameOver,
+		game,
 		stats,
 		showStats,
 		showInfo,
-		numGuesses,
 		showHint,
 		words,
 		maxGuesses,
-		hintsUsed,
 		saveVersion,
 		showSettings,
 		themePref,
-		revealedLetters,
 		wordIndex
 	} from '../stores/gameStore';
 	import { SvelteToast, toast } from '@zerodevx/svelte-toast';
@@ -42,23 +29,23 @@
 
 	export let newStats = stats;
 	export let showModal = false;
-	if ($gameOver) {
+	if ($game.gameOver) {
 		showModal = true;
 	}
 	function updateArrays(event: any) {
-		if (!$gameOver) {
+		if (!$game.gameOver) {
 			const text = event.detail.text;
 			switch (event.detail.action) {
 				case 'add':
-					if ($currentLetter < $gameRows[$currentArray].letters.length) {
-						$gameRows[$currentArray].letters[$currentLetter].content = text;
-						$currentLetter++;
+					if ($game.currentLetter < $game.rows[$game.currentArray].letters.length) {
+						$game.rows[$game.currentArray].letters[$game.currentLetter].content = text;
+						$game.currentLetter++;
 					}
 					break;
 				case 'backspace':
 					// go back a letter but never lass than 0
-					$currentLetter > 0 ? $currentLetter-- : null;
-					$gameRows[$currentArray].letters[$currentLetter].content = '';
+					$game.currentLetter > 0 ? $game.currentLetter-- : null;
+					$game.rows[$game.currentArray].letters[$game.currentLetter].content = '';
 					break;
 				default:
 					break;
@@ -69,21 +56,21 @@
 	function saveGame() {
 		const savedGameObj = {
 			saveDate: today,
-			currentArray: $currentArray,
-			currentLetter: $currentLetter,
-			correctLetters: $correctLetters,
-			inWordLetters: $inWordLetters,
-			wrongLetters: $wrongLetters,
-			correctLocations: $correctLocations,
-			inWordLocations: $inWordLocations,
-			wrongLocations: $wrongLocations,
-			hasWon: $hasWon,
-			gameOver: $gameOver,
-			rows: $gameRows,
-			numGuesses: $numGuesses,
-			hints: $hintsUsed,
+			currentArray: $game.currentArray,
+			currentLetter: $game.currentLetter,
+			correctLetters: $game.correctLetters,
+			inWordLetters: $game.inWordLetters,
+			wrongLetters: $game.wrongLetters,
+			correctLocations: $game.correctLocations,
+			inWordLocations: $game.inWordLocations,
+			wrongLocations: $game.wrongLocations,
+			hasWon: $game.hasWon,
+			gameOver: $game.gameOver,
+			rows: $game.rows,
+			numGuesses: $game.numGuesses,
+			hints: $game.hints,
 			saveVersion,
-			revealedLetters: $revealedLetters
+			revealedLetters: $game.revealedLetters
 		};
 		window.localStorage.setItem('savedWordlolGameboard', JSON.stringify(savedGameObj));
 	}
@@ -92,7 +79,7 @@
 		newStats = stats;
 		newStats.totalGames++;
 		// was the game won? if so lets track it
-		if ($hasWon) {
+		if ($game.hasWon) {
 			newStats.totalWins++;
 		}
 		// is the last day played yesterday? if so the streak grows
@@ -108,16 +95,16 @@
 		}
 		newStats.lastDatePlayed = today;
 		newStats.winPct = (newStats.totalWins / newStats.totalGames) * 100;
-		newStats.numGuesses = $numGuesses;
+		newStats.numGuesses = $game.numGuesses;
 		if (!newStats.guessCounts) {
 			newStats.guessCounts = {};
 		}
-		if (newStats.guessCounts[$numGuesses]) {
-			newStats.guessCounts[$numGuesses] += 1;
+		if (newStats.guessCounts[$game.numGuesses]) {
+			newStats.guessCounts[$game.numGuesses] += 1;
 		} else {
-			newStats.guessCounts[$numGuesses] = 1;
+			newStats.guessCounts[$game.numGuesses] = 1;
 		}
-		newStats.hints = newStats.hints + $hintsUsed;
+		newStats.hints = newStats.hints + $game.hints;
 		window.localStorage.setItem('wordlolstats', JSON.stringify(newStats));
 	}
 
@@ -137,8 +124,8 @@
 
 	function checkGuess(): void {
 		toast.pop(0);
-		if (!$gameOver) {
-			const guessedWord = $gameRows[$currentArray].letters.reduce(
+		if (!$game.gameOver) {
+			const guessedWord = $game.rows[$game.currentArray].letters.reduce(
 				(prev, curr) => prev.concat('', curr.content),
 				''
 			);
@@ -163,16 +150,16 @@
 			}
 
 			// hard mode edits 
-			if ($themePref.hardmode === true && $revealedLetters.length > 0) {
+			if ($themePref.hardmode === true && $game.revealedLetters.length > 0) {
 				let unusedLetter = 0;
-				for (let index = 0; index < $revealedLetters.length; index++) {
-					if (!guessedWord.includes($revealedLetters[index])) {
+				for (let index = 0; index < $game.revealedLetters.length; index++) {
+					if (!guessedWord.includes($game.revealedLetters[index])) {
 						unusedLetter++;
 					}
 					
 				}
 				if (unusedLetter > 0) {
-					toast.push(`Hard Mode is enabled. You must use previously revealed letters: ${$revealedLetters.join(', ')}`, {
+					toast.push(`Hard Mode is enabled. You must use previously revealed letters: ${$game.revealedLetters.join(', ')}`, {
 						theme: {
 							'--toastBarBackground': '#D13639'
 						}
@@ -182,7 +169,7 @@
 			}
 	
 			// track number of guesses for stats
-			$numGuesses++;
+			$game.numGuesses++;
 	
 			let tempUserWord = guessedWord;
 			let tempTodaysWord = $todaysWord.word;
@@ -199,9 +186,9 @@
 			// check for correct letters
 			for (let i = 0; i < tempUserWord.length; i++) {
 				if (tempUserWord[i] === tempTodaysWord[i]) {
-					addToArrIfNotExists(tempUserWord[i], $revealedLetters);
-					$correctLocations = [...$correctLocations, [$currentArray, i]];
-					$correctLetters = [...$correctLetters, tempUserWord[i]];
+					addToArrIfNotExists(tempUserWord[i], $game.revealedLetters);
+					$game.correctLocations = [...$game.correctLocations, [$game.currentArray, i]];
+					$game.correctLetters = [...$game.correctLetters, tempUserWord[i]];
 					tempUserWord = replaceAtIndex(tempUserWord, i, '#');
 					tempTodaysWord = replaceAtIndex(tempTodaysWord, i, '@');
 				}
@@ -212,9 +199,9 @@
 				// if (tempTodaysWord.includes(tempUserWord[i])) {
 				const indx = tempTodaysWord.indexOf(tempUserWord[i]);
 				if (indx >= 0) {
-					$inWordLocations = [...$inWordLocations, [$currentArray, i]];
-					$inWordLetters = [...$inWordLetters, tempUserWord[i]];
-					addToArrIfNotExists(tempUserWord[i], $revealedLetters);
+					$game.inWordLocations = [...$game.inWordLocations, [$game.currentArray, i]];
+					$game.inWordLetters = [...$game.inWordLetters, tempUserWord[i]];
+					addToArrIfNotExists(tempUserWord[i], $game.revealedLetters);
 					tempTodaysWord = replaceAtIndex(tempTodaysWord, indx, '@');
 				}
 			}
@@ -222,58 +209,58 @@
 			// check for in-word letters
 			for (let i = 0; i < tempUserWord.length; i++) {
 				if (tempUserWord[i] != '#') {
-					$wrongLocations = [...$wrongLocations, [$currentArray, i]];
-					$wrongLetters = [...$wrongLetters, tempUserWord[i]];
+					$game.wrongLocations = [...$game.wrongLocations, [$game.currentArray, i]];
+					$game.wrongLetters = [...$game.wrongLetters, tempUserWord[i]];
 				}
 			}
 	
 			if (guessedWord === $todaysWord.word) {
-				$hasWon = true;
+				$game.hasWon = true;
 			}
 			if (Object.values(letterCount).some((el) => el > 1)) {
 				toast.push('A letter you guessed appears in the word more than once');
 			}
-			if (!$hasWon) {
-				$gameRows[$currentArray].status +=' wrong';
+			if (!$game.hasWon) {
+				$game.rows[$game.currentArray].status +=' wrong';
 			}
 			// check if they guessed the word or reached the end of guesses
-			if ($hasWon || $currentArray === $gameRows.length - 1) {
+			if ($game.hasWon || $game.currentArray === $game.rows.length - 1) {
 				updateStats();
-				$gameOver = true;
+				$game.gameOver = true;
 				saveGame();
 				showModal = true;
 			} else {
-				$hasWon = false;
-				$gameOver = false;
-				$currentArray++;
-				$currentLetter = 0;
+				$game.hasWon = false;
+				$game.gameOver = false;
+				$game.currentArray++;
+				$game.currentLetter = 0;
 				saveGame();
 			}
 		}
 	}
 
 	function generateShareText() {
-		let shareText = $hasWon
+		let shareText = $game.hasWon
 			? `WORDLOL ${wordIndex} ${newStats.numGuesses}/${maxGuesses}\n`
 			: `WORDLOL ${wordIndex} X/${maxGuesses}\n`;
-		if ($hintsUsed === 0) {
+		if ($game.hints === 0) {
 			shareText += `no hints used! \n`;
-		} else if ($hintsUsed === 1) {
+		} else if ($game.hints === 1) {
 			shareText += `1 hint used\n`;
-		} else if ($hintsUsed === 2) {
+		} else if ($game.hints === 2) {
 			shareText += `2 hints used\n`;
 		}
 		for (let i = 0; i < newStats.numGuesses; i++) {
-			if($gameRows[i].hintsUsed === 1) {
+			if($game.rows[i].game.hints === 1) {
 				shareText += '✨ hint\n';
-			} else if ($gameRows[i].hintsUsed > 1) {
-				shareText += `✨ ${$gameRows[i].hintsUsed} hints\n`;
+			} else if ($game.rows[i].game.hints > 1) {
+				shareText += `✨ ${$game.rows[i].game.hints} hints\n`;
 			}
-			for (let j = 0; j < $gameRows[i].letters.length; j++) {
+			for (let j = 0; j < $game.rows[i].letters.length; j++) {
 				const loc = [i, j];
-				if (checkForIncludes($correctLocations, loc)) {
+				if (checkForIncludes($game.correctLocations, loc)) {
 					shareText += '🟩';
-				} else if (checkForIncludes($inWordLocations, loc)) {
+				} else if (checkForIncludes($game.inWordLocations, loc)) {
 					shareText += '🟨';
 				} else {
 					shareText += '⬜';
@@ -346,14 +333,14 @@
 </svelte:head>
 
 <svelte:window on:keydown={handleKeyboardInput} on:resize={appHeight}/>
-{#if $hasWon}
+{#if $game.hasWon}
 	<Particles particlesUrl=".//particles/fireworks.json" />
 {/if}
 <main class="transition-all select-none {$themePref.darkmode === true ? 'dark h-full' : 'h-full'}">
 	<div class="flex flex-col h-full bg-white dark:bg-gray-800 dark:text-white justify-between overflow-x-hidden font-barlow text-xl">
 		<Header />
 		<Gameboard />
-		{#if $gameOver === true && showModal}
+		{#if $game.gameOver === true && showModal}
 			<GameOverModal bind:showModal {newStats} {handleShare} />
 		{/if}
 		{#if $showStats === true}

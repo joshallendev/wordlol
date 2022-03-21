@@ -5,8 +5,16 @@
 	function handleSettingsChange(e: any) {
 		const name = e.target.name;
 		const value = e.target.checked;
+		if (name === 'darkmode') {
+			if (value) {
+				document.documentElement.classList.add('dark');
+			} else {
+				document.documentElement.classList.remove('dark');
+			}
+		}
 		$themePref[name] = value;
 		window.localStorage.setItem('wordlol-theme', JSON.stringify($themePref));
+		console.log(e.target.name);
  	}
 </script>
 

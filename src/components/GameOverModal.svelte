@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
-	import { hasWon, hintsUsed, todaysWord } from '../stores/gameStore';
+	import { game, todaysWord } from '../stores/gameStore';
 	import GuessCountMeters from './GuessCountMeters.svelte';
 import Stats from './Stats.svelte';
 	export let showModal;
@@ -35,17 +35,17 @@ import Stats from './Stats.svelte';
 				/></svg
 			>close
 		</button>
-		<h3 class="text-4xl font-medium mb-3">{$hasWon ? '🤩' : '🙁'}</h3>
+		<h3 class="text-4xl font-medium mb-3">{$game.hasWon ? '🤩' : '🙁'}</h3>
 		<h3 class="text-2xl font-medium">
-			{$hasWon ? 'Well done!' : 'Better luck next time.'}
+			{$game.hasWon ? 'Well done!' : 'Better luck next time.'}
 		</h3>
-		{#if !$hasWon}
+		{#if !$game.hasWon}
 			<p>Today's word was <strong>{$todaysWord.word}</strong></p>
 		{/if}
 		<div class="mt-2 text-center flex-col">
 			<Stats stats={newStats} />
 			<GuessCountMeters stats={newStats} />
-			{#if $hasWon && $hintsUsed === 0}
+			{#if $game.hasWon && $game.hints === 0}
 				<p class="py-2 text-l">You didn't use a single hint today. Impressive!</p>
 			{/if}
 			<button

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { showHint, todaysWord, hintsUsed, revealType, revealClue, gameRows, currentArray } from '../stores/gameStore';
+	import { showHint, todaysWord, revealType, revealClue, game } from '../stores/gameStore';
 	import { fade, scale } from 'svelte/transition';
 	import { createEventDispatcher } from 'svelte';
 
@@ -20,13 +20,13 @@
 	}
 
 	function handleHintReveal() {
-		if ($gameRows[$currentArray].hintsUsed === NaN || $gameRows[$currentArray].hintsUsed < 0) {
-			$gameRows[$currentArray].hintsUsed = 0;
+		if ($game.gameRows[$game.currentArray].game.hints === NaN || $game.gameRows[$game.currentArray].game.hints < 0) {
+			$game.gameRows[$game.currentArray].game.hints = 0;
 		}
 
-		$gameRows[$currentArray].hintsUsed++;
-		if ($hintsUsed < 2) {
-			$hintsUsed++;
+		$game.gameRows[$game.currentArray].game.hints++;
+		if ($game.hints < 2) {
+			$game.hints++;
 		}
 		dispatch('hint');
 	}

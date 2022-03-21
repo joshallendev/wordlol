@@ -10,7 +10,12 @@ body {
 	height: -webkit-fill-available;
 	height: stretch; 
     height: var(--app-height);
-	transition: background-color 0.5s;
+	touch-action: manipulation;
+}
+
+
+* {
+	transition: background-color 0.5s linear;
 }
 
 :root {

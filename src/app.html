@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="robots" content="noindex nofollow" />
@@ -20,6 +20,7 @@
 	let background = '';
 	if (savedThemes?.darkmode === false) {
 		background = '#fff';
+		document.documentElement.classList.remove('dark');
 	} else if (savedThemes?.darkmode === true) {
 		background = '#1f2937';
 	} else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
@@ -31,12 +32,3 @@
 		document.body.style.opacity = '1';
 	});
 </script>
-<!-- setting this here to prevent white flash on load -->
-<style>
-	body {
-		visibility: hidden;
-		opacity: 0;
-		transition: opacity 1s;
-		touch-action: manipulation;
-	}
-</style>

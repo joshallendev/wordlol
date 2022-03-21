@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { createEventDispatcher, onMount } from 'svelte';
+	import { createEventDispatcher } from 'svelte';
 
-	import { correctLetters, wrongLetters, inWordLetters } from '../stores/gameStore';
+	import { game } from '../stores/gameStore';
 
 	const letterArrays: Array<Array<string>> = [
 		['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
@@ -38,11 +38,11 @@
 
 	$: setLetterStyles = (letter) => {
 		let classes: string = '';
-		if ($correctLetters.includes(letter)) {
+		if ($game.correctLetters.includes(letter)) {
 			classes = letterStyles + ' text-black bg-correct';
-		} else if ($inWordLetters.includes(letter)) {
+		} else if ($game.inWordLetters.includes(letter)) {
 			classes = letterStyles + ' bg-squash text-white';
-		} else if ($wrongLetters.includes(letter)) {
+		} else if ($game.wrongLetters.includes(letter)) {
 			classes = letterStyles + ' text-black bg-darkgray';
 		} else {
 			classes = letterStyles + ' text-black bg-lightgray dark:bg-gray-600 dark:text-white';

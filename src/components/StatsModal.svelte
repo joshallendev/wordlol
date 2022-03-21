@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { stats, showStats } from '../stores/gameStore';
+	import { showStats } from '../stores/gameStore';
 	import { fade, scale } from 'svelte/transition';
 import GuessCountMeters from './GuessCountMeters.svelte';
 import Stats from './Stats.svelte';

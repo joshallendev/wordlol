@@ -1,23 +1,19 @@
 <script lang="ts">
 	import {
-		correctLocations,
-		wrongLocations,
-		inWordLocations,
-		gameRows,
-		gameOver
+		game,
 	} from '../stores/gameStore';
 	import { fade, scale } from 'svelte/transition';
 
 	const letterStyles: string =
-		'board-letter select-none inline w-14 h-14 mx-1 md:mx-2 md:h-16 md:w-16 text-4xl flex rounded-md justify-center items-center';
+		'board-letter select-none inline w-14 h-14 mx-1 md:h-16 md:w-16 text-4xl flex rounded-md justify-center items-center';
 
 	$: setLetterStyles = (loc) => {
 		let classes: string = '';
-		if (checkForIncludes($correctLocations, loc)) {
+		if (checkForIncludes($game.correctLocations, loc)) {
 			classes = letterStyles + ' bg-correct text-white';
-		} else if (checkForIncludes($inWordLocations, loc)) {
+		} else if (checkForIncludes($game.inWordLocations, loc)) {
 			classes = letterStyles + ' bg-squash text-white';
-		} else if (checkForIncludes($wrongLocations, loc)) {
+		} else if (checkForIncludes($game.wrongLocations, loc)) {
 			classes = letterStyles + ' bg-darkgray text-white';
 		} else {
 			classes = letterStyles + ' bg-[#f2f2f2]  dark:bg-gray-500';
@@ -32,9 +28,9 @@
 
 <div class="flex flex-col items-center pointer-events-none">
 	<div transition:fade>
-		{#each $gameRows as row, i}
+		{#each $game.rows as row, i}
 			<div
-				class="{row.status.includes('wrong') && !$gameOver
+				class="{row.status.includes('wrong') && !$game.gameOver
 					? 'board-row-wrong '
 					: ''}
 					flex flex-row justify-center my-2"
@@ -52,8 +48,9 @@
 </div>
 
 <style>
-	.board-letter {
+	.board-row-wrong .board-letter {
 		transition: all 0.5s ease;
+		/* animation: flip 0.5s linear; */
 	}
 
 	.board-row-wrong {
@@ -64,6 +61,15 @@
 	.board-row-hint {
 		border: 1px solid red;
 		border-radius: 3%;
+	}
+
+	@keyframes flip{
+	from{
+		transform: rotateX(0deg);
+	}
+	to{
+		transform: rotateX(360deg);
+	}
 	}
 
 	@keyframes shake-horizontal {

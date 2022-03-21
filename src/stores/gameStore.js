@@ -906,7 +906,7 @@ const boardBuilder = () => {
 		// const row = [];
 		const row = {
 			status: '',
-			hintsUsed: 0,
+			hints: 0,
 			letters: []
 		};
 		for (let j = 0; j < randomWord.word.length; j++) {
@@ -972,24 +972,22 @@ const themeObj = {
 
 const themePref = writable(themeObj);
 
-// game data
-const currentArray = writable(savedGame ? savedGame.currentArray : 0);
-const currentLetter = writable(savedGame ? savedGame.currentLetter : 0);
-const gameRows = writable(savedGame ? savedGame.rows : boardBuilder());
-const hasWon = writable(savedGame ? savedGame.hasWon : false);
-const gameOver = writable(savedGame ? savedGame.gameOver : false);
-const numGuesses = writable(savedGame ? savedGame.numGuesses : 0);
-const revealedLetters = writable(savedGame ? savedGame.revealedLetters : []);
-
-// letter tracking
-const correctLetters = writable(savedGame ? savedGame.correctLetters : []);
-const wrongLetters = writable(savedGame ? savedGame.wrongLetters : []);
-const inWordLetters = writable(savedGame ? savedGame.inWordLetters : []);
-
-// letter position tracking
-const correctLocations = writable(savedGame ? savedGame.correctLocations : []);
-const wrongLocations = writable(savedGame ? savedGame.wrongLocations : []);
-const inWordLocations = writable(savedGame ? savedGame.inWordLocations : []);
+const game = writable(savedGame ? savedGame : {
+	currentArray: 0,
+	currentLetter: 0,
+	rows: boardBuilder(),
+	hasWon: false,
+	gameOver: false,
+	numGuesses: 0,
+	revealedLetters: [], 
+	correctLetters: [],
+	wrongLetters: [],
+	inWordLetters: [],
+	correctLocations: [],
+	wrongLocations: [],
+	inWordLocations: [],
+	hints: 0,
+});
 
 const statsObj = {
 	totalGames: 0,
@@ -1015,39 +1013,24 @@ const showStats = writable(false);
 const showInfo = writable(false);
 const showHint = writable(false);
 const showSettings = writable(false);
-
-const hintsUsed = writable(savedGame ? savedGame.hints : 0);
 const revealType = writable(false);
 const revealClue = writable(false);
 
 export {
 	today,
 	todaysWord,
-	correctLetters,
-	wrongLetters,
-	correctLocations,
-	wrongLocations,
-	inWordLocations,
-	inWordLetters,
+	game,
 	wordLength,
 	maxGuesses,
-	gameRows,
-	currentArray,
-	currentLetter,
-	hasWon,
-	gameOver,
 	stats,
 	showStats,
 	showInfo,
-	numGuesses,
 	showHint,
 	words,
-	hintsUsed,
 	saveVersion,
 	showSettings,
 	revealType,
 	revealClue,
 	themePref,
-	revealedLetters,
-	wordIndex
+	wordIndex,
 };

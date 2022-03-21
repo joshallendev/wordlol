@@ -1,24 +1,22 @@
 <script lang="ts">
 	import {
 		showStats,
+		game,
 		showInfo,
 		showHint,
-		hintsUsed,
-		gameOver,
 		showSettings,
-		currentArray
 	} from '../stores/gameStore';
 	import { fade, scale } from 'svelte/transition';
 </script>
 
-<header class="bg-black med:mb-10 text-white py-3 flex justify-between">
+<header class="bg-white text-black border-b dark:bg-gray-800 dark:text-white med:mb-10  py-3 flex justify-between">
 	<div class="flex-row justify-start">
 		<p class="px-5 font-semibold text-left hover:text-actionred"><a href="/">WORDLOL</a></p>
 	</div>
-	{#if !$gameOver && $currentArray > 2}
+	{#if !$game.gameOver && $game.currentArray > 2}
 		<div in:scale out:scale>
 			<button
-				class="text-2xl {$hintsUsed < 2 ? 'animate-pulse' : ''}"
+				class="text-2xl {$game.hints < 2 ? 'animate-pulse' : ''}"
 				type="button"
 				aria-label="hint"
 				on:click={() => ($showHint = !$showHint)}
