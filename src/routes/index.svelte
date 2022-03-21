@@ -251,10 +251,10 @@
 			shareText += `2 hints used\n`;
 		}
 		for (let i = 0; i < newStats.numGuesses; i++) {
-			if($game.rows[i].game.hints === 1) {
+			if($game.rows[i].hints === 1) {
 				shareText += '✨ hint\n';
-			} else if ($game.rows[i].game.hints > 1) {
-				shareText += `✨ ${$game.rows[i].game.hints} hints\n`;
+			} else if ($game.rows[i].hints > 1) {
+				shareText += `✨ ${$game.rows[i].hints} hints\n`;
 			}
 			for (let j = 0; j < $game.rows[i].letters.length; j++) {
 				const loc = [i, j];
@@ -268,7 +268,6 @@
 			}
 			shareText += '\n';
 		}
-		console.log(shareText);
 		return shareText;
 	}
 
