@@ -2,7 +2,7 @@
 	import { fade } from 'svelte/transition';
 	import { game, todaysWord } from '../stores/gameStore';
 	import GuessCountMeters from './GuessCountMeters.svelte';
-import Stats from './Stats.svelte';
+	import Stats from './Stats.svelte';
 	export let showModal;
 	export let newStats;
 	export let handleShare;
@@ -18,7 +18,10 @@ import Stats from './Stats.svelte';
 		on:click|stopPropagation
 		class="flex flex-col text-center bg-background w-5/6 md:w-1/2 pt-2 pb-6 px-4 rounded mt-10"
 	>
-		<button class="ml-auto align-middle hover:text-actionred" on:click={() => (showModal = !showModal)}>
+		<button
+			class="ml-auto align-middle hover:text-acc1"
+			on:click={() => (showModal = !showModal)}
+		>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				aria-hidden="true"
@@ -47,7 +50,7 @@ import Stats from './Stats.svelte';
 			{/if}
 			<button
 				type="button"
-				class="bg-actionred p-2 mt-4 rounded align-middle text-white"
+				class="bg-acc1 p-2 mt-4 rounded align-middle text-white"
 				on:click={handleShare}
 			>
 				<svg

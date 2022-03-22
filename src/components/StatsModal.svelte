@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { showStats } from '../stores/gameStore';
 	import { fade, scale } from 'svelte/transition';
-import GuessCountMeters from './GuessCountMeters.svelte';
-import Stats from './Stats.svelte';
-export let newStats;
+	import GuessCountMeters from './GuessCountMeters.svelte';
+	import Stats from './Stats.svelte';
+	export let newStats;
 </script>
 
 <div
@@ -20,7 +20,10 @@ export let newStats;
 	>
 		<div class="flex flex-row">
 			<h3 class="text-lg font-semibold">STATISTICS</h3>
-			<button class="ml-auto align-middle hover:text-actionred" on:click={() => ($showStats = !$showStats)}>
+			<button
+				class="ml-auto align-middle hover:text-acc1"
+				on:click={() => ($showStats = !$showStats)}
+			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					aria-hidden="true"
@@ -35,7 +38,8 @@ export let newStats;
 						fill-rule="evenodd"
 						d="M10.657 12.071L5 6.414L6.414 5l5.657 5.657L17.728 5l1.414 1.414l-5.657 5.657l5.657 5.657l-1.414 1.414l-5.657-5.657l-5.657 5.657L5 17.728z"
 					/></svg
-				>close</button>
+				>close</button
+			>
 		</div>
 		<Stats stats={newStats} />
 		<GuessCountMeters stats={newStats} />

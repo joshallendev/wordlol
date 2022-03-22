@@ -1,6 +1,5 @@
 import { derived, readable, writable } from 'svelte/store';
 import { browser } from '$app/env';
-import { drawLinkLine } from 'tsparticles';
 
 const words = [
 	{
@@ -76,7 +75,7 @@ const words = [
 	{
 		word: 'BRAND',
 		type: 'champion',
-		clue: ["burning vengeance"]
+		clue: ['burning vengeance']
 	},
 	{
 		word: 'GWEN',
@@ -86,7 +85,7 @@ const words = [
 	{
 		word: 'PYKE',
 		type: 'champion',
-		clue: ["the bloodharbor ripper"]
+		clue: ['the bloodharbor ripper']
 	},
 	{
 		word: 'XERATH',
@@ -944,7 +943,7 @@ if (browser && savedGame?.saveDate != today) {
 
 let savedThemes = {
 	darkmode: null,
-	hardmode: null, 
+	hardmode: null,
 	contrast: null
 };
 
@@ -967,28 +966,32 @@ function getDarkModePref() {
 
 const themeObj = {
 	darkmode: getDarkModePref(),
-	hardmode: savedThemes.hardmode, 
+	hardmode: savedThemes.hardmode,
 	contrast: savedThemes.contrast
-}
+};
 
 const themePref = writable(themeObj);
 
-const game = writable(savedGame ? savedGame : {
-	currentArray: 0,
-	currentLetter: 0,
-	rows: boardBuilder(),
-	hasWon: false,
-	gameOver: false,
-	numGuesses: 0,
-	revealedLetters: [], 
-	correctLetters: [],
-	wrongLetters: [],
-	inWordLetters: [],
-	correctLocations: [],
-	wrongLocations: [],
-	inWordLocations: [],
-	hints: 0,
-});
+const game = writable(
+	savedGame
+		? savedGame
+		: {
+				currentArray: 0,
+				currentLetter: 0,
+				rows: boardBuilder(),
+				hasWon: false,
+				gameOver: false,
+				numGuesses: 0,
+				revealedLetters: [],
+				correctLetters: [],
+				wrongLetters: [],
+				inWordLetters: [],
+				correctLocations: [],
+				wrongLocations: [],
+				inWordLocations: [],
+				hints: 0
+		  }
+);
 
 const statsObj = {
 	totalGames: 0,
@@ -1000,10 +1003,10 @@ const statsObj = {
 	hints: 0,
 	guessCounts: {
 		1: 0,
-		2: 0, 
-		3: 0, 
-		4: 0, 
-		5: 0, 
+		2: 0,
+		3: 0,
+		4: 0,
+		5: 0,
 		6: 0
 	}
 };
@@ -1033,5 +1036,5 @@ export {
 	revealType,
 	revealClue,
 	themePref,
-	wordIndex,
+	wordIndex
 };

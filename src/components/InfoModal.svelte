@@ -20,14 +20,14 @@
 </script>
 
 <div
-in:fade
+	in:fade
 	out:fade
 	on:click={() => ($showInfo = !$showInfo)}
 	class="fixed flex items-center flex-col inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full"
 >
 	<div
-	in:scale
-	out:scale
+		in:scale
+		out:scale
 		id="info-modal"
 		on:click|stopPropagation
 		on:scroll={handleScroll}
@@ -35,7 +35,10 @@ in:fade
 	>
 		<div class="flex flex-row mb-4">
 			<h3 class="text-l font-semibold">HOW TO PLAY</h3>
-			<button class="ml-auto align-middle hover:text-actionred" on:click={() => ($showInfo = !$showInfo)}>
+			<button
+				class="ml-auto align-middle hover:text-acc1"
+				on:click={() => ($showInfo = !$showInfo)}
+			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					aria-hidden="true"
@@ -52,18 +55,20 @@ in:fade
 						d="M10.657 12.071L5 6.414L6.414 5l5.657 5.657L17.728 5l1.414 1.414l-5.657 5.657l5.657 5.657l-1.414 1.414l-5.657-5.657l-5.657 5.657L5 17.728z"
 					/>
 				</svg>
-			close</button>
+				close</button
+			>
 		</div>
 		<section id="instructions" class="text-left">
 			<p class="py-2">
 				Guess the League of Legends related <strong>WORDLOL</strong> in 6 tries or less.
 			</p>
 			<p class="py-2">
-				Words may include champion names, game terms, item names, etc. Words currently won't exceed a length of 6.. but that may change in the future.
+				Words may include champion names, game terms, item names, etc. Words currently won't exceed
+				a length of 6.. but that may change in the future.
 			</p>
 			<p class="py-2">
-				Hints are available if you might need them after round 3. Click the ✨ icon in the header at the top of
-				the page.
+				Hints are available if you might need them after round 3. Click the ✨ icon in the header at
+				the top of the page.
 			</p>
 			<p class="py-2">
 				After guessing the letters will change colors to show how close you are to the secret word.
@@ -103,35 +108,40 @@ in:fade
 		</section>
 		<div class="mt-2 border-t border-lightgray text-left">
 			<p class="text-l font-semibold py-4">ABOUT WORDLOL</p>
-			<p class="py-1">WORDLOL is a League of Legends themed clone of the original Wordle game. 
-				<a
-					class="text-acc1 font-semibold hover:font-semibold hover:underline"
-					href="https://www.nytimes.com/games/wordle/index.html">Play the original Wordle.</a
-				></p>
-				
+			<p class="py-1">WORDLOL is a League of Legends themed clone of the original Wordle game.</p>
+			<a
+				class="text-acc1 font-semibold hover:font-semibold hover:underline"
+				href="https://www.nytimes.com/games/wordle/index.html"
+				>Play the original Wordle.
+			</a>
 
 			<p class="py-1">Tech details:</p>
 			<ul class="list-disc list-inside m-2">
-				<li>Built in <a
-					class="text-acc1 font-semibold hover:font-semibold hover:underline"
-					href="https://kit.svelte.dev/">SvelteKit</a
-				>
-			</li>
-				<li>Styled with <a
-					class="text-acc1 font-semibold hover:font-semibold hover:underline"
-					href="https://tailwindcss.com/">Tailwind CSS</a
-				></li>
-				<li>Hosted on <a
-					class="text-acc1 font-semibold hover:font-semibold hover:underline"
-					href="https://www.netlify.com/">Netlify</a
-				></li>
+				<li>
+					Built in <a
+						class="text-acc1 font-semibold hover:font-semibold hover:underline"
+						href="https://kit.svelte.dev/">SvelteKit</a
+					>
+				</li>
+				<li>
+					Styled with <a
+						class="text-acc1 font-semibold hover:font-semibold hover:underline"
+						href="https://tailwindcss.com/">Tailwind CSS</a
+					>
+				</li>
+				<li>
+					Hosted on <a
+						class="text-acc1 font-semibold hover:font-semibold hover:underline"
+						href="https://www.netlify.com/">Netlify</a
+					>
+				</li>
 			</ul>
 		</div>
 		<div class="flex justify-between border-b border-lightgray py-4 align-middle">
 			<p>Feedback</p>
 			<p>
 				<a
-				class="text-acc1 font-semibold hover:font-semibold hover:underline"
+					class="text-acc1 font-semibold hover:font-semibold hover:underline"
 					href="mailto:hello@playwordlol.com">hello@playwordlol.com</a
 				>
 			</p>
@@ -154,7 +164,11 @@ in:fade
 				>
 			</p>
 		</div>
-		<p class="text-sm text-left mt-4">League of Legends and Wordle are trademarked / registered trademarks of / otherwise owned by Riot Games and The New York Times, respectively. This game is not endorsed or affiliated with them in any way... it's just a hobby project about a game I love :)</p>
+		<p class="text-sm text-left mt-4">
+			League of Legends and Wordle are trademarked / registered trademarks of / otherwise owned by
+			Riot Games and The New York Times, respectively. This game is not endorsed or affiliated with
+			them in any way... it's just a hobby project about a game I love :)
+		</p>
 	</div>
 	<svg
 		id="scroll-down"

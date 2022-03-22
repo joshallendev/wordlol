@@ -129,7 +129,7 @@
 				(prev, curr) => prev.concat('', curr.content),
 				''
 			);
-	
+
 			if (guessedWord.length < $todaysWord.word.length) {
 				toast.push('Not enough letters', {
 					theme: {
@@ -138,7 +138,7 @@
 				});
 				return;
 			}
-	
+
 			// if not a valid word then they have to guess again
 			if (!validWords.includes(guessedWord) && !words.some((e) => e.word === guessedWord)) {
 				toast.push('Not a valid word', {
@@ -149,32 +149,36 @@
 				return;
 			}
 
-			// hard mode edits 
+			// hard mode edits
 			if ($themePref.hardmode === true && $game.revealedLetters.length > 0) {
 				let unusedLetter = 0;
 				for (let index = 0; index < $game.revealedLetters.length; index++) {
 					if (!guessedWord.includes($game.revealedLetters[index])) {
 						unusedLetter++;
 					}
-					
 				}
 				if (unusedLetter > 0) {
-					toast.push(`Hard Mode is enabled. You must use previously revealed letters: ${$game.revealedLetters.join(', ')}`, {
-						theme: {
-							'--toastBarBackground': '#D13639'
+					toast.push(
+						`Hard Mode is enabled. You must use previously revealed letters: ${$game.revealedLetters.join(
+							', '
+						)}`,
+						{
+							theme: {
+								'--toastBarBackground': '#D13639'
+							}
 						}
-					});
+					);
 					return;
 				}
 			}
-	
+
 			// track number of guesses for stats
 			$game.numGuesses++;
-	
+
 			let tempUserWord = guessedWord;
 			let tempTodaysWord = $todaysWord.word;
 			let letterCount = {};
-	
+
 			// check for duplicate letters
 			// for (let i = 0; i < tempUserWord.length; i++) {
 			// 	const ltrRegex = new RegExp()
@@ -182,7 +186,7 @@
 			// 		letterCount[tempUserWord[i]] += 1;
 			// 	}
 			// }
-	
+
 			// check for correct letters
 			for (let i = 0; i < tempUserWord.length; i++) {
 				if (tempUserWord[i] === tempTodaysWord[i]) {
@@ -193,7 +197,7 @@
 					tempTodaysWord = replaceAtIndex(tempTodaysWord, i, '@');
 				}
 			}
-	
+
 			// check for in-word letters
 			for (let i = 0; i < tempUserWord.length; i++) {
 				// if (tempTodaysWord.includes(tempUserWord[i])) {
@@ -205,7 +209,7 @@
 					tempTodaysWord = replaceAtIndex(tempTodaysWord, indx, '@');
 				}
 			}
-	
+
 			// check for in-word letters
 			for (let i = 0; i < tempUserWord.length; i++) {
 				if (tempUserWord[i] != '#') {
@@ -213,7 +217,7 @@
 					$game.wrongLetters = [...$game.wrongLetters, tempUserWord[i]];
 				}
 			}
-	
+
 			if (guessedWord === $todaysWord.word) {
 				$game.hasWon = true;
 			}
@@ -221,7 +225,7 @@
 				toast.push('A letter you guessed appears in the word more than once');
 			}
 			if (!$game.hasWon) {
-				$game.rows[$game.currentArray].status +=' wrong';
+				$game.rows[$game.currentArray].status += ' wrong';
 			}
 			// check if they guessed the word or reached the end of guesses
 			if ($game.hasWon || $game.currentArray === $game.rows.length - 1) {
@@ -251,7 +255,7 @@
 			shareText += `2 hints used\n`;
 		}
 		for (let i = 0; i < newStats.numGuesses; i++) {
-			if($game.rows[i].hints === 1) {
+			if ($game.rows[i].hints === 1) {
 				shareText += '✨ hint\n';
 			} else if ($game.rows[i].hints > 1) {
 				shareText += `✨ ${$game.rows[i].hints} hints\n`;
@@ -315,16 +319,15 @@
 		}
 	}
 	const appHeight = () => {
-		const doc = document.documentElement
-		doc.style.setProperty('--app-height', `${window.innerHeight}px`)
-	}
+		const doc = document.documentElement;
+		doc.style.setProperty('--app-height', `${window.innerHeight}px`);
+	};
 	onMount(() => {
 		const app = new SvelteToast({
 			// Set where the toast container should be appended into
 			target: document.body
 		});
 		appHeight();
-
 	});
 </script>
 
@@ -332,19 +335,21 @@
 	<title>WORDLOL - A League of Legends Word Game</title>
 </svelte:head>
 
-<svelte:window on:keydown={handleKeyboardInput} on:resize={appHeight}/>
+<svelte:window on:keydown={handleKeyboardInput} on:resize={appHeight} />
 {#if $game.hasWon}
 	<Particles particlesUrl=".//particles/fireworks.json" />
 {/if}
 <main class="transition-all select-none {$themePref.darkmode === true ? 'dark h-full' : 'h-full'}">
-	<div class="flex flex-col h-full bg-background dark:text-white justify-between overflow-x-hidden font-barlow text-xl">
+	<div
+		class="flex flex-col h-full bg-background dark:text-white justify-between overflow-x-hidden font-barlow text-xl"
+	>
 		<Header />
 		<Gameboard />
 		{#if $game.gameOver === true && showModal}
 			<GameOverModal bind:showModal {newStats} {handleShare} />
 		{/if}
 		{#if $showStats === true}
-			<StatsModal {newStats}/>
+			<StatsModal {newStats} />
 		{/if}
 		{#if $showInfo === true}
 			<InfoModal />

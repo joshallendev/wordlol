@@ -1,8 +1,5 @@
 <script lang="ts">
-	import {
-		game,
-		themePref
-	} from '../stores/gameStore';
+	import { game } from '../stores/gameStore';
 	import { fade, scale } from 'svelte/transition';
 
 	const letterStyles: string =
@@ -17,7 +14,7 @@
 		} else if (checkForIncludes($game.wrongLocations, loc)) {
 			classes = letterStyles + ' bg-acc3';
 		} else {
-			classes = letterStyles + ' bg-acc4 text-black dark:text-whiteadsfa';
+			classes = letterStyles + ' bg-acc4 text-black dark:text-white';
 		}
 		return classes;
 	};
@@ -31,9 +28,7 @@
 	<div transition:fade>
 		{#each $game.rows as row, i}
 			<div
-				class="{row.status.includes('wrong') && !$game.gameOver
-					? 'board-row-wrong '
-					: ''}
+				class="{row.status.includes('wrong') && !$game.gameOver ? 'board-row-wrong ' : ''}
 					flex flex-row justify-center my-2"
 			>
 				{#each row.letters as item, j}
@@ -64,13 +59,13 @@
 		border-radius: 3%;
 	}
 
-	@keyframes flip{
-	from{
-		transform: rotateX(0deg);
-	}
-	to{
-		transform: rotateX(360deg);
-	}
+	@keyframes flip {
+		from {
+			transform: rotateX(0deg);
+		}
+		to {
+			transform: rotateX(360deg);
+		}
 	}
 
 	@keyframes shake-horizontal {

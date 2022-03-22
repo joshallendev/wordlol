@@ -1,15 +1,11 @@
 <script lang="ts">
-	import {
-		showStats,
-		game,
-		showInfo,
-		showHint,
-		showSettings,
-	} from '../stores/gameStore';
-	import { fade, scale } from 'svelte/transition';
+	import { showStats, game, showInfo, showHint, showSettings } from '../stores/gameStore';
+	import { scale } from 'svelte/transition';
 </script>
 
-<header class="bg-background text-black border-b dark:text-white med:mb-10  py-3 flex justify-between">
+<header
+	class="bg-background text-black border-b dark:text-white med:mb-10  py-3 flex justify-between"
+>
 	<div class="flex-row justify-start">
 		<p class="px-5 font-semibold text-left hover:text-acc1"><a href="/">WORDLOL</a></p>
 	</div>
@@ -44,7 +40,12 @@
 			>
 		</button>
 
-		<button type="button" class="ml-2" aria-label="statistics" on:click={() => ($showStats = !$showStats)}>
+		<button
+			type="button"
+			class="ml-2"
+			aria-label="statistics"
+			on:click={() => ($showStats = !$showStats)}
+		>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				aria-hidden="true"
@@ -66,7 +67,12 @@
 			>
 		</button>
 
-		<button type="button" class="ml-2" aria-label="settings" on:click={() => ($showSettings = !$showSettings)}>
+		<button
+			type="button"
+			class="ml-2"
+			aria-label="settings"
+			on:click={() => ($showSettings = !$showSettings)}
+		>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				aria-hidden="true"

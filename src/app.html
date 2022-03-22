@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="description" content="A League of Legends themed word game inspired by Wordle." />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
 		<link rel="icon" href="%svelte.assets%/favicon.ico" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -16,7 +16,6 @@
 </html>
 <script>
 	const savedThemes = JSON.parse(window.localStorage.getItem('wordlol-theme'));
-	console.log(savedThemes);
 	let background = '#FFF';
 	let acc1 = '#39CCB1';
 	let acc2 = '#B59A27';
@@ -26,8 +25,10 @@
 	// first time visitor and no saved themes
 	// OR has saved dark mode preference
 	// sys setting prefers dark
-	if ((!savedThemes && window.matchMedia('(prefers-color-scheme: dark)').matches) || 
-		savedThemes?.darkmode === true) {
+	if (
+		(!savedThemes && window.matchMedia('(prefers-color-scheme: dark)').matches) ||
+		savedThemes?.darkmode === true
+	) {
 		if (savedThemes?.contrast === true) {
 			background = '#000000';
 			acc1 = '#00856d';
@@ -37,16 +38,14 @@
 			background = '#1F2937';
 			acc4 = '#4B5563';
 		}
-	// user has chosen light mode 
-	}  else {
-		if (savedThemes?.contrast === true) { 
+		// user has chosen light mode
+	} else {
+		if (savedThemes?.contrast === true) {
 			acc1 = '#00856d';
 			acc2 = '#8c7500';
 		}
 		document.documentElement.classList.remove('dark');
 	}
-
-	
 
 	// set global css variables for theming
 	document.documentElement.style.setProperty('--app-background', background);

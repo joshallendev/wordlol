@@ -8,11 +8,10 @@ body {
 	height: 100%;
 	height: -moz-available;
 	height: -webkit-fill-available;
-	height: stretch; 
-    height: var(--app-height);
+	height: stretch;
+	height: var(--app-height);
 	touch-action: manipulation;
 }
-
 
 * {
 	transition: background-color 0.5s linear;

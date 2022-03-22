@@ -8,10 +8,10 @@ module.exports = {
 			},
 			colors: {
 				acc1: 'var(--app-acc1)',
-				acc2: 'var(--app-acc2)', 
-				acc3: 'var(--app-acc3)', 
+				acc2: 'var(--app-acc2)',
+				acc3: 'var(--app-acc3)',
 				acc4: 'var(--app-acc4)',
-				background: 'var(--app-background)', 
+				background: 'var(--app-background)'
 			}
 		}
 	},
