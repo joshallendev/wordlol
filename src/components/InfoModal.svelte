@@ -60,7 +60,7 @@
 		</div>
 		<section id="instructions" class="text-left">
 			<p class="py-2">
-				Guess the League of Legends related <strong>WORDLOL</strong> in 6 tries or less.
+				Guess the League of Legends related <strong>WORD<span class="text-acc1">LOL</span></strong> in 6 tries or less.
 			</p>
 			<p class="py-2">
 				Words may include champion names, game terms, item names, etc. Words currently won't exceed
@@ -107,14 +107,14 @@
 			<p class="py-1"><strong>T</strong> is not in the word at all.</p>
 		</section>
 		<div class="mt-2 border-t border-lightgray text-left">
-			<p class="text-l font-semibold py-4">ABOUT WORDLOL</p>
-			<p class="py-1">WORDLOL is a League of Legends themed clone of the original Wordle game.</p>
-			<a
-				class="text-acc1 font-semibold hover:font-semibold hover:underline"
-				href="https://www.nytimes.com/games/wordle/index.html"
-				>Play the original Wordle.
-			</a>
-
+			<p class="text-l font-semibold py-4">ABOUT WORD<span class="text-acc1">LOL</span></p>
+			<p class="py-1">WORDLOL is a League of Legends themed clone of 
+				<a
+					class="text-acc1 font-semibold hover:font-semibold hover:underline"
+					href="https://www.nytimes.com/games/wordle/index.html"
+					>the original Wordle game.
+				</a>
+			</p>
 			<p class="py-1">Tech details:</p>
 			<ul class="list-disc list-inside m-2">
 				<li>
