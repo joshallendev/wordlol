@@ -36,9 +36,6 @@ import Stats from './Stats.svelte';
 			>close
 		</button>
 		<h3 class="text-4xl font-medium mb-3">{$game.hasWon ? '🤩' : '🙁'}</h3>
-		<h3 class="text-2xl font-medium">
-			{$game.hasWon ? 'Well done!' : 'Better luck next time.'}
-		</h3>
 		{#if !$game.hasWon}
 			<p>Today's word was <strong>{$todaysWord.word}</strong></p>
 		{/if}

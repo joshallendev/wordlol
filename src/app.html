@@ -28,20 +28,21 @@
 	// sys setting prefers dark
 	if ((!savedThemes && window.matchMedia('(prefers-color-scheme: dark)').matches) || 
 		savedThemes?.darkmode === true) {
-
 		if (savedThemes?.contrast === true) {
 			background = '#000000';
 			acc1 = '#00856d';
 			acc2 = '#8c7500';
+			acc4 = '#4B5563';
 		} else {
 			background = '#1F2937';
 			acc4 = '#4B5563';
 		}
-	// user has chosen dark mode 
-	} else if (savedThemes?.darkmode === true) {
-		background = '#1F2937';
-		acc4 = '#4B5563';
-	} else {
+	// user has chosen light mode 
+	}  else {
+		if (savedThemes?.contrast === true) { 
+			acc1 = '#00856d';
+			acc2 = '#8c7500';
+		}
 		document.documentElement.classList.remove('dark');
 	}
 

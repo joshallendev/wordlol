@@ -17,7 +17,7 @@
 		} else if (checkForIncludes($game.wrongLocations, loc)) {
 			classes = letterStyles + ' bg-acc3';
 		} else {
-			classes = letterStyles + ' bg-acc4 text-black';
+			classes = letterStyles + ' bg-acc4 text-black dark:text-white';
 		}
 		return classes;
 	};
