@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { maxGuesses } from '../stores/gameStore';
+	import { loop_guard } from 'svelte/internal';
+import { maxGuesses, game, today } from '../stores/gameStore';
 	export let stats;
 	const values: Array<number> = Object.values(stats.guessCounts);
 	let guessEntries = Object.entries(stats.guessCounts);
@@ -7,6 +8,7 @@
 		return a[0] - b[0];
 	});
 	const highestGuessCount = Math.max(...values);
+	const todaysGuessCount = $game.currentArray + 1;
 
 	function fillMissingValues(arr) {
 		for (let index = 1; index <= maxGuesses; index++) {
@@ -36,9 +38,10 @@
 					<div class="px-2 text-sm w-6">{guessEntry[0]}</div>
 					<div
 						style:width={calculateGraphBarWidth(guessEntry[1])}
-						class="{guessEntry[1] === highestGuessCount
+						class="{guessEntry[0] == todaysGuessCount
 							? 'bg-acc1'
-							: 'bg-acc4'} text-white rounded-xl"
+							: 'bg-acc3'} text-white rounded-xl"
+							
 					>
 						{guessEntry[1]}
 					</div>

@@ -5,7 +5,7 @@ const words = [
 	{
 		word: 'KAISA',
 		type: 'champion',
-		clue: ['from the void']
+		clue: ['daughter of the void']
 	},
 	{
 		word: 'INHIB',
@@ -15,22 +15,22 @@ const words = [
 	{
 		word: 'LILLIA',
 		type: 'champion',
-		clue: ['oh deer']
+		clue: ['the bashful bloom']
 	},
 	{
 		word: 'XAYAH',
 		type: 'champion',
-		clue: ['one part of a power couple']
+		clue: ['the rebel']
 	},
 	{
 		word: 'JARVAN',
 		type: 'champion',
-		clue: ['flag on the field']
+		clue: ['the exemplar of demacia']
 	},
 	{
 		word: 'TARIC',
 		type: 'champion',
-		clue: ['dazzling starlight']
+		clue: ['the shield of valoran']
 	},
 	{
 		word: 'LETHAL',
@@ -50,7 +50,7 @@ const words = [
 	{
 		word: 'ELISE',
 		type: 'champion',
-		clue: ['arachnophobia, anyone?']
+		clue: ['the spider queen']
 	},
 	{
 		word: 'SHEEN',
@@ -70,17 +70,17 @@ const words = [
 	{
 		word: 'NEEKO',
 		type: 'champion',
-		clue: ['shapeshifter']
+		clue: ['the curious chameleon']
 	},
 	{
 		word: 'BRAND',
 		type: 'champion',
-		clue: ['burning vengeance']
+		clue: ['the burning vengeance']
 	},
 	{
 		word: 'GWEN',
 		type: 'champion',
-		clue: ["don't run with scissors"]
+		clue: ["the hallowed seamstress"]
 	},
 	{
 		word: 'PYKE',
@@ -90,7 +90,7 @@ const words = [
 	{
 		word: 'XERATH',
 		type: 'champion',
-		clue: ['artillery mage']
+		clue: ['the magus ascendant']
 	},
 	{
 		word: 'MINION',
@@ -105,17 +105,17 @@ const words = [
 	{
 		word: 'KENCH',
 		type: 'champion',
-		clue: ["he'll give you a tongue lashing"]
+		clue: ["the river king"]
 	},
 	{
 		word: 'GRAVES',
 		type: 'champion',
-		clue: ['double barrel']
+		clue: ['the outlaw']
 	},
 	{
 		word: 'ESPORT',
 		type: 'league term',
-		clue: ["I'm not a regular sport, I'm an ______"]
+		clue: ["not a regular sport, but an ______"]
 	},
 	{
 		word: 'SAMIRA',
@@ -130,7 +130,7 @@ const words = [
 	{
 		word: 'NASUS',
 		type: 'champion',
-		clue: ["beware his Q's"]
+		clue: ["the curator of the sands"]
 	},
 	{
 		word: 'TARGON',
@@ -145,7 +145,7 @@ const words = [
 	{
 		word: 'WUKONG',
 		type: 'champion',
-		clue: ["now you see him, now you don't"]
+		clue: ["the monkey king"]
 	},
 	{
 		word: 'TALON',
@@ -155,12 +155,12 @@ const words = [
 	{
 		word: 'VEIGAR',
 		type: 'champion',
-		clue: ['evil little yordle']
+		clue: ['the tiny master of evil']
 	},
 	{
 		word: 'ZERI',
 		type: 'champion',
-		clue: ['hails from Zaun']
+		clue: ['the spark of zaun']
 	},
 	{
 		word: 'ORNN',
@@ -175,7 +175,7 @@ const words = [
 	{
 		word: 'JHIN',
 		type: 'champion',
-		clue: ['# # # #']
+		clue: ['the virtuoso']
 	},
 	{
 		word: 'WARD',
@@ -185,12 +185,12 @@ const words = [
 	{
 		word: 'MUNDO',
 		type: 'champion',
-		clue: ['probably not in your insurance network']
+		clue: ['the madman of zaun']
 	},
 	{
 		word: 'BRAUM',
 		type: 'champion',
-		clue: ['massive biceps and an even bigger heart']
+		clue: ['the heart of the freljord']
 	},
 	{
 		word: 'NOXUS',
@@ -205,12 +205,12 @@ const words = [
 	{
 		word: 'BANDLE',
 		type: 'lore location',
-		clue: ['they speak yordle here']
+		clue: ['the fabled home of the yordles']
 	},
 	{
 		word: 'KAYLE',
 		type: 'champion',
-		clue: ['scale to win']
+		clue: ['the righteous']
 	},
 	{
 		word: 'LUCIAN',
@@ -220,7 +220,7 @@ const words = [
 	{
 		word: 'RAKAN',
 		type: 'champion',
-		clue: ['one part of a power couple']
+		clue: ['the charmer']
 	},
 	{
 		word: 'KAYN',
@@ -235,12 +235,12 @@ const words = [
 	{
 		word: 'RAMMUS',
 		type: 'champion',
-		clue: ['ok']
+		clue: ['the armordillo']
 	},
 	{
 		word: 'FIZZ',
 		type: 'champion',
-		clue: ['amphibious yordle']
+		clue: ['the tidal trickster']
 	},
 	{
 		word: 'SONA',
@@ -250,7 +250,7 @@ const words = [
 	{
 		word: 'RANKED',
 		type: 'game term',
-		clue: ['not just for fun']
+		clue: ['not playing just for fun']
 	},
 	{
 		word: 'UDYR',
@@ -260,7 +260,7 @@ const words = [
 	{
 		word: 'GRAGAS',
 		type: 'champion',
-		clue: ['rowdy brewmaster']
+		clue: ['the rabble rouser']
 	},
 	{
 		word: 'MID',
@@ -270,12 +270,12 @@ const words = [
 	{
 		word: 'YASUO',
 		type: 'champion',
-		clue: ['anybody got a knock-up? anybody?']
+		clue: ['the unforgiven']
 	},
 	{
 		word: 'TURRET',
 		type: 'game term',
-		clue: ['might keep you safe']
+		clue: ['each team has 11']
 	},
 	{
 		word: 'IGNITE',
@@ -290,12 +290,12 @@ const words = [
 	{
 		word: 'RENGAR',
 		type: 'champion',
-		clue: ['what a pretty kitty']
+		clue: ['the pridestalker']
 	},
 	{
 		word: 'SERAPH',
 		type: 'game item',
-		clue: ['let it embrace you']
+		clue: ["______'s embrace"]
 	},
 	{
 		word: 'SORAKA',
@@ -340,7 +340,7 @@ const words = [
 	{
 		word: 'JINX',
 		type: 'champion',
-		clue: ['powder']
+		clue: ['the loose canon']
 	},
 	{
 		word: 'POTION',
@@ -520,17 +520,17 @@ const words = [
 	{
 		word: 'DRAVEN',
 		type: 'champion',
-		clue: ['welcome to the league of ______']
+		clue: ['the glorious executioner']
 	},
 	{
 		word: 'ARDENT',
 		type: 'game item',
-		clue: ['just here for support']
+		clue: ['enthusiastic or passionate']
 	},
 	{
 		word: 'KENNEN',
 		type: 'champion',
-		clue: ['lightning-quick']
+		clue: ['the heart of the tempest']
 	},
 	{
 		word: 'RYLAI',
@@ -570,17 +570,17 @@ const words = [
 	{
 		word: 'SIVIR',
 		type: 'champion',
-		clue: ['the battle mistriss']
+		clue: ['the battle mistress']
 	},
 	{
 		word: 'JAX',
 		type: 'champion',
-		clue: ['imagine if he had a real weapon']
+		clue: ['grandmaster at arms']
 	},
 	{
 		word: 'RYZE',
 		type: 'champion',
-		clue: ['one of the most adept sorcerers on Runeterra']
+		clue: ['the rune mage']
 	},
 	{
 		word: 'AKALI',
@@ -650,12 +650,12 @@ const words = [
 	{
 		word: 'ZOE',
 		type: 'champion',
-		clue: ['do you feel sleepy?']
+		clue: ['the aspect of twilight']
 	},
 	{
 		word: 'TAHM',
 		type: 'champion',
-		clue: ["he'll give you a tongue lashing"]
+		clue: ['the river king']
 	},
 	{
 		word: 'NUNU',
@@ -710,7 +710,7 @@ const words = [
 	{
 		word: 'GNAR',
 		type: 'champion',
-		clue: ['boomerang throw']
+		clue: ['the missing link']
 	},
 	{
 		word: 'YUUMI',
@@ -745,7 +745,7 @@ const words = [
 	{
 		word: 'ZHONYA',
 		type: 'game item',
-		clue: ['go for the gold']
+		clue: ['golden']
 	},
 	{
 		word: 'FIORA',
@@ -785,7 +785,7 @@ const words = [
 	{
 		word: 'WARMOG',
 		type: 'game item',
-		clue: ['crazy health regeneration']
+		clue: ['health regeneration']
 	},
 	{
 		word: 'ZIGGS',
@@ -850,7 +850,7 @@ const words = [
 	{
 		word: 'GAREN',
 		type: 'champion',
-		clue: ['not a fan of magic']
+		clue: ['the might of demacia']
 	},
 	{
 		word: 'MAOKAI',
@@ -877,7 +877,7 @@ const words = [
 const today = new Date().toDateString();
 
 function pickWord() {
-	let dateDiff = Date.parse(today) - Date.parse('Sat Jan 01 2022');
+	let dateDiff = Date.parse(today) - Date.parse('Tue Mar 01 2022');
 	// convert to whole days
 	dateDiff = Math.round(dateDiff / (1000 * 3600 * 24));
 	while (dateDiff >= words.length) {
