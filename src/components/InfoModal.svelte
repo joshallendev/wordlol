@@ -31,7 +31,7 @@ in:fade
 		id="info-modal"
 		on:click|stopPropagation
 		on:scroll={handleScroll}
-		class="flex flex-col text-center bg-white dark:bg-gray-800 dark:text-white w-5/6 md:w-1/2 pt-2 pb-5 px-4 rounded mt-20 h-3/4 overflow-y-auto"
+		class="flex flex-col text-center bg-background dark:text-white w-5/6 md:w-1/2 pt-2 pb-5 px-4 rounded mt-20 h-3/4 overflow-y-auto"
 	>
 		<div class="flex flex-row mb-4">
 			<h3 class="text-lg font-semibold">HOW TO PLAY</h3>
@@ -77,14 +77,14 @@ in:fade
 				<div class="{letterStyles} bg-[#f2f2f2] border-darkgray border text-black">U</div>
 				<div class="{letterStyles} bg-[#f2f2f2] border-darkgray border text-black">D</div>
 				<div class="{letterStyles} bg-[#f2f2f2] border-darkgray border text-black">E</div>
-				<div class="{letterStyles} bg-correct text-white">N</div>
+				<div class="{letterStyles} bg-acc1 text-white">N</div>
 			</div>
 			<p class="py-1"><strong>N</strong> is in the correct position.</p>
 
 			<div class="flex flex-row justify-left my-2">
 				<div class="{letterStyles} bg-[#f2f2f2] border-darkgray border text-black">P</div>
 				<div class="{letterStyles} bg-[#f2f2f2] border-darkgray border text-black">E</div>
-				<div class="{letterStyles} bg-squash text-white">N</div>
+				<div class="{letterStyles} bg-acc2 text-white">N</div>
 				<div class="{letterStyles} bg-[#f2f2f2] border-darkgray border text-black">T</div>
 				<div class="{letterStyles} bg-[#f2f2f2] border-darkgray border text-black">A</div>
 			</div>
@@ -92,7 +92,7 @@ in:fade
 			<p class="py-1"><strong>N</strong> is in the word but in the wrong location.</p>
 
 			<div class="flex flex-row justify-left my-2">
-				<div class="{letterStyles} bg-darkgray text-white">T</div>
+				<div class="{letterStyles} bg-acc3 text-white">T</div>
 				<div class="{letterStyles} bg-[#f2f2f2] border-darkgray border text-black">E</div>
 				<div class="{letterStyles} bg-[#f2f2f2] border-darkgray border text-black">E</div>
 				<div class="{letterStyles} bg-[#f2f2f2] border-darkgray border text-black">M</div>
@@ -105,7 +105,7 @@ in:fade
 			<p class="text-l font-semibold py-4">ABOUT WORDLOL</p>
 			<p class="py-1">WORDLOL is a League of Legends themed clone of the original Wordle game. 
 				<a
-					class="text-actionred hover:font-semibold hover:underline"
+					class="text-acc1 font-semibold hover:font-semibold hover:underline"
 					href="https://www.nytimes.com/games/wordle/index.html">Play the original Wordle.</a
 				></p>
 				
@@ -113,26 +113,27 @@ in:fade
 			<p class="py-1">Techie details:</p>
 			<ul class="list-disc list-inside m-2">
 				<li>Built in <a
-					class="text-actionred hover:font-semibold hover:underline"
+					class="text-acc1 font-semibold hover:font-semibold hover:underline"
 					href="https://kit.svelte.dev/">SvelteKit</a
 				>
 			</li>
 				<li>Styled with <a
-					class="text-actionred hover:font-semibold hover:underline"
+					class="text-acc1 font-semibold hover:font-semibold hover:underline"
 					href="https://tailwindcss.com/">Tailwind CSS</a
 				></li>
 				<li>Hosted on <a
-					class="text-actionred hover:font-semibold hover:underline"
+					class="text-acc1 font-semibold hover:font-semibold hover:underline"
 					href="https://www.netlify.com/">Netlify</a
 				></li>
 			</ul>
 			<p>
 				<a
-					class="text-actionred hover:font-semibold hover:underline"
+					class="text-acc1 font-semibold hover:font-semibold hover:underline"
 					href="https://github.com/joshallendev/wordlol">View the Github Repo</a
 				>
 			</p>
 		</div>
+		<p class="text-sm text-left mt-4">League of Legends and Wordle are trademarked / registered trademarks of / otherwise owned by Riot Games and The New York Times, respectively. This game is not endorsed or affiliated with them in any way... it's just a hobby project about a game I love :)</p>
 	</div>
 	<svg
 		id="scroll-down"

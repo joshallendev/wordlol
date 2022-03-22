@@ -40,7 +40,7 @@
 	in:scale
 	out:scale
 		on:click|stopPropagation
-		class="flex flex-col text-center bg-white dark:bg-gray-800 w-3/4 md:w-1/2 pt-2 pb-6 px-4 rounded mt-20 overflow-y-auto"
+		class="flex flex-col text-center bg-background w-3/4 md:w-1/2 pt-2 pb-6 px-4 rounded mt-20 overflow-y-auto"
 	>
 		<div class="flex flex-row mb-4">
 			<h3 class="text-lg font-semibold">NEED A HINT?</h3>
@@ -76,7 +76,7 @@
 					✨ show me the hint! ✨
 				</button>
 			{:else}
-				<span bind:this={hintSpan} class="mb-4 border-b-2 border-correct">hint: {type}</span>
+				<span bind:this={hintSpan} class="mb-4 border-b-2 border-acc1">hint: {type}</span>
 			{/if}
 		</section>
 		<section class="flex flex-col items-center">
@@ -89,7 +89,7 @@
 					✨ i'm stuck.. show me another hint! ✨
 				</button>
 			{:else if $revealType && $revealClue}
-				<span bind:this={clueSpan} class="border-b-2 border-correct">hint: {clue}</span>
+				<span bind:this={clueSpan} class="border-b-2 border-acc1">hint: {clue}</span>
 			{/if}
 		</section>
 	</div>

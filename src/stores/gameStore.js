@@ -1,5 +1,6 @@
 import { derived, readable, writable } from 'svelte/store';
 import { browser } from '$app/env';
+import { drawLinkLine } from 'tsparticles';
 
 const words = [
 	{

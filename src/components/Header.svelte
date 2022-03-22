@@ -9,9 +9,9 @@
 	import { fade, scale } from 'svelte/transition';
 </script>
 
-<header class="bg-white text-black border-b dark:bg-gray-800 dark:text-white med:mb-10  py-3 flex justify-between">
+<header class="bg-background text-black border-b dark:text-white med:mb-10  py-3 flex justify-between">
 	<div class="flex-row justify-start">
-		<p class="px-5 font-semibold text-left hover:text-actionred"><a href="/">WORDLOL</a></p>
+		<p class="px-5 font-semibold text-left hover:text-acc1"><a href="/">WORDLOL</a></p>
 	</div>
 	{#if !$game.gameOver && $game.currentArray > 2}
 		<div in:scale out:scale>

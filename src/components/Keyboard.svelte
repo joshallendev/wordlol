@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
 
-	import { game } from '../stores/gameStore';
+	import { game, themePref } from '../stores/gameStore';
 
 	const letterArrays: Array<Array<string>> = [
 		['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
@@ -36,16 +36,18 @@
 		dispatch('checkguess');
 	}
 
+	$: textColor = $themePref.contrast === true ? 'text-white' : '';
+	$: textColor2 = $themePref.contrast === true && $themePref.darkmode === true ? 'text-white' : '';
 	$: setLetterStyles = (letter) => {
 		let classes: string = '';
 		if ($game.correctLetters.includes(letter)) {
-			classes = letterStyles + ' text-black bg-correct';
+			classes = letterStyles + ' bg-acc1 ' + textColor;
 		} else if ($game.inWordLetters.includes(letter)) {
-			classes = letterStyles + ' bg-squash text-white';
+			classes = letterStyles + ' bg-acc2 ' + textColor;
 		} else if ($game.wrongLetters.includes(letter)) {
-			classes = letterStyles + ' text-black bg-darkgray';
+			classes = letterStyles + ' bg-acc3 ' + textColor;
 		} else {
-			classes = letterStyles + ' text-black bg-lightgray dark:bg-gray-600 dark:text-white';
+			classes = letterStyles + ' bg-acc4 ' + textColor2;
 		}
 		return classes;
 	};

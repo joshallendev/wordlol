@@ -337,7 +337,7 @@
 	<Particles particlesUrl=".//particles/fireworks.json" />
 {/if}
 <main class="transition-all select-none {$themePref.darkmode === true ? 'dark h-full' : 'h-full'}">
-	<div class="flex flex-col h-full bg-white dark:bg-gray-800 dark:text-white justify-between overflow-x-hidden font-barlow text-xl">
+	<div class="flex flex-col h-full bg-background dark:text-white justify-between overflow-x-hidden font-barlow text-xl">
 		<Header />
 		<Gameboard />
 		{#if $game.gameOver === true && showModal}

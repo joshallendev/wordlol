@@ -1,6 +1,7 @@
 <script lang="ts">
 	import {
 		game,
+		themePref
 	} from '../stores/gameStore';
 	import { fade, scale } from 'svelte/transition';
 
@@ -10,13 +11,13 @@
 	$: setLetterStyles = (loc) => {
 		let classes: string = '';
 		if (checkForIncludes($game.correctLocations, loc)) {
-			classes = letterStyles + ' bg-correct text-white';
+			classes = letterStyles + ' bg-acc1';
 		} else if (checkForIncludes($game.inWordLocations, loc)) {
-			classes = letterStyles + ' bg-squash text-white';
+			classes = letterStyles + ' bg-acc2';
 		} else if (checkForIncludes($game.wrongLocations, loc)) {
-			classes = letterStyles + ' bg-darkgray text-white';
+			classes = letterStyles + ' bg-acc3';
 		} else {
-			classes = letterStyles + ' bg-[#f2f2f2]  dark:bg-gray-500';
+			classes = letterStyles + ' bg-acc4 text-black';
 		}
 		return classes;
 	};
@@ -26,7 +27,7 @@
 	}
 </script>
 
-<div class="flex flex-col items-center pointer-events-none">
+<div class="flex flex-col items-center pointer-events-none text-white">
 	<div transition:fade>
 		{#each $game.rows as row, i}
 			<div

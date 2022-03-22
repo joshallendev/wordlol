@@ -2,8 +2,7 @@
 <html lang="en" class="dark">
 	<head>
 		<meta charset="utf-8" />
-		<meta name="robots" content="noindex nofollow" />
-		<meta name="description" content="A League of Legends flavored word game inspired by Wordle." />
+		<meta name="description" content="A League of Legends themed word game inspired by Wordle." />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 		<link rel="icon" href="%svelte.assets%/favicon.ico" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -17,16 +16,44 @@
 </html>
 <script>
 	const savedThemes = JSON.parse(window.localStorage.getItem('wordlol-theme'));
-	let background = '';
-	if (savedThemes?.darkmode === false) {
-		background = '#fff';
-		document.documentElement.classList.remove('dark');
+	console.log(savedThemes);
+	let background = '#FFF';
+	let acc1 = '#39CCB1';
+	let acc2 = '#B59A27';
+	let acc3 = '#9C9C9C';
+	let acc4 = '#E0E0E0';
+
+	// first time visitor and no saved themes
+	// OR has saved dark mode preference
+	// sys setting prefers dark
+	if ((!savedThemes && window.matchMedia('(prefers-color-scheme: dark)').matches) || 
+		savedThemes?.darkmode === true) {
+
+		if (savedThemes?.contrast === true) {
+			background = '#000000';
+			acc1 = '#00856d';
+			acc2 = '#8c7500';
+		} else {
+			background = '#1F2937';
+			acc4 = '#4B5563';
+		}
+	// user has chosen dark mode 
 	} else if (savedThemes?.darkmode === true) {
-		background = '#1f2937';
-	} else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-		background = '#1f2937';
+		background = '#1F2937';
+		acc4 = '#4B5563';
+	} else {
+		document.documentElement.classList.remove('dark');
 	}
+
+	
+
+	// set global css variables for theming
 	document.documentElement.style.setProperty('--app-background', background);
+	document.documentElement.style.setProperty('--app-acc1', acc1);
+	document.documentElement.style.setProperty('--app-acc2', acc2);
+	document.documentElement.style.setProperty('--app-acc3', acc3);
+	document.documentElement.style.setProperty('--app-acc4', acc4);
+
 	window.addEventListener('DOMContentLoaded', function () {
 		document.body.style.visibility = 'visible';
 		document.body.style.opacity = '1';

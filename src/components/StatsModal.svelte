@@ -16,7 +16,7 @@ export let newStats;
 		in:scale
 		out:scale
 		on:click|stopPropagation
-		class="flex flex-col text-center bg-white dark:bg-gray-800 dark:text-white w-3/4 md:w-1/2 pt-2 pb-6 px-4 rounded mt-20"
+		class="flex flex-col text-center bg-background dark:text-white w-3/4 md:w-1/2 pt-2 pb-6 px-4 rounded mt-20"
 	>
 		<div class="flex flex-row">
 			<h3 class="text-lg font-semibold">STATISTICS</h3>

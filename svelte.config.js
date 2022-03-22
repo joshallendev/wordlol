@@ -17,7 +17,13 @@ const config = {
 					$components: path.resolve('./components/')
 				}
 			}
-		}
+		},
+		prerender: {
+			crawl: true,
+			enabled: true,
+			onError: 'continue',
+			entries: ['*'],
+		},
 	}
 };
 

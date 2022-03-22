@@ -5,15 +5,55 @@
 	function handleSettingsChange(e: any) {
 		const name = e.target.name;
 		const value = e.target.checked;
-		if (name === 'darkmode') {
-			if (value) {
-				document.documentElement.classList.add('dark');
-			} else {
-				document.documentElement.classList.remove('dark');
-			}
-		}
 		$themePref[name] = value;
 		window.localStorage.setItem('wordlol-theme', JSON.stringify($themePref));
+
+		// dark high contrast
+		if ($themePref.darkmode === true && $themePref.contrast === true) {
+			document.documentElement.style.setProperty('--app-background', '#000000');
+			document.documentElement.style.setProperty('--app-acc1', '#00856d');
+			document.documentElement.style.setProperty('--app-acc2', '#8c7500');
+			document.documentElement.style.setProperty('--app-acc4', '#4B5563');
+
+		// light high contrast 
+		} else if ($themePref.contrast === true) {
+			document.documentElement.classList.remove('dark');
+			document.documentElement.style.setProperty('--app-background', '#FFF');
+			document.documentElement.style.setProperty('--app-acc1', '#00856d');
+			document.documentElement.style.setProperty('--app-acc2', '#8c7500');
+			document.documentElement.style.setProperty('--app-acc4', '#E0E0E0');
+		// just dark mode
+		} else if ($themePref.darkmode === true) {
+			document.documentElement.classList.add('dark');
+			document.documentElement.style.setProperty('--app-background', '#1F2937');
+			document.documentElement.style.setProperty('--app-acc1', '#39CCB1');
+			document.documentElement.style.setProperty('--app-acc2', '#B59A27');
+			document.documentElement.style.setProperty('--app-acc4', '#4B5563');
+		// just light mode
+		} else {
+			document.documentElement.classList.remove('dark');
+			document.documentElement.style.setProperty('--app-background', '#FFF');
+			document.documentElement.style.setProperty('--app-acc1', '#39CCB1');
+			document.documentElement.style.setProperty('--app-acc2', '#B59A27');
+			document.documentElement.style.setProperty('--app-acc4', '#E0E0E0');
+		}
+
+
+
+
+		if (name === 'darkmode') {
+			if (value) {
+			} else {
+			}
+		}
+
+		if (name === 'contrast') {
+			if (value && $themePref.darkmode === true) {
+
+			} else {
+
+			}
+		}
 		console.log(e.target.name);
  	}
 </script>
@@ -28,11 +68,11 @@
 		in:scale
 		out:scale
 		on:click|stopPropagation
-		class="flex flex-col text-center bg-white dark:bg-gray-800 dark:text-white w-5/6 md:w-1/2 pt-2 pb-6 px-4 rounded mt-20"
+		class="flex flex-col text-center bg-background dark:text-white w-5/6 md:w-1/2 pt-2 pb-6 px-4 rounded mt-20"
 	>
 		<div class="flex flex-row mb-4">
 			<h3 class="text-lg font-semibold">SETTINGS</h3>
-			<button class="ml-auto align-middle hover:text-actionred" on:click={() => ($showSettings = !$showSettings)}>
+			<button class="ml-auto align-middle hover:text-acc1" on:click={() => ($showSettings = !$showSettings)}>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					aria-hidden="true"
@@ -56,7 +96,7 @@
 			<div class="form-check form-switch flex justify-end">
 				<label class="relative flex justify-between items-center group p-2 text-xl">
 					<input on:change={handleSettingsChange} bind:checked={$themePref.darkmode} type="checkbox" name="darkmode" class="absolute left-1/2 -translate-x-1/2 w-full h-full peer appearance-none rounded-md" />
-					<span class="w-10 h-5 flex items-center flex-shrink-0 ml-4 bg-gray-300 rounded-full duration-300 ease-in-out peer-checked:bg-correct after:w-4 after:h-4 after:bg-white after:rounded-full after:shadow-md after:duration-300 peer-checked:after:translate-x-5 group-hover:after:translate-x-1"></span>
+					<span class="w-10 h-5 flex items-center flex-shrink-0 ml-4 bg-gray-300 rounded-full duration-300 ease-in-out peer-checked:bg-acc1 after:w-4 after:h-4 after:bg-white after:rounded-full after:shadow-md after:duration-300 peer-checked:after:translate-x-5 group-hover:after:translate-x-1"></span>
 				</label>
 			</div>
 			<span class="text-sm w-full text-left">{
@@ -68,7 +108,7 @@
 			<div class="form-check form-switch flex justify-end">
 				<label class="relative flex justify-between items-center group p-2 text-xl">
 					<input on:change={handleSettingsChange} bind:checked={$themePref.hardmode} type="checkbox" name="hardmode" class="absolute left-1/2 -translate-x-1/2 w-full h-full peer appearance-none rounded-md" />
-					<span class="w-10 h-5 flex items-center flex-shrink-0 ml-4 bg-gray-300 rounded-full duration-300 ease-in-out peer-checked:bg-correct after:w-4 after:h-4 after:bg-white after:rounded-full after:shadow-md after:duration-300 peer-checked:after:translate-x-5 group-hover:after:translate-x-1"></span>
+					<span class="w-10 h-5 flex items-center flex-shrink-0 ml-4 bg-gray-300 rounded-full duration-300 ease-in-out peer-checked:bg-acc1 after:w-4 after:h-4 after:bg-white after:rounded-full after:shadow-md after:duration-300 peer-checked:after:translate-x-5 group-hover:after:translate-x-1"></span>
 				</label>
 			</div>
 			<span class="text-sm w-full text-left">{
@@ -80,7 +120,7 @@
 			<div class="form-check form-switch flex justify-end">
 				<label class="relative flex justify-between items-center group p-2 text-xl">
 					<input on:change={handleSettingsChange} bind:checked={$themePref.contrast} type="checkbox" name="contrast" class="absolute left-1/2 -translate-x-1/2 w-full h-full peer appearance-none rounded-md" />
-					<span class="w-10 h-5 flex items-center flex-shrink-0 ml-4 bg-gray-300 rounded-full duration-300 ease-in-out peer-checked:bg-correct after:w-4 after:h-4 after:bg-white after:rounded-full after:shadow-md after:duration-300 peer-checked:after:translate-x-5 group-hover:after:translate-x-1"></span>
+					<span class="w-10 h-5 flex items-center flex-shrink-0 ml-4 bg-gray-300 rounded-full duration-300 ease-in-out peer-checked:bg-acc1 after:w-4 after:h-4 after:bg-white after:rounded-full after:shadow-md after:duration-300 peer-checked:after:translate-x-5 group-hover:after:translate-x-1"></span>
 				</label>
 			</div>
 			<span class="text-sm w-full text-left">{
@@ -91,7 +131,7 @@
 			<p>Feedback</p>
 			<p>
 				<a
-				class="text-actionred hover:font-semibold hover:underline"
+				class="text-acc1 font-semibold hover:font-semibold hover:underline"
 					href="mailto:josh.allen@hey.com">Email Me</a
 				>
 			</p>
@@ -100,7 +140,7 @@
 			<p>See the Code</p>
 			<p>
 				<a
-					class="text-actionred hover:font-semibold hover:underline"
+					class="text-acc1 font-semibold hover:font-semibold hover:underline"
 					href="https://github.com/joshallendev/wordlol">Github Repo</a
 				>
 			</p>

@@ -7,23 +7,17 @@ module.exports = {
 				barlow: ['Barlow', 'sans-serif']
 			},
 			colors: {
-				minion: '#FDE74C',
-				darkminion: '#B6A102',
-				cyanp: '#5BC0EB',
-				pumpkin: '#FA7921',
-				flame: '#E55934',
-				androidgreen: '#9BC53D',
-				dovegray: '#6c6c6c',
-				sunray: '#DEA54B',
-				frostbite: '#D741A7',
-				carolinablue: '#5398BE',
-				light1: '#504f4e',
 				actionred: '#D13639',
 				correct: '#39ccb1',
 				lightgray: '#e0e0e0',
-				robinblue: '#00A0BA',
 				darkgray: '#9c9c9c',
 				squash: '#B59A27',
+
+				acc1: 'var(--app-acc1)',
+				acc2: 'var(--app-acc2)', 
+				acc3: 'var(--app-acc3)', 
+				acc4: 'var(--app-acc4)',
+				background: 'var(--app-background)', 
 
 
 			}
