@@ -1,3 +1,9 @@
+$ WORDLOL - A Leage of Legends word game
+
+League of Legends and Wordle are trademarked / registered trademarks of / otherwise owned by Riot Games and The New York Times, respectively. This game is not endorsed or affiliated with them in any way... it's just a hobby project about a game I love :)
+
+WORDLOL is created using SvelteKit and styled with Tailwind. 
+
 # create-svelte
 
 Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
