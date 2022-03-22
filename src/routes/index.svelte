@@ -289,8 +289,6 @@
 			}
 			shareText += '\n';
 		}
-		navigator.clipboard.writeText(shareText);
-		toast.push('Results copied to clipboard');
 		return shareText;
 	}
 
@@ -299,15 +297,19 @@
 	}
 
 	export function handleShare(): void {
-		if (navigator.share) {
+		const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+		const shareText = generateShareText();
+		if (navigator.share && isMobile) {
 			navigator
 				.share({
 					title: 'playwordlol.com',
-					text: generateShareText()
+					text: shareText
 				})
 				.then(() => console.log('Successful share'))
 				.catch((error) => console.log('Error sharing', error));
 		} else {
+			navigator.clipboard.writeText(shareText);
+			toast.push('Game copied to clipboard');
 			console.log('no navigator share support');
 		}
 	}
