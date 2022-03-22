@@ -132,7 +132,7 @@
 			<p>
 				<a
 				class="text-acc1 font-semibold hover:font-semibold hover:underline"
-					href="mailto:josh.allen@hey.com">Email Me</a
+					href="mailto:hello@playwordlol.com">hello@playwordlol.com</a
 				>
 			</p>
 		</div>
@@ -142,6 +142,15 @@
 				<a
 					class="text-acc1 font-semibold hover:font-semibold hover:underline"
 					href="https://github.com/joshallendev/wordlol">Github Repo</a
+				>
+			</p>
+		</div>
+		<div class="flex justify-between border-b border-lightgray py-4 align-middle">
+			<p>Created By Josh Allen</p>
+			<p>
+				<a
+					class="text-acc1 font-semibold hover:font-semibold hover:underline"
+					href="https://www.joshallendev.com/">My Website</a
 				>
 			</p>
 		</div>

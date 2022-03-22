@@ -34,7 +34,7 @@ in:fade
 		class="flex flex-col text-center bg-background dark:text-white w-5/6 md:w-1/2 pt-2 pb-5 px-4 rounded mt-20 h-3/4 overflow-y-auto"
 	>
 		<div class="flex flex-row mb-4">
-			<h3 class="text-lg font-semibold">HOW TO PLAY</h3>
+			<h3 class="text-l font-semibold">HOW TO PLAY</h3>
 			<button class="ml-auto align-middle hover:text-actionred" on:click={() => ($showInfo = !$showInfo)}>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -55,20 +55,20 @@ in:fade
 			close</button>
 		</div>
 		<section id="instructions" class="text-left">
-			<p class="py-1">
+			<p class="py-2">
 				Guess the League of Legends related <strong>WORDLOL</strong> in 6 tries or less.
 			</p>
-			<p class="py-1">
-				Words are not limited to champion names. They may include game terms, item names, etc.
+			<p class="py-2">
+				Words may include champion names, game terms, item names, etc. Words currently won't exceed a length of 6.. but that may change in the future.
 			</p>
-			<p class="py-1">
+			<p class="py-2">
 				Hints are available if you might need them after round 3. Click the ✨ icon in the header at the top of
 				the page.
 			</p>
-			<p class="py-1">
+			<p class="py-2">
 				After guessing the letters will change colors to show how close you are to the secret word.
 			</p>
-			<p class="py-1">If using a keyboard, you can type on that or the on-screen keys.</p>
+			<p class="py-2">If using a keyboard, you can type on that or use the on-screen keys.</p>
 		</section>
 		<section id="examples" class="border-t border-lightgray text-left">
 			<p class="text-l font-semibold py-4">EXAMPLES</p>
@@ -110,7 +110,7 @@ in:fade
 				></p>
 				
 
-			<p class="py-1">Techie details:</p>
+			<p class="py-1">Tech details:</p>
 			<ul class="list-disc list-inside m-2">
 				<li>Built in <a
 					class="text-acc1 font-semibold hover:font-semibold hover:underline"
@@ -126,10 +126,31 @@ in:fade
 					href="https://www.netlify.com/">Netlify</a
 				></li>
 			</ul>
+		</div>
+		<div class="flex justify-between border-b border-lightgray py-4 align-middle">
+			<p>Feedback</p>
+			<p>
+				<a
+				class="text-acc1 font-semibold hover:font-semibold hover:underline"
+					href="mailto:hello@playwordlol.com">hello@playwordlol.com</a
+				>
+			</p>
+		</div>
+		<div class="flex justify-between border-b border-lightgray py-4 align-middle">
+			<p>See the Code</p>
 			<p>
 				<a
 					class="text-acc1 font-semibold hover:font-semibold hover:underline"
-					href="https://github.com/joshallendev/wordlol">View the Github Repo</a
+					href="https://github.com/joshallendev/wordlol">Github Repo</a
+				>
+			</p>
+		</div>
+		<div class="flex justify-between border-b border-lightgray py-4 align-middle">
+			<p>Created By Josh Allen</p>
+			<p>
+				<a
+					class="text-acc1 font-semibold hover:font-semibold hover:underline"
+					href="https://www.joshallendev.com/">My Website</a
 				>
 			</p>
 		</div>
