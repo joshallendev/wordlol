@@ -289,7 +289,8 @@
 			}
 			shareText += '\n';
 		}
-		console.log(shareText);
+		navigator.clipboard.writeText(shareText);
+		toast.push('Results copied to clipboard');
 		return shareText;
 	}
 
