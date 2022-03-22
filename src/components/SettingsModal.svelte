@@ -156,7 +156,7 @@
 				>
 			</p>
 		</div>
-		<div class="flex justify-between border-b border-lightgray py-4 align-middle">
+		<!-- <div class="flex justify-between border-b border-lightgray py-4 align-middle">
 			<p class="text-left">Created By Josh Allen</p>
 			<p>
 				<a
@@ -164,6 +164,6 @@
 					href="https://www.joshallendev.com/">My Website</a
 				>
 			</p>
-		</div>
+		</div> -->
 	</div>
 </div>

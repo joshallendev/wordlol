@@ -155,7 +155,7 @@
 				>
 			</p>
 		</div>
-		<div class="flex justify-between border-b border-lightgray py-4 align-middle">
+		<!-- <div class="flex justify-between border-b border-lightgray py-4 align-middle">
 			<p class="text-left">Created By Josh Allen</p>
 			<p>
 				<a
@@ -163,7 +163,7 @@
 					href="https://www.joshallendev.com/">My Website</a
 				>
 			</p>
-		</div>
+		</div> -->
 		<p class="text-sm text-left mt-8">
 			League of Legends and Wordle are trademarked / registered trademarks of / otherwise owned by
 			Riot Games and The New York Times, respectively. This game is not endorsed or affiliated with
