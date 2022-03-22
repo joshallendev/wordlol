@@ -142,7 +142,7 @@
 			<p>
 				<a
 					class="text-acc1 font-semibold hover:font-semibold hover:underline"
-					href="mailto:hello@playwordlol.com">hello@playwordlol.com</a
+					href="mailto:hello@playwordlol.com">Send an Email</a
 				>
 			</p>
 		</div>
@@ -156,7 +156,7 @@
 			</p>
 		</div>
 		<div class="flex justify-between border-b border-lightgray py-4 align-middle">
-			<p>Created By Josh Allen</p>
+			<p class="text-left">Created By Josh Allen</p>
 			<p>
 				<a
 					class="text-acc1 font-semibold hover:font-semibold hover:underline"
