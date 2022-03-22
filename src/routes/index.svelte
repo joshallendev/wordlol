@@ -159,7 +159,7 @@
 				}
 				if (unusedLetter > 0) {
 					toast.push(
-						`Hard Mode is enabled. You must use previously revealed letters: ${$game.revealedLetters.join(
+						`Hard Mode is enabled. Guesses must contain previously revealed letters: ${$game.revealedLetters.join(
 							', '
 						)}`,
 						{
@@ -232,7 +232,10 @@
 				updateStats();
 				$game.gameOver = true;
 				saveGame();
-				showModal = true;
+				toast.push(gameOverMessage(), {
+					onpop: () => showModal = true,
+					duration: 2000
+				});
 			} else {
 				$game.hasWon = false;
 				$game.gameOver = false;
@@ -240,6 +243,20 @@
 				$game.currentLetter = 0;
 				saveGame();
 			}
+		}
+	}
+
+	function gameOverMessage() {
+		if (!$game.hasWon) {
+			return 'Better luck next time.'
+		} else if ($game.numGuesses === 6) {
+			return 'Just in time!';
+		} else if ($game.numGuesses >= 4) {
+			return 'Nicel!';
+		} else if ($game.numGuesses >= 2) {
+			return 'Terrific!';
+		} else {
+			return 'Amazing!';
 		}
 	}
 

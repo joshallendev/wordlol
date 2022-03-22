@@ -4,7 +4,7 @@ module.exports = {
 	theme: {
 		extend: {
 			fontFamily: {
-				barlow: ['Barlow', 'sans-serif']
+				barlow: ['Noto Sans', 'sans-serif']
 			},
 			colors: {
 				acc1: 'var(--app-acc1)',

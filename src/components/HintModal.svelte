@@ -64,13 +64,13 @@
 			{#if !$revealType}
 				<button
 					type="button"
-					class="bg-acc4 text-white rounded mb-6 p-2"
+					class="bg-acc4 text-black dark:text-white rounded mb-6 p-2"
 					on:click={() => {
 						$revealType = !$revealType;
 						handleHintReveal();
 					}}
 				>
-					✨ show me the hint! ✨
+					✨ get a hint! ✨
 				</button>
 			{:else}
 				<span bind:this={hintSpan} class="mb-4 border-b-2 border-acc1">hint: {type}</span>
@@ -80,13 +80,13 @@
 			{#if $revealType && !$revealClue}
 				<button
 					type="button"
-					class="block bg-acc4 text-white rounded mb-6 p-2"
+					class="block bg-acc4 text-black dark:text-white rounded mb-6 p-2"
 					on:click={() => {
 						$revealClue = !$revealClue;
 						handleHintReveal();
 					}}
 				>
-					✨ i'm stuck.. show me another hint! ✨
+					✨ another hint! ✨
 				</button>
 			{:else if $revealType && $revealClue}
 				<span bind:this={clueSpan} class="border-b-2 border-acc1">hint: {clue}</span>

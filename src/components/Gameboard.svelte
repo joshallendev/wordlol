@@ -3,7 +3,7 @@
 	import { fade, scale } from 'svelte/transition';
 
 	const letterStyles: string =
-		'board-letter select-none inline w-14 h-14 mx-1 md:h-16 md:w-16 text-4xl flex rounded-md justify-center items-center';
+		'board-letter select-none inline w-14 h-14 mx-1 md:h-16 md:w-16 text-4xl flex rounded-md justify-center items-center font-semibold';
 
 	$: setLetterStyles = (loc) => {
 		let classes: string = '';
