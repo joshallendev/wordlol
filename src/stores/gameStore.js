@@ -55,7 +55,7 @@ const words = [
 	{
 		word: 'SHEEN',
 		type: 'game item',
-		clue: ['part of trinity force']
+		clue: ['part of trinity force, also a soft luster on a surface']
 	},
 	{
 		word: 'DRAGON',
@@ -133,6 +133,11 @@ const words = [
 		clue: ["the curator of the sands"]
 	},
 	{
+		word: 'GANKED',
+		type: 'game term',
+		clue: ["when your laner invited a friend"]
+	},
+	{
 		word: 'TARGON',
 		type: 'lore location',
 		clue: ['mightiest peak in Runeterra']
@@ -140,7 +145,7 @@ const words = [
 	{
 		word: 'GLASC',
 		type: 'champion',
-		clue: ['chem baroness']
+		clue: ['chem baroness, probably mad this word is only her last name']
 	},
 	{
 		word: 'WUKONG',
@@ -380,7 +385,7 @@ const words = [
 	{
 		word: 'RENATA',
 		type: 'champion',
-		clue: ['chem baroness']
+		clue: ['chem baroness, probably mad this word is just her first name']
 	},
 	{
 		word: 'ZAC',
