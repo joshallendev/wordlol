@@ -114,8 +114,8 @@ const words = [
 	},
 	{
 		word: 'ESPORT',
-		type: 'league term',
-		clue: ["not a regular sport, but an ______"]
+		type: 'competitive league term',
+		clue: ["competitive league might not be called a 'regular' sport, but an ______"]
 	},
 	{
 		word: 'SAMIRA',
@@ -180,7 +180,7 @@ const words = [
 	{
 		word: 'WARD',
 		type: 'game item',
-		clue: ['can you see it?']
+		clue: ['helps with vision']
 	},
 	{
 		word: 'MUNDO',
@@ -415,7 +415,7 @@ const words = [
 	{
 		word: 'BARON',
 		type: 'in-game objective',
-		clue: ['might help you close out the game']
+		clue: ["the most powerful neutral monster on Summoner's Rift"]
 	},
 	{
 		word: 'SPELL',
@@ -871,7 +871,12 @@ const words = [
 		word: 'SETT',
 		type: 'champion',
 		clue: ['the boss']
-	}
+	},
+	{
+		word: 'NASHOR',
+		type: 'in-game objective',
+		clue: ["the most powerful neutral monster on Summoner's Rift"]
+	},
 ];
 
 const today = new Date().toDateString();
