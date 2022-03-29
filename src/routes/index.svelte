@@ -252,7 +252,7 @@
 		} else if ($game.numGuesses === 6) {
 			return 'Just in time!';
 		} else if ($game.numGuesses >= 4) {
-			return 'Nicel!';
+			return 'Nice!';
 		} else if ($game.numGuesses >= 2) {
 			return 'Terrific!';
 		} else {
