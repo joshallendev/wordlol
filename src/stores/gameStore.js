@@ -143,11 +143,6 @@ const words = [
 		clue: ['mightiest peak in Runeterra']
 	},
 	{
-		word: 'GLASC',
-		type: 'champion',
-		clue: ['chem baroness, probably mad this word is only her last name']
-	},
-	{
 		word: 'WUKONG',
 		type: 'champion',
 		clue: ["the monkey king"]
@@ -881,6 +876,11 @@ const words = [
 		word: 'NASHOR',
 		type: 'in-game objective',
 		clue: ["the most powerful neutral monster on Summoner's Rift"]
+	},
+	{
+		word: 'GLASC',
+		type: 'champion',
+		clue: ['chem baroness, probably mad this word is only her last name']
 	},
 ];
 
